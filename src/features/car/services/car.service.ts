@@ -5,7 +5,7 @@ import { CMD } from '../../../constants';
 @Injectable()
 export class IntegrationCarService {
   constructor(
-    @Inject('CARZ_INTEGRATION') private _carzInteration: ClientProxy,
+    @Inject('CARZ_INTEGRATIONS') private _carzInteration: ClientProxy,
   ) {}
 
   public async insert(data: any) {
