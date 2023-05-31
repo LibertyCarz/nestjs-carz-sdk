@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD } from 'src/constants/cmd.constant';
+import { CMD } from '../../../constants';
 
 @Injectable()
-export class CarService {
+export class IntegrationCarService {
   constructor(
     @Inject('CARZ_INTEGRATION') private _carzInteration: ClientProxy,
   ) {}
