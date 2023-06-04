@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CMD, SERVICE } from '../../../constants';
-import { BaseService } from 'src/shared/base.service';
+import { BaseService } from '../../../shared/base.service';
 import { IntegrationMultipleCar } from '../dto';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
