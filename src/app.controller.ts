@@ -6,12 +6,12 @@ import { IntegrationCarService } from './features/car/services';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private integrationCarService: IntegrationCarService,
+    private _integrationCarService: IntegrationCarService,
   ) {}
 
   @Get()
   async getHello() {
-    await this.integrationCarService.findOne({});
+    await this._integrationCarService.findOne({});
     return this.appService.getHello();
   }
 }
