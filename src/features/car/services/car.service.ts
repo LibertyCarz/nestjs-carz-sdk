@@ -33,7 +33,6 @@ export class IntegrationCarService implements BaseService {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, payload),
     );
-    console.log(response.data);
     return response.data;
   }
 
