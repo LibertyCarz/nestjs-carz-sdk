@@ -28,8 +28,6 @@ export class IntegrationCarService implements BaseService {
     throw new Error('Method not implemented.');
   }
   public async findOne(payload: any) {
-    console.log(this._endpoint);
-
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, payload),
     );
@@ -37,8 +35,6 @@ export class IntegrationCarService implements BaseService {
   }
 
   public async insert(data: IntegrationMultipleCar) {
-    return this._carzInteration.emit(CMD.CAR_INSERT, {
-      data: data,
-    });
+    return this._carzInteration.emit(CMD.CAR_INSERT, data);
   }
 }
