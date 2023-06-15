@@ -1,40 +1,34 @@
 import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
-import { ClientProxy, RmqRecord } from '@nestjs/microservices';
+import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { INotificationService } from 'src/shared/notification.service';
-import { CMD, SERVICE } from '../../../constants';
-import { InsertNotificationDTO, SendMultiStaffDTO } from '../dto';
+
+import { CMD, SERVICES } from '../../../constants';
+import {
+  BasePayloadRequest,
+  InsertNotificationDTO,
+  SendMultiStaffDTO,
+} from '../dto';
 
 @Injectable()
-export class IntegrationNotificationService implements INotificationService {
+export class IntegrationNotificationService {
   private _endpoint: string;
   constructor(
-    @Inject(SERVICE.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,
+    @Inject(SERVICES.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,
     private _httpService: HttpService,
   ) {
     this._endpoint = process.env.NOTIFICATION_ENDPOINT;
   }
-  async sendMultiStaffs({ data, options }: RmqRecord<SendMultiStaffDTO>) {
-    try {
-      this._carzNotification
-        .emit(
-          CMD.NOTIFICATION.SEND_MULTI_STAFFS,
-          new RmqRecord<SendMultiStaffDTO>(data, options),
-        )
-        .subscribe({
-          next: (v) => console.log(v),
-          error: (e) => console.error(e),
-          complete: () => console.info('complete'),
-        });
-    } catch (error) {
-      console.log('ERROR WHEN SEND MULTI STAFF', { error });
-    }
+  async sendMultiStaffs(payload: BasePayloadRequest<SendMultiStaffDTO>) {
+    const response = await lastValueFrom(
+      this._httpService.post(`${this._endpoint}`, payload.buildRecord()),
+    );
+    return response;
   }
-  create(payload: InsertNotificationDTO) {
+  create(payload: BasePayloadRequest<InsertNotificationDTO>) {
     return this._carzNotification.emit(
-      CMD.NOTIFICATION.SEND_MULTI_STAFFS,
-      payload,
+      CMD.CAR_NOTIFICATION,
+      payload.buildRecord(),
     );
   }
   update(payload: any) {
@@ -59,10 +53,11 @@ export class IntegrationNotificationService implements INotificationService {
     notificationTypeKey: string,
   ) {
     try {
-      this._carzNotification.emit(
-        CMD.NOTIFICATION.CARZ_NOTIFICATION_ONE_EVENT,
-        { user, data, notificationTypeKey },
-      );
+      this._carzNotification.emit(CMD.CAR_NOTIFICATION, {
+        user,
+        data,
+        notificationTypeKey,
+      });
     } catch (error) {
       console.log('ERROR ON CREATE NOTIFICATION ONE EVENT IN SDK:::', error);
     }

@@ -5,14 +5,14 @@ import { HttpModule } from '@nestjs/axios';
 import { IntegrationCarService } from './features/car/services';
 import { IntegrationNotificationService } from './features/notification/services/notification.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { SERVICE } from './constants';
+import { SERVICES } from './constants';
 
 @Module({
   imports: [
     HttpModule,
     ClientsModule.register([
-      { name: SERVICE.CARZ_INTEGRATIONS, transport: Transport.TCP },
-      { name: SERVICE.CARZ_NOTIFICATIONS, transport: Transport.TCP },
+      { name: SERVICES.CARZ_INTEGRATIONS, transport: Transport.TCP },
+      { name: SERVICES.CARZ_NOTIFICATIONS, transport: Transport.TCP },
     ]),
   ],
   controllers: [AppController],

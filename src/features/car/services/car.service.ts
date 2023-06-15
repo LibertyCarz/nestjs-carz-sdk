@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICE } from '../../../constants';
+import { CMD, SERVICES } from '../../../constants';
 import { BaseService } from '../../../shared/base.service';
 import { IntegrationMultipleCar } from '../dto';
 import { HttpService } from '@nestjs/axios';
@@ -10,7 +10,7 @@ import { lastValueFrom } from 'rxjs';
 export class IntegrationCarService implements BaseService {
   private _endpoint;
   constructor(
-    @Inject(SERVICE.CARZ_INTEGRATIONS) private _carzInteration: ClientProxy,
+    @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzInteration: ClientProxy,
     private _httpService: HttpService,
   ) {
     this._endpoint = process.env.INTEGRATION_ENDPOINT;
