@@ -19,12 +19,12 @@ export class IntegrationNotificationService {
   ) {
     this._endpoint = process.env.NOTIFICATION_ENDPOINT;
   }
-  async sendMultiStaffs(payload: BasePayloadRequest<SendMultiStaffDTO>) {
-    const response = await lastValueFrom(
-      this._httpService.post(`${this._endpoint}`, payload.buildRecord()),
-    );
-    return response;
-  }
+  // async sendMultiStaffs(payload: BasePayloadRequest<SendMultiStaffDTO>) {
+  //   const response = await lastValueFrom(
+  //     this._httpService.post(`${this._endpoint}`, payload.buildRecord()),
+  //   );
+  //   return response;
+  // }
   create(payload: BasePayloadRequest<InsertNotificationDTO>) {
     return this._carzNotification.emit(
       CMD.CAR_NOTIFICATION,
