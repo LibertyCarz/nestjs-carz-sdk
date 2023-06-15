@@ -1,7 +1,5 @@
 import { RmqRecord, RmqRecordOptions } from '@nestjs/microservices';
 
-type User = { user: number; userType: number; language: string };
-
 export class InsertNotificationDTO {
   user: User;
   data: object;
