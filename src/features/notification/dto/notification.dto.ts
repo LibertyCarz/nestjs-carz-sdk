@@ -1,4 +1,6 @@
 import { RmqRecord, RmqRecordOptions } from '@nestjs/microservices';
+import { BaseFilter } from 'src/shared/base.request';
+import { Request } from 'express';
 
 export class InsertNotificationDTO {
   user: User;
@@ -28,4 +30,22 @@ export class BasePayloadRequest<TRquest> {
 
 export type PayloadCreateOneEvent = InsertNotificationDTO & {
   notificationTypeKey: string;
+};
+
+export class BaseRequest<TParams = BaseFilter> {
+  request: Request<TParams>;
+  params: TParams;
+  constructor(data: BaseRequest<TParams>) {
+    this.request = data.request;
+    this.params = data.params;
+    this.request.params = data.params;
+  }
+  getConfig() {
+    return this.request;
+  }
+}
+
+export type UpdateNotificationDto = {
+  read: boolean;
+  updatedBy: number;
 };

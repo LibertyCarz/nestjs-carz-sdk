@@ -3,14 +3,15 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
+import { BaseFilter } from 'src/shared/base.request';
 import { CMD, SERVICES } from '../../../constants';
 import {
   BasePayloadRequest,
+  BaseRequest,
   InsertNotificationDTO,
   PayloadCreateOneEvent,
-  SendMultiStaffDTO,
+  UpdateNotificationDto,
 } from '../dto';
-import { Request } from 'express';
 
 @Injectable()
 export class IntegrationNotificationService {
@@ -21,34 +22,56 @@ export class IntegrationNotificationService {
   ) {
     this._endpoint = process.env.NOTIFICATION_ENDPOINT;
   }
-  // async sendMultiStaffs(payload: BasePayloadRequest<SendMultiStaffDTO>) {
-  //   const response = await lastValueFrom(
-  //     this._httpService.post(`${this._endpoint}`, payload.buildRecord()),
-  //   );
-  //   return response;
-  // }
+
   create(payload: BasePayloadRequest<InsertNotificationDTO>) {
     return this._carzNotification.emit(
       CMD.CAR_NOTIFICATION,
       payload.buildRecord(),
     );
   }
-  update(payload: any) {
-    throw new Error('Method not implemented.');
-  }
-  delete(payload: any) {
-    throw new Error('Method not implemented.');
-  }
-  async getList(request: Request, query: any) {
-    request.params = query;
+
+  async update(
+    notificationId: number,
+    payload: UpdateNotificationDto,
+    request: BaseRequest<BaseFilter>,
+  ) {
     const response = await lastValueFrom(
-      this._httpService.get(`${this._endpoint}`, request),
+      this._httpService.put(
+        `${this._endpoint}/${notificationId}`,
+        payload,
+        request.getConfig(),
+      ),
     );
     return response.data;
   }
-  public async findOne(payload: any) {
+
+  async clear(request: BaseRequest<BaseFilter>) {
     const response = await lastValueFrom(
-      this._httpService.get(`${this._endpoint}`, payload),
+      this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
+    );
+    return response.data;
+  }
+  async count(request: BaseRequest<BaseFilter>) {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/count`, request.getConfig()),
+    );
+    return response.data;
+  }
+  async getList(request: BaseRequest<BaseFilter>) {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}`, request.getConfig()),
+    );
+    return response.data;
+  }
+  public async findOne(
+    notificationId: number,
+    request: BaseRequest<BaseFilter>,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.get(
+        `${this._endpoint}/${notificationId}`,
+        request.getConfig(),
+      ),
     );
     return response.data;
   }
