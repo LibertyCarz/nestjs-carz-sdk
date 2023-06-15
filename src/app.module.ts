@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
@@ -6,6 +6,7 @@ import { IntegrationCarService } from './features/car/services';
 import { IntegrationNotificationService } from './features/notification/services/notification.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
+@Global()
 @Module({
   imports: [
     ClientsModule.register([
@@ -44,5 +45,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     IntegrationCarService,
     IntegrationNotificationService,
   ],
+  exports: [IntegrationCarService, IntegrationNotificationService],
 })
-export class AppModule {}
+export class AppSdkModule {}

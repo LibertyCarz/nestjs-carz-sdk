@@ -3,7 +3,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
-import { BaseFilter } from 'src/shared/base.request';
 import { CMD, SERVICES } from '../../../constants';
 import {
   BasePayloadRequest,
@@ -33,7 +32,7 @@ export class IntegrationNotificationService {
   async update(
     notificationId: number,
     payload: UpdateNotificationDto,
-    request: BaseRequest<BaseFilter>,
+    request: BaseRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.put(
@@ -45,28 +44,25 @@ export class IntegrationNotificationService {
     return response.data;
   }
 
-  async clear(request: BaseRequest<BaseFilter>) {
+  async clear(request: BaseRequest) {
     const response = await lastValueFrom(
       this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
     );
     return response.data;
   }
-  async count(request: BaseRequest<BaseFilter>) {
+  async count(request: BaseRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/count`, request.getConfig()),
     );
     return response.data;
   }
-  async getList(request: BaseRequest<BaseFilter>) {
+  async getList(request: BaseRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, request.getConfig()),
     );
     return response.data;
   }
-  public async findOne(
-    notificationId: number,
-    request: BaseRequest<BaseFilter>,
-  ) {
+  public async findOne(notificationId: number, request: BaseRequest) {
     const response = await lastValueFrom(
       this._httpService.get(
         `${this._endpoint}/${notificationId}`,
