@@ -7,8 +7,10 @@ import { CMD, SERVICES } from '../../../constants';
 import {
   BasePayloadRequest,
   InsertNotificationDTO,
+  PayloadCreateOneEvent,
   SendMultiStaffDTO,
 } from '../dto';
+import { Request } from 'express';
 
 @Injectable()
 export class IntegrationNotificationService {
@@ -37,8 +39,12 @@ export class IntegrationNotificationService {
   delete(payload: any) {
     throw new Error('Method not implemented.');
   }
-  getList(payload: any) {
-    throw new Error('Method not implemented.');
+  async getList(request: Request, query: any) {
+    request.params = query;
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}`, request),
+    );
+    return response.data;
   }
   public async findOne(payload: any) {
     const response = await lastValueFrom(
@@ -48,18 +54,11 @@ export class IntegrationNotificationService {
   }
 
   public async createNotificationOneEvent(
-    user: User,
-    data: object,
-    notificationTypeKey: string,
+    payload: BasePayloadRequest<PayloadCreateOneEvent>,
   ) {
-    try {
-      this._carzNotification.emit(CMD.CAR_NOTIFICATION, {
-        user,
-        data,
-        notificationTypeKey,
-      });
-    } catch (error) {
-      console.log('ERROR ON CREATE NOTIFICATION ONE EVENT IN SDK:::', error);
-    }
+    return this._carzNotification.emit(
+      CMD.CAR_NOTIFICATION,
+      payload.buildRecord(),
+    );
   }
 }

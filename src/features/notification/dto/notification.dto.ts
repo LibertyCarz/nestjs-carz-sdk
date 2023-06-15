@@ -15,13 +15,17 @@ export class SendMultiStaffRequest {
   options: RmqRecordOptions;
 }
 
-export class BasePayloadRequest<TRquest = any> {
-  payload: TRquest;
+export class BasePayloadRequest<TRquest> {
+  data: TRquest;
   options: RmqRecordOptions;
-  constructor(payload: TRquest, options: RmqRecordOptions) {
-    (this.payload = payload), (this.options = options);
+  constructor(payload: TRquest, options?: RmqRecordOptions) {
+    (this.data = payload), (this.options = options);
   }
   public buildRecord() {
-    return new RmqRecord<TRquest>(this.payload, this.options);
+    return new RmqRecord<TRquest>(this.data, this.options);
   }
 }
+
+export type PayloadCreateOneEvent = InsertNotificationDTO & {
+  notificationTypeKey: string;
+};

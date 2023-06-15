@@ -2,7 +2,7 @@ export {};
 
 declare global {
   declare type User = {
-    user: number;
+    id: number;
     userType: number;
     language?: string;
   };

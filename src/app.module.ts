@@ -5,15 +5,38 @@ import { HttpModule } from '@nestjs/axios';
 import { IntegrationCarService } from './features/car/services';
 import { IntegrationNotificationService } from './features/notification/services/notification.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { SERVICES } from './constants';
 
 @Module({
   imports: [
-    HttpModule,
     ClientsModule.register([
-      { name: SERVICES.CARZ_INTEGRATIONS, transport: Transport.TCP },
-      { name: SERVICES.CARZ_NOTIFICATIONS, transport: Transport.TCP },
+      {
+        name: 'CARZ_INTEGRATIONS',
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            'amqps://bmddeeoc:V6EH4YXQKjSlGQ0ZTmviNX8tqOAQcgyV@fuji.lmq.cloudamqp.com/bmddeeoc',
+          ],
+          queue: 'carz_queue_002',
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+      {
+        name: 'CARZ_NOTIFICATIONS',
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            'amqps://bmddeeoc:V6EH4YXQKjSlGQ0ZTmviNX8tqOAQcgyV@fuji.lmq.cloudamqp.com/bmddeeoc',
+          ],
+          queue: 'carz_queue_002',
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
     ]),
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [
