@@ -52,4 +52,19 @@ export class IntegrationNotificationService implements INotificationService {
     );
     return response.data;
   }
+
+  public async createNotificationOneEvent(
+    user: User,
+    data: object,
+    notificationTypeKey: string,
+  ) {
+    try {
+      this._carzNotification.emit(
+        CMD.NOTIFICATION.CARZ_NOTIFICATION_ONE_EVENT,
+        { user, data, notificationTypeKey },
+      );
+    } catch (error) {
+      console.log('ERROR ON CREATE NOTIFICATION ONE EVENT IN SDK:::', error);
+    }
+  }
 }
