@@ -32,7 +32,7 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
   notificationTypeKey: string;
 };
 
-export class BaseSdkRequest<TParams = BaseSdkFilter> {
+export class BaseSdkRequest<TParams = Partial<BaseSdkFilter>> {
   request: Request;
   params: TParams;
   constructor(request: Request, params: TParams) {
