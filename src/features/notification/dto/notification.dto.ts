@@ -1,6 +1,6 @@
 import { RmqRecord, RmqRecordOptions } from '@nestjs/microservices';
 import { Request } from 'express';
-import { BaseSdkFilter } from 'src/shared/base.request';
+import { BaseSdkFilter } from '../../../shared/base.request';
 
 export class InsertNotificationDTO {
   user: User;
