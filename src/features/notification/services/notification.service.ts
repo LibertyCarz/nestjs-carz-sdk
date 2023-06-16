@@ -6,7 +6,7 @@ import { lastValueFrom } from 'rxjs';
 import { CMD, SERVICES } from '../../../constants';
 import {
   BasePayloadRequest,
-  BaseRequest,
+  BaseSdkRequest,
   InsertNotificationDTO,
   PayloadCreateOneEvent,
   UpdateNotificationDto,
@@ -32,7 +32,7 @@ export class IntegrationNotificationService {
   async update(
     notificationId: number,
     payload: UpdateNotificationDto,
-    request: BaseRequest,
+    request: BaseSdkRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.put(
@@ -44,25 +44,25 @@ export class IntegrationNotificationService {
     return response.data;
   }
 
-  async clear(request: BaseRequest) {
+  async clear(request: BaseSdkRequest) {
     const response = await lastValueFrom(
       this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
     );
     return response.data;
   }
-  async count(request: BaseRequest) {
+  async count(request: BaseSdkRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/count`, request.getConfig()),
     );
     return response.data;
   }
-  async getList(request: BaseRequest) {
+  async getList(request: BaseSdkRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, request.getConfig()),
     );
     return response.data;
   }
-  public async findOne(notificationId: number, request: BaseRequest) {
+  public async findOne(notificationId: number, request: BaseSdkRequest) {
     const response = await lastValueFrom(
       this._httpService.get(
         `${this._endpoint}/${notificationId}`,

@@ -47,4 +47,4 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   ],
   exports: [IntegrationCarService, IntegrationNotificationService],
 })
-export class AppSdkModule {}
+export class SdkModule {}
