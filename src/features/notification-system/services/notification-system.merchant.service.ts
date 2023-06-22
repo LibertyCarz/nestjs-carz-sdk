@@ -5,12 +5,11 @@ import { lastValueFrom } from 'rxjs';
 
 import { CMD, SERVICES } from '../../../constants';
 import {
-  BasePayloadRequest,
-  BaseSdkRequest,
   InsertNotificationDTO,
   PayloadCreateOneEvent,
   UpdateNotificationDto,
 } from '../dto';
+import { BasePayloadRequest, BaseSdkRequest } from 'src/shared/base.request';
 
 @Injectable()
 export class IntegrationNotificationMerchantService {
