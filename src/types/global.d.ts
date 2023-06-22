@@ -1,9 +1,11 @@
 export {};
 
 declare global {
-  declare type User = {
-    id: number;
-    userType: number;
-    language?: string;
-  };
+  namespace SDK {
+    export type User = {
+      id: number;
+      userType: number;
+      language?: string;
+    };
+  }
 }
