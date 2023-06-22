@@ -3,12 +3,12 @@ import { Request } from 'express';
 import { BaseSdkFilter } from '../../../shared/base.request';
 
 export class InsertNotificationDTO {
-  user: User;
+  user: SDK.User;
   data: object;
 }
 
 export class SendMultiStaffDTO {
-  users: Array<User>;
+  users: Array<SDK.User>;
   data: object;
 }
 
