@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { BaseSdkRequest } from 'src/shared/base.request';
+import { BaseSdkRequest } from '../../../shared/base.request';
 
 @Injectable()
 export class IntegrationNotificationSystemCustomerService {

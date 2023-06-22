@@ -9,7 +9,10 @@ import {
   PayloadCreateOneEvent,
   UpdateNotificationDto,
 } from '../dto';
-import { BasePayloadRequest, BaseSdkRequest } from 'src/shared/base.request';
+import {
+  BasePayloadRequest,
+  BaseSdkRequest,
+} from '../../../shared/base.request';
 
 @Injectable()
 export class IntegrationNotificationDashboardService {
