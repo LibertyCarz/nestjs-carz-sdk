@@ -3,16 +3,12 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
-import { CMD, SERVICES } from '../../../constants';
-import {
-  InsertNotificationDTO,
-  PayloadCreateOneEvent,
-  UpdateNotificationDto,
-} from '../dto';
 import {
   BaseSdkEventPayloadRequest,
   BaseSdkHttpRequest,
-} from 'src/shared/base.request';
+} from '../../../shared/base.request';
+import { CMD, SERVICES } from '../../../constants';
+import { PayloadCreateOneEvent, UpdateNotificationDto } from '../dto';
 
 @Injectable()
 export class IntegrationNotificationService {

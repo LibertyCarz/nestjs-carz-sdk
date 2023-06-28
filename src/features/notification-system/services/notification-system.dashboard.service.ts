@@ -12,7 +12,7 @@ import {
 import {
   BaseSdkEventPayloadRequest,
   BaseSdkHttpRequest,
-} from 'src/shared/base.request';
+} from '../../../shared/base.request';
 @Injectable()
 export class IntegrationNotificationSystemDashboardService {
   private _endpoint: string;

@@ -6,7 +6,7 @@ import { lastValueFrom } from 'rxjs';
 import {
   BaseSdkEventPayloadRequest,
   BaseSdkHttpRequest,
-} from 'src/shared/base.request';
+} from '../../../shared/base.request';
 import { CMD, SERVICES } from '../../../constants';
 import { PayloadCreateOneEvent, UpdateNotificationDto } from '../dto';
 
