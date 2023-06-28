@@ -19,6 +19,27 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
   notificationTypeKey: string;
 };
 
+export type CreateNotificationSystem = {
+  schedule: string;
+  userGroupType: NOTIFICATION_USER_GROUP;
+  translations: NotificationSystemTranslations[];
+};
+
+type NotificationSystemTranslations = {
+  id?: string;
+  language: string;
+  title: string;
+  body: string;
+  bodyHtml: string;
+  image: string;
+};
+
+export enum NOTIFICATION_USER_GROUP {
+  MERCHANT = 'merchant',
+  CUSTOMER = 'customer',
+  BOTH = 'both',
+}
+
 export type UpdateNotificationDto = {
   read: boolean;
   updatedBy: number;

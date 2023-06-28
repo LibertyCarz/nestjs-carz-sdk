@@ -11,7 +11,7 @@ export class BaseSdkFilter {
   }
 }
 
-export class BasePayloadRequest<TRquest> {
+export class BaseSdkEventPayloadRequest<TRquest> {
   data: TRquest;
   options: RmqRecordOptions;
   constructor(payload: TRquest, options?: RmqRecordOptions) {
@@ -22,7 +22,7 @@ export class BasePayloadRequest<TRquest> {
   }
 }
 
-export class BaseSdkRequest<TParams = Partial<BaseSdkFilter>> {
+export class BaseSdkHttpRequest<TParams = Partial<BaseSdkFilter>> {
   request: Request;
   params: TParams;
   constructor(request: Request, params: TParams) {

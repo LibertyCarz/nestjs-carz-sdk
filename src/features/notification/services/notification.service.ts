@@ -5,12 +5,14 @@ import { lastValueFrom } from 'rxjs';
 
 import { CMD, SERVICES } from '../../../constants';
 import {
-  BasePayloadRequest,
-  BaseSdkRequest,
   InsertNotificationDTO,
   PayloadCreateOneEvent,
   UpdateNotificationDto,
 } from '../dto';
+import {
+  BaseSdkEventPayloadRequest,
+  BaseSdkHttpRequest,
+} from 'src/shared/base.request';
 
 @Injectable()
 export class IntegrationNotificationService {
@@ -22,17 +24,10 @@ export class IntegrationNotificationService {
     this._endpoint = process.env.NOTIFICATION_ENDPOINT;
   }
 
-  create(payload: BasePayloadRequest<InsertNotificationDTO>) {
-    return this._carzNotification.emit(
-      CMD.CAR_NOTIFICATION,
-      payload.buildRecord(),
-    );
-  }
-
   async update(
     notificationId: number,
     payload: UpdateNotificationDto,
-    request: BaseSdkRequest,
+    request: BaseSdkHttpRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.put(
@@ -44,25 +39,25 @@ export class IntegrationNotificationService {
     return response.data;
   }
 
-  async clear(request: BaseSdkRequest) {
+  async clear(request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
     );
     return response.data;
   }
-  async count(request: BaseSdkRequest) {
+  async count(request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/count`, request.getConfig()),
     );
     return response.data;
   }
-  async getList(request: BaseSdkRequest) {
+  async getList(request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, request.getConfig()),
     );
     return response.data;
   }
-  public async findOne(notificationId: number, request: BaseSdkRequest) {
+  public async findOne(notificationId: number, request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.get(
         `${this._endpoint}/${notificationId}`,
@@ -73,7 +68,7 @@ export class IntegrationNotificationService {
   }
 
   public async createNotificationOneEvent(
-    payload: BasePayloadRequest<PayloadCreateOneEvent>,
+    payload: BaseSdkEventPayloadRequest<PayloadCreateOneEvent>,
   ) {
     return this._carzNotification.emit(
       CMD.CAR_NOTIFICATION,

@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { BaseSdkRequest } from '../../../shared/base.request';
+import { BaseSdkHttpRequest } from 'src/shared/base.request';
 
 @Injectable()
 export class IntegrationNotificationSystemCustomerService {
@@ -12,15 +12,13 @@ export class IntegrationNotificationSystemCustomerService {
       'http://localhost:3006/api/customer/notifications-system';
   }
 
-  async getList(request: BaseSdkRequest) {
-    console.log(`SDK=============>`);
-
+  async getList(request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, request.getConfig()),
     );
     return response.data;
   }
-  public async findOne(notificationId: number, request: BaseSdkRequest) {
+  public async findOne(notificationId: number, request: BaseSdkHttpRequest) {
     const response = await lastValueFrom(
       this._httpService.get(
         `${this._endpoint}/${notificationId}`,
