@@ -26,7 +26,7 @@ export type CreateNotificationSystem = {
 };
 
 type NotificationSystemTranslations = {
-  id?: string;
+  id?: number;
   language: string;
   title: string;
   body: string;
