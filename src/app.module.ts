@@ -5,6 +5,11 @@ import { HttpModule } from '@nestjs/axios';
 import { IntegrationCarService } from './features/car/services';
 import { IntegrationNotificationService } from './features/notification/services/notification.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import {
+  IntegrationNotificationSystemDashboardService,
+  IntegrationNotificationSystemMerchantService,
+  IntegrationNotificationSystemCustomerService,
+} from './features/notification-system/services';
 
 @Global()
 @Module({
@@ -44,7 +49,16 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     AppService,
     IntegrationCarService,
     IntegrationNotificationService,
+    IntegrationNotificationSystemDashboardService,
+    IntegrationNotificationSystemMerchantService,
+    IntegrationNotificationSystemCustomerService,
   ],
-  exports: [IntegrationCarService, IntegrationNotificationService],
+  exports: [
+    IntegrationCarService,
+    IntegrationNotificationService,
+    IntegrationNotificationSystemDashboardService,
+    IntegrationNotificationSystemMerchantService,
+    IntegrationNotificationSystemCustomerService,
+  ],
 })
 export class SdkModule {}

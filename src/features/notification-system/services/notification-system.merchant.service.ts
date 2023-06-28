@@ -11,7 +11,7 @@ import { CMD, SERVICES } from '../../../constants';
 import { PayloadCreateOneEvent, UpdateNotificationDto } from '../dto';
 
 @Injectable()
-export class IntegrationNotificationMerchantService {
+export class IntegrationNotificationSystemMerchantService {
   private _endpoint: string;
   constructor(
     @Inject(SERVICES.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,

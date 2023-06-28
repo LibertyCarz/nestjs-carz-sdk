@@ -14,7 +14,7 @@ import {
   BaseSdkHttpRequest,
 } from 'src/shared/base.request';
 @Injectable()
-export class IntegrationNotificationDashboardService {
+export class IntegrationNotificationSystemDashboardService {
   private _endpoint: string;
   constructor(
     @Inject(SERVICES.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,
