@@ -17,7 +17,8 @@ export class IntegrationNotificationService {
     @Inject(SERVICES.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,
     private _httpService: HttpService,
   ) {
-    this._endpoint = process.env.NOTIFICATION_ENDPOINT;
+    this._endpoint =
+      process.env.SDK_BASE_URL + process.env.SDK_NOTIFICATION_PATH;
   }
 
   async update(
