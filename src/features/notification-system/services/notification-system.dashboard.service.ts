@@ -21,7 +21,8 @@ export class IntegrationNotificationSystemDashboardService {
     private _httpService: HttpService,
   ) {
     this._endpoint =
-      process.env.SDK_BASE_URL + process.env.SDK_NOTIFICATION_SYSTEM_PATH;
+      process.env.SDK_BASE_URL +
+      process.env.SDK_NOTIFICATION_SYSTEM_DASHBOARD_PATH;
   }
 
   async create(body: CreateNotificationSystem, request: BaseSdkHttpRequest) {

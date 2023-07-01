@@ -40,7 +40,7 @@ export enum NOTIFICATION_USER_GROUP {
   BOTH = 'both',
 }
 
-export type UpdateNotificationDto = {
-  read: boolean;
-  updatedBy: number;
+export type UpdateNotificationDto = CreateNotificationSystem & {
+  read?: boolean;
+  updatedBy?: number;
 };

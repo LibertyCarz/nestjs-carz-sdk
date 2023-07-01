@@ -8,8 +8,8 @@ export class IntegrationNotificationSystemCustomerService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.NOTIFICATION_ENDPOINT ||
-      'http://localhost:3006/api/customer/notifications-system';
+      process.env.SDK_BASE_URL +
+      process.env.SDK_NOTIFICATION_SYSTEM_CUSTOMER_PATH;
   }
 
   async getList(request: BaseSdkHttpRequest) {
