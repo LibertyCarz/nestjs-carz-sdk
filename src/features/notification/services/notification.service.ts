@@ -72,4 +72,17 @@ export class IntegrationNotificationService {
       payload.buildRecord(),
     );
   }
+
+  public async deleteNotification(
+    notificationId: number,
+    request: BaseSdkHttpRequest,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.delete(
+        `${this._endpoint}/${notificationId}`,
+        request.getConfig(),
+      ),
+    );
+    return response.data;
+  }
 }

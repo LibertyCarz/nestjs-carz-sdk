@@ -83,4 +83,11 @@ export class IntegrationNotificationSystemDashboardService {
       payload.buildRecord(),
     );
   }
+
+  public async remove(id: number) {
+    const response = await lastValueFrom(
+      this._httpService.delete(`${this._endpoint}/${id}`),
+    );
+    return response.data;
+  }
 }

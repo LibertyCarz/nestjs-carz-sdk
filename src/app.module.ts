@@ -7,8 +7,7 @@ import { IntegrationNotificationService } from './features/notification/services
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import {
   IntegrationNotificationSystemDashboardService,
-  IntegrationNotificationSystemMerchantService,
-  IntegrationNotificationSystemCustomerService,
+  IntegrationNotificationSystemService,
 } from './features/notification-system/services';
 
 @Global()
@@ -50,15 +49,13 @@ import {
     IntegrationCarService,
     IntegrationNotificationService,
     IntegrationNotificationSystemDashboardService,
-    IntegrationNotificationSystemMerchantService,
-    IntegrationNotificationSystemCustomerService,
+    IntegrationNotificationSystemService,
   ],
   exports: [
     IntegrationCarService,
     IntegrationNotificationService,
     IntegrationNotificationSystemDashboardService,
-    IntegrationNotificationSystemMerchantService,
-    IntegrationNotificationSystemCustomerService,
+    IntegrationNotificationSystemService,
   ],
 })
 export class SdkModule {}

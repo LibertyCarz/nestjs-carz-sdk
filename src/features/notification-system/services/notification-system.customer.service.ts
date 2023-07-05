@@ -4,12 +4,10 @@ import { lastValueFrom } from 'rxjs';
 import { BaseSdkHttpRequest } from '../../../shared/base.request';
 
 @Injectable()
-export class IntegrationNotificationSystemCustomerService {
+export class IntegrationNotificationSystemService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
-    this._endpoint =
-      process.env.SDK_BASE_URL +
-      process.env.SDK_NOTIFICATION_SYSTEM_CUSTOMER_PATH;
+    this._endpoint = process.env.SDK_BASE_URL + process.env.SDK_BASE_URL;
   }
 
   async getList(request: BaseSdkHttpRequest) {
