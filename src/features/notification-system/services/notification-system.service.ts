@@ -7,7 +7,8 @@ import { BaseSdkHttpRequest } from '../../../shared/base.request';
 export class IntegrationNotificationSystemService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
-    this._endpoint = process.env.SDK_BASE_URL + process.env.SDK_BASE_URL;
+    this._endpoint =
+      process.env.SDK_BASE_URL + process.env.SDK_NOTIFICATION_SYSTEM_PATH;
   }
 
   async getList(request: BaseSdkHttpRequest) {
