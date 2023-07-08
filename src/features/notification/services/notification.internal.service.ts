@@ -3,33 +3,22 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 
-import { CMD, SERVICES } from '../../../constants';
-import {
-  CreateNotificationSystem,
-  PayloadCreateOneEvent,
-  UpdateNotificationDto,
-} from '../dto';
 import {
   BaseSdkEventPayloadRequest,
   BaseSdkHttpRequest,
 } from '../../../shared/base.request';
+import { CMD, SERVICES } from '../../../constants';
+import { PayloadCreateOneEvent, UpdateNotificationDto } from '../dto';
+
 @Injectable()
-export class IntegrationNotificationSystemDashboardService {
+export class NotificationInternalService {
   private _endpoint: string;
   constructor(
     @Inject(SERVICES.CARZ_NOTIFICATIONS) private _carzNotification: ClientProxy,
     private _httpService: HttpService,
   ) {
     this._endpoint =
-      process.env.SDK_BASE_URL +
-      process.env.SDK_NOTIFICATION_SYSTEM_DASHBOARD_PATH;
-  }
-
-  async create(body: CreateNotificationSystem, request: BaseSdkHttpRequest) {
-    const response = await lastValueFrom(
-      this._httpService.post(`${this._endpoint}`, body, request.getConfig()),
-    );
-    return response.data;
+      process.env.SDK_BASE_URL + process.env.SDK_NOTIFICATION_PATH;
   }
 
   async update(
@@ -84,9 +73,15 @@ export class IntegrationNotificationSystemDashboardService {
     );
   }
 
-  public async remove(id: number) {
+  public async deleteNotification(
+    notificationId: number,
+    request: BaseSdkHttpRequest,
+  ) {
     const response = await lastValueFrom(
-      this._httpService.delete(`${this._endpoint}/${id}`),
+      this._httpService.delete(
+        `${this._endpoint}/${notificationId}`,
+        request.getConfig(),
+      ),
     );
     return response.data;
   }

@@ -4,7 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { BaseSdkHttpRequest } from '../../../shared/base.request';
 
 @Injectable()
-export class IntegrationNotificationSystemService {
+export class NotificationSystemInternalService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
     this._endpoint =

@@ -2,13 +2,9 @@ import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
-import { IntegrationCarService } from './features/car/services';
-import { IntegrationNotificationService } from './features/notification/services/notification.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import {
-  IntegrationNotificationSystemDashboardService,
-  IntegrationNotificationSystemService,
-} from './features/notification-system/services';
+import {} from './features/notification-system/services';
+import { IntegrationCarInternalService } from './features/car/services';
 
 @Global()
 @Module({
@@ -44,18 +40,7 @@ import {
     HttpModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    IntegrationCarService,
-    IntegrationNotificationService,
-    IntegrationNotificationSystemDashboardService,
-    IntegrationNotificationSystemService,
-  ],
-  exports: [
-    IntegrationCarService,
-    IntegrationNotificationService,
-    IntegrationNotificationSystemDashboardService,
-    IntegrationNotificationSystemService,
-  ],
+  providers: [AppService, IntegrationCarInternalService],
+  exports: [IntegrationCarInternalService],
 })
 export class SdkModule {}

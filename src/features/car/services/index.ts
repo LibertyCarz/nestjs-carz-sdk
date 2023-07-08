@@ -1,1 +1,1 @@
-export * from './car.service';
+export * from './car.internal.service';
