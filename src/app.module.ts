@@ -7,41 +7,12 @@ import {
   NotificationSystemDashboardInternalService,
   NotificationSystemInternalService,
 } from './features/notification-system/services';
-import { IntegrationCarInternalService } from './features/car/services';
 import { SERVICES } from './constants';
 import { NotificationInternalService } from './features/notification/services/notification.internal.service';
 
 @Global()
 @Module({
   imports: [
-    // ClientsModule.register([
-    //   {
-    //     name: 'CARZ_INTEGRATIONS',
-    //     transport: Transport.RMQ,
-    //     options: {
-    //       urls: [
-    //         'amqps://bmddeeoc:V6EH4YXQKjSlGQ0ZTmviNX8tqOAQcgyV@fuji.lmq.cloudamqp.com/bmddeeoc',
-    //       ],
-    //       queue: 'carz_queue_002',
-    //       queueOptions: {
-    //         durable: false,
-    //       },
-    //     },
-    //   },
-    //   {
-    //     name: 'CARZ_NOTIFICATIONS',
-    //     transport: Transport.RMQ,
-    //     options: {
-    //       urls: [
-    //         'amqps://bmddeeoc:V6EH4YXQKjSlGQ0ZTmviNX8tqOAQcgyV@fuji.lmq.cloudamqp.com/bmddeeoc',
-    //       ],
-    //       queue: 'carz_queue_002',
-    //       queueOptions: {
-    //         durable: false,
-    //       },
-    //     },
-    //   },
-    // ]),
     ClientsModule.registerAsync([
       {
         name: SERVICES.CARZ_NOTIFICATIONS,
@@ -65,7 +36,17 @@ import { NotificationInternalService } from './features/notification/services/no
     HttpModule,
   ],
   controllers: [AppController],
-  providers: [AppService, IntegrationCarInternalService],
-  exports: [IntegrationCarInternalService],
+  providers: [
+    AppService,
+    NotificationInternalService,
+    NotificationSystemDashboardInternalService,
+    NotificationSystemInternalService,
+  ],
+  exports: [
+    ClientsModule,
+    NotificationInternalService,
+    NotificationSystemDashboardInternalService,
+    NotificationSystemInternalService,
+  ],
 })
 export class SdkModule {}
