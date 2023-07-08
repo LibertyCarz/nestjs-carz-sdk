@@ -19,7 +19,6 @@ export class NotificationInternalService {
   ) {
     this._endpoint =
       process.env.NOTIFICATION_SERVICE_ENDPOINT + 'notifications';
-    console.log('ENDPOINT', this._endpoint);
   }
 
   async update(
