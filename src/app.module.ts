@@ -3,12 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import {
-  NotificationSystemDashboardInternalService,
-  NotificationSystemInternalService,
-} from './features/notification-system/services';
 import { SERVICES } from './constants';
-import { NotificationInternalService } from './features/notification/services/notification.internal.service';
 
 @Global()
 @Module({
@@ -16,11 +11,6 @@ import { NotificationInternalService } from './features/notification/services/no
     ClientsModule.registerAsync([
       {
         name: SERVICES.CARZ_NOTIFICATIONS,
-        inject: [
-          NotificationInternalService,
-          NotificationSystemDashboardInternalService,
-          NotificationSystemInternalService,
-        ],
         useFactory: async () => ({
           transport: Transport.RMQ,
           options: {
@@ -36,17 +26,7 @@ import { NotificationInternalService } from './features/notification/services/no
     HttpModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    NotificationInternalService,
-    NotificationSystemDashboardInternalService,
-    NotificationSystemInternalService,
-  ],
-  exports: [
-    ClientsModule,
-    NotificationInternalService,
-    NotificationSystemDashboardInternalService,
-    NotificationSystemInternalService,
-  ],
+  providers: [AppService],
+  exports: [ClientsModule],
 })
 export class SdkModule {}
