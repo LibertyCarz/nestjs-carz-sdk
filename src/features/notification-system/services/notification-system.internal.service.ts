@@ -8,7 +8,7 @@ export class NotificationSystemInternalService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.SDK_BASE_URL + process.env.SDK_NOTIFICATION_SYSTEM_PATH;
+      process.env.NOTIFICATION_SERVICE_ENDPOINT + 'notifications-system';
   }
 
   async getList(request: BaseSdkHttpRequest) {
