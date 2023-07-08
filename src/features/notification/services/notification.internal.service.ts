@@ -50,7 +50,6 @@ export class NotificationInternalService {
     return response.data;
   }
   async getList(request: BaseSdkHttpRequest) {
-    console.log('ENDPOINT', this._endpoint);
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, request.getConfig()),
     );
