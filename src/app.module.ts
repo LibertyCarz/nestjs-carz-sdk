@@ -17,7 +17,7 @@ import { SERVICES } from './constants';
             urls: [process.env.RABBITMQ_URL],
             queue: process.env.RABBITMQ_NOTIFICATION_QUEUE,
             queueOptions: {
-              durable: false,
+              durable: true,
             },
           },
         }),
