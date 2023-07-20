@@ -43,11 +43,4 @@ export class NotificationSystemInternalService {
     );
     return response.data;
   }
-
-  public async updateReadAll(request: BaseSdkHttpRequest) {
-    const response = await lastValueFrom(
-      this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
-    );
-    return response.data;
-  }
 }
