@@ -26,4 +26,28 @@ export class NotificationSystemInternalService {
     );
     return response.data;
   }
+  public async delete(id: number, request: BaseSdkHttpRequest) {
+    const response = await lastValueFrom(
+      this._httpService.delete(`${this._endpoint}/${id}`, request.getConfig()),
+    );
+    return response.data;
+  }
+
+  public async updateRead(id: number, request: BaseSdkHttpRequest) {
+    const response = await lastValueFrom(
+      this._httpService.patch(
+        `${this._endpoint}/${id}/read`,
+        {},
+        request.getConfig(),
+      ),
+    );
+    return response.data;
+  }
+
+  public async updateReadAll(request: BaseSdkHttpRequest) {
+    const response = await lastValueFrom(
+      this._httpService.put(`${this._endpoint}/clear`, {}, request.getConfig()),
+    );
+    return response.data;
+  }
 }
