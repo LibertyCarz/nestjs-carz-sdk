@@ -21,7 +21,7 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
 
 export type CreateNotificationSystem = {
   schedule: string;
-  users: number[];
+  userGroupType: NOTIFICATION_USER_GROUP;
   translations: NotificationSystemTranslations[];
 };
 
