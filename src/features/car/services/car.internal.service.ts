@@ -10,10 +10,10 @@ import { lastValueFrom } from 'rxjs';
 export class IntegrationCarInternalService implements BaseService {
   private _endpoint;
   constructor(
-    @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzInteration: ClientProxy,
     private _httpService: HttpService,
+    @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzIntegration: ClientProxy,
   ) {
-    this._endpoint = process.env.INTEGRATION_ENDPOINT;
+    this._endpoint = process.env.INTEGRATION_SERVICE_ENDPOINT;
   }
   create(payload: any) {
     throw new Error('Method not implemented.');
@@ -35,6 +35,6 @@ export class IntegrationCarInternalService implements BaseService {
   }
 
   public async insert(data: IntegrationMultipleCar) {
-    return this._carzInteration.emit(CMD.CAR_INSERT, data);
+    return this._carzIntegration.emit(CMD.CAR_INTEGRATION_CREATED, data);
   }
 }
