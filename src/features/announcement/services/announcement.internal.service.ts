@@ -4,11 +4,10 @@ import { lastValueFrom } from 'rxjs';
 import { BaseSdkHttpRequest } from '../../../shared/base.request';
 
 @Injectable()
-export class NotificationSystemInternalService {
+export class AnnouncementInternalService {
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
-    this._endpoint =
-      process.env.NOTIFICATION_SERVICE_ENDPOINT + 'notifications-system';
+    this._endpoint = process.env.NOTIFICATION_SERVICE_ENDPOINT + 'announcement';
   }
 
   async getList(request: BaseSdkHttpRequest) {
@@ -21,23 +20,6 @@ export class NotificationSystemInternalService {
     const response = await lastValueFrom(
       this._httpService.get(
         `${this._endpoint}/${notificationId}`,
-        request.getConfig(),
-      ),
-    );
-    return response.data;
-  }
-  public async delete(id: number, request: BaseSdkHttpRequest) {
-    const response = await lastValueFrom(
-      this._httpService.delete(`${this._endpoint}/${id}`, request.getConfig()),
-    );
-    return response.data;
-  }
-
-  public async updateRead(id: number, request: BaseSdkHttpRequest) {
-    const response = await lastValueFrom(
-      this._httpService.patch(
-        `${this._endpoint}/${id}/read`,
-        {},
         request.getConfig(),
       ),
     );
