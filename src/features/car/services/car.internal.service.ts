@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CMD, SERVICES } from '../../../constants';
 import { BaseService } from '../../../shared/base.service';
-import { IntegrationMultipleCar } from '../dto';
+import { IntegrationCar, IntegrationMultipleCar } from '../dto';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 
@@ -13,13 +13,13 @@ export class IntegrationCarInternalService implements BaseService {
     private _httpService: HttpService,
     @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzIntegration: ClientProxy,
   ) {
-    this._endpoint = process.env.INTEGRATION_SERVICE_ENDPOINT;
+    this._endpoint = process.env.INTEGRATION_SERVICE_ENDPOINT + 'cars';
   }
   create(payload: any) {
     throw new Error('Method not implemented.');
   }
-  update(payload: any) {
-    throw new Error('Method not implemented.');
+  update(payload: IntegrationCar) {
+    return this._carzIntegration.emit(CMD.CAR_INTEGRATION_UPDATED, payload);
   }
   delete(payload: any) {
     throw new Error('Method not implemented.');
@@ -34,7 +34,7 @@ export class IntegrationCarInternalService implements BaseService {
     return response.data;
   }
 
-  public async insert(data: IntegrationMultipleCar) {
+  public async insert(data: IntegrationCar[]) {
     return this._carzIntegration.emit(CMD.CAR_INTEGRATION_CREATED, data);
   }
 }
