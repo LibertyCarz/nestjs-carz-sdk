@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CMD, SERVICES } from '../../../constants';
 import { BaseService } from '../../../shared/base.service';
-import { IntegrationCar, IntegrationMultipleCar } from '../dto';
+import { IntegrationCar } from '../dto';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 
@@ -24,9 +24,20 @@ export class IntegrationCarInternalService implements BaseService {
   delete(payload: any) {
     throw new Error('Method not implemented.');
   }
-  getList(payload: any) {
-    throw new Error('Method not implemented.');
+
+  public async getList(
+    payload: any,
+  ): Promise<{ items: IntegrationCar[]; total: number }> {
+    const response = await lastValueFrom(
+      this._httpService.post(
+        `${this._endpoint}/filter`,
+        payload.data,
+        payload.config,
+      ),
+    );
+    return response.data;
   }
+
   public async findOne(payload: any) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}`, payload),

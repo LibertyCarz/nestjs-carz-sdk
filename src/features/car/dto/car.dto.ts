@@ -6,7 +6,7 @@ export class IntegrationCar {
   category: number;
   name: string;
   description?: string;
-  brand: number;
+  brand: any;
   model?: string;
   cover: string;
   photos: string[];
