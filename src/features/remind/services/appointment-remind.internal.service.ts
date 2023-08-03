@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from 'src/constants';
-import { BaseSdkEventPayloadRequest } from 'src/shared/base.request';
+
+import { CMD, SERVICES } from '../../../constants';
+import { BaseSdkEventPayloadRequest } from '../../../shared/base.request';
 import { UpdateRemindRedisPayload } from '../dto';
 
 @Injectable()

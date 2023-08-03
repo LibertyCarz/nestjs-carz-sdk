@@ -1,4 +1,4 @@
-import { BOOKING_STATUS } from 'src/constants';
+import { BOOKING_STATUS } from '../../../constants';
 
 export class UpdateRemindRedisPayload {
   oldStatus: BOOKING_STATUS;
