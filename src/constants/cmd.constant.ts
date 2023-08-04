@@ -5,4 +5,6 @@ export const CMD = {
   CARZ_APPOINTMENT_REMIND: 'carz_remind_event',
   CAR_INTEGRATION_VIEW: 'car_integration_view_event',
   CAR_INTEGRATION_FAVORITE: 'car_integration_favorite_event',
+  CAR_INTEGRATION_BRAND_CREATED: 'car_integration_brand_created_event',
+  CAR_INTEGRATION_BRAND_UPDATED: 'car_integration_brand_updated_event',
 };
