@@ -1,8 +1,12 @@
 import { BOOKING_STATUS } from '../../../constants';
 
-export class UpdateRemindRedisPayload {
-  oldStatus: BOOKING_STATUS;
-  newStatus: BOOKING_STATUS;
+export class SdkUpdateRemindRedisPayload {
+  oldBooking: SdkBookingRemind;
+  newBooking: SdkBookingRemind;
   merchantIds: number[];
-  bookingDate: string | Date;
 }
+
+export type SdkBookingRemind = {
+  date: string | Date;
+  status: BOOKING_STATUS;
+};
