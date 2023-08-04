@@ -1,6 +1,4 @@
-import { RmqRecord, RmqRecordOptions } from '@nestjs/microservices';
-import { Request } from 'express';
-import { BaseSdkFilter } from '../../../shared/base.request';
+import { RmqRecordOptions } from '@nestjs/microservices';
 
 export class InsertNotificationDTO {
   user: SDK.User;
@@ -19,6 +17,7 @@ export class SendMultiStaffRequest {
 
 export type PayloadCreateOneEvent = InsertNotificationDTO & {
   notificationTypeKey: string;
+  excludeDeviceIds?: string[];
 };
 
 export type UpdateNotificationDto = {
