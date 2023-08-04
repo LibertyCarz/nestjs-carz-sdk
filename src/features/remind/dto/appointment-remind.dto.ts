@@ -7,6 +7,11 @@ export class SdkUpdateRemindRedisPayload {
 }
 
 export type SdkBookingRemind = {
-  date: string | Date;
+  // date: string | Date;
+  // status: BOOKING_STATUS;
+  bookingId: string;
   status: BOOKING_STATUS;
+  oldDate: string | Date;
+  newDate: string | Date;
+  merchantIds: number[];
 };
