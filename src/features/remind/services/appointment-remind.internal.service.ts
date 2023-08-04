@@ -3,7 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 
 import { CMD, SERVICES } from '../../../constants';
 import { BaseSdkEventPayloadRequest } from '../../../shared/base.request';
-import { SdkBookingRemind, SdkUpdateRemindRedisPayload } from '../dto';
+import { SdkUpdateRemindRedisPayload } from '../dto';
 
 @Injectable()
 export class AppointmentRemindInternalService {
@@ -12,7 +12,7 @@ export class AppointmentRemindInternalService {
   ) {}
 
   public async updateRemindMerchantRedisCount(
-    payload: BaseSdkEventPayloadRequest<SdkBookingRemind>,
+    payload: BaseSdkEventPayloadRequest<SdkUpdateRemindRedisPayload>,
   ) {
     return this._carzNotification.emit(
       CMD.CARZ_APPOINTMENT_REMIND,
