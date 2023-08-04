@@ -26,24 +26,15 @@ export class IntegrationCarInternalService implements BaseService {
   }
 
   public async view(carId: number) {
-    await lastValueFrom(
-      this._httpService.post(`${this._endpoint}/${carId}/view`),
-    );
+    this._carzIntegration.emit(CMD.CAR_INTEGRATION_VIEW, { carId });
   }
 
   public async favorite(carId: number, isLiked: boolean) {
-    const payload = { data: { isLiked } };
-    await lastValueFrom(
-      this._httpService.post(
-        `${this._endpoint}/${carId}/favorite`,
-        payload.data,
-      ),
-    );
+    const payload = { carId, isLiked };
+    this._carzIntegration.emit(CMD.CAR_INTEGRATION_FAVORITE, payload);
   }
 
-  public async getList(
-    payload: any,
-  ): Promise<{ items: IntegrationCar[]; total: number }> {
+  public async getList(payload: any): Promise<any> {
     const response = await lastValueFrom(
       this._httpService.post(
         `${this._endpoint}/filter`,
