@@ -25,6 +25,22 @@ export class IntegrationCarInternalService implements BaseService {
     throw new Error('Method not implemented.');
   }
 
+  public async view(carId: number) {
+    await lastValueFrom(
+      this._httpService.post(`${this._endpoint}/${carId}/view`),
+    );
+  }
+
+  public async favorite(carId: number, isLiked: boolean) {
+    const payload = { data: { isLiked } };
+    await lastValueFrom(
+      this._httpService.post(
+        `${this._endpoint}/${carId}/favorite`,
+        payload.data,
+      ),
+    );
+  }
+
   public async getList(
     payload: any,
   ): Promise<{ items: IntegrationCar[]; total: number }> {
