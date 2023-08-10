@@ -60,10 +60,15 @@ export class IntegrationCar {
       this.distanceDriven = data.distanceDriven;
       this.manufactureYear = data.manufactureYear;
       this.price = data.price;
+      this.minPrice = data.minPrice;
       this.rentPeriod = data.rentPeriod;
       this.rate = data.rate;
       this.status = data.status;
       this.origin = data.origin;
+      this.isChecked = data.isChecked;
+      this.note = data.note;
+      this.doors = data.doors;
+      this.updatedBy = data.updatedBy;
       this.updatedAt = data.updatedAt;
       this.createdAt = data.createdAt;
       this.extraData = data.extraData;
