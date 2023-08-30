@@ -36,6 +36,9 @@ export class IntegrationCar {
   createdAt?: Date;
   updatedAt?: Date;
   additionalAttributes?: Record<string, any>;
+  type?: string;
+  rentalPrice?: number;
+  rentalType?: string;
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
@@ -73,6 +76,9 @@ export class IntegrationCar {
       this.createdAt = data.createdAt;
       this.extraData = data.extraData;
       this.additionalAttributes = data.additionalAttributes;
+      this.type = data.type;
+      this.rentalType = data.rentalType;
+      this.rentalPrice = data.rentalPrice;
     }
   }
 }
