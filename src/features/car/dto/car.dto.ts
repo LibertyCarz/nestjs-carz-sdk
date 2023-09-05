@@ -39,6 +39,7 @@ export class IntegrationCar {
   type?: string;
   rentalPrice?: number;
   rentalType?: string;
+  fuelConsumption?: number;
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
@@ -79,6 +80,7 @@ export class IntegrationCar {
       this.type = data.type;
       this.rentalType = data.rentalType;
       this.rentalPrice = data.rentalPrice;
+      this.fuelConsumption = data.fuelConsumption;
     }
   }
 }
