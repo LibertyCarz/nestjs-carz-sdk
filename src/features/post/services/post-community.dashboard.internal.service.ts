@@ -7,7 +7,7 @@ import { PostCreateDto } from '../dto';
 export class PostCommunityDashboardInternalService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
-    this._endpoint = process.env.COMMUNITY_SERVICE_ENDPOINT + 'posts';
+    this._endpoint = process.env.COMMUNITY_SERVICE_ENDPOINT + 'dashboard-posts';
   }
 
   public async create(payload: {

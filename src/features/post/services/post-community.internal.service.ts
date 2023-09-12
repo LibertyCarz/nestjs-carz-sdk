@@ -9,20 +9,37 @@ export class PostCommunityInternalService {
     this._endpoint = process.env.COMMUNITY_SERVICE_ENDPOINT + 'posts';
   }
 
-  public async create(payload: any): Promise<any> {
+  public async list(payload: any): Promise<any> {
     const response = await lastValueFrom(
-      this._httpService.post(`${this._endpoint}`, payload.data, payload.config),
+      this._httpService.post(`${this._endpoint}/list`, payload),
     );
     return response.data;
   }
 
-  public async update(payload: any) {
+  public async like(payload: {
+    data: { userId: string; postId: string };
+  }): Promise<any> {
     const response = await lastValueFrom(
-      this._httpService.put(
+      this._httpService.post(`${this._endpoint}/like`, payload.data),
+    );
+    return response.data;
+  }
+
+  public async detail(payload: any) {
+    const response = await lastValueFrom(
+      this._httpService.get(
         `${this._endpoint}/${payload.params.id}`,
         payload.data,
-        payload.config,
       ),
+    );
+    return response.data;
+  }
+
+  public async share(payload: {
+    data: { userId: string; postId: string };
+  }): Promise<any> {
+    const response = await lastValueFrom(
+      this._httpService.post(`${this._endpoint}/share`, payload.data),
     );
     return response.data;
   }
