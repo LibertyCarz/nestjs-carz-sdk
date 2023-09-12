@@ -17,7 +17,7 @@ export class PostCommunityInternalService {
   }
 
   public async like(payload: {
-    data: { userId: string; postId: string };
+    data: { userId: string; postId: string; userType: number };
   }): Promise<any> {
     const response = await lastValueFrom(
       this._httpService.post(`${this._endpoint}/like`, payload.data),
