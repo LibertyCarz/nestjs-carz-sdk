@@ -17,10 +17,10 @@ export class PostCommunityInternalService {
   }
 
   public async like(payload: {
-    data: { userId: string; postId: string };
+    data: { user: number; postId: string; userType: number };
   }): Promise<any> {
     const response = await lastValueFrom(
-      this._httpService.post(`${this._endpoint}/like`, payload.data),
+      this._httpService.patch(`${this._endpoint}/like`, payload.data),
     );
     return response.data;
   }
@@ -36,7 +36,7 @@ export class PostCommunityInternalService {
   }
 
   public async share(payload: {
-    data: { userId: string; postId: string };
+    data: { user: number; postId: string };
   }): Promise<any> {
     const response = await lastValueFrom(
       this._httpService.post(`${this._endpoint}/share`, payload.data),
