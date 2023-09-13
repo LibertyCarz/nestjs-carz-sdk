@@ -2,7 +2,7 @@ export class PostCreateDto {
   name: string;
   content: string;
   files: any[];
-  author: number;
+  user: number;
   updateBy: number;
   authorName: string;
   updateByName: string;
