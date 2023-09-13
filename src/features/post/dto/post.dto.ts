@@ -1,7 +1,12 @@
+export type CustomFile = {
+  path: string;
+  type: string;
+};
+
 export class PostCreateDto {
   name: string;
   content: string;
-  files: any[];
+  files: CustomFile[];
   user: number;
   updateBy: number;
   authorName: string;
