@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { Comment } from 'src/types';
+import { Comment } from '../../../../types';
 
 @Injectable()
 export class CommunityCommentInternalService {
@@ -31,7 +31,7 @@ export class CommunityCommentInternalService {
     return response.data;
   }
 
-  public async getReplies(id: string, query: any) {
+  public async getReplies(id: string, query: object) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/${id}`, { params: query }),
     );

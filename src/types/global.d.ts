@@ -7,5 +7,9 @@ declare global {
       userType: number;
       language?: string;
     };
+    export type List<T> = {
+      items: T[];
+      total: number;
+    };
   }
 }
