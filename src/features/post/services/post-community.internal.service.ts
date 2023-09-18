@@ -27,10 +27,9 @@ export class PostCommunityInternalService {
 
   public async detail(payload: any) {
     const response = await lastValueFrom(
-      this._httpService.get(
-        `${this._endpoint}/${payload.params.id}`,
-        payload.data,
-      ),
+      this._httpService.get(`${this._endpoint}/${payload.params.id}`, {
+        data: payload.data,
+      }),
     );
     return response.data;
   }
