@@ -17,16 +17,27 @@ export class CommunityCommentInternalService {
     return response.data;
   }
 
-  public async update(id: string, payload: Comment): Promise<Comment> {
+  public async update(
+    id: string,
+    payload: Comment,
+  ): Promise<{ data: boolean; status: number }> {
     const response = await lastValueFrom(
       this._httpService.patch(`${this._endpoint}/${id}`, payload),
     );
     return response.data;
   }
 
-  public async delete(id: string): Promise<void> {
+  public async delete(
+    id: string,
+    user: SDK.User,
+  ): Promise<{ data: boolean; status: number }> {
     const response = await lastValueFrom(
-      this._httpService.delete(`${this._endpoint}/${id}`),
+      this._httpService.delete(`${this._endpoint}/${id}`, {
+        params: {
+          user: user.id,
+          userType: user.userType,
+        },
+      }),
     );
     return response.data;
   }

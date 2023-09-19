@@ -32,11 +32,11 @@ export type Post = BaseMongooseType & {
 };
 
 export type Comment = BaseMongooseType & {
-  post?: string | Post;
-  text?: string;
+  post: string | Post;
+  text: string;
   image?: string;
-  user?: number;
-  userType?: number;
+  user: number;
+  userType: number;
   parent?: string | Comment;
   node?: number;
   status?: string;
