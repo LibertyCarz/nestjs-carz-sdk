@@ -44,7 +44,9 @@ export class CommunityCommentInternalService {
 
   public async getReplies(id: string, query: object) {
     const response = await lastValueFrom(
-      this._httpService.get(`${this._endpoint}/${id}`, { params: query }),
+      this._httpService.get(`${this._endpoint}/${id}/replies`, {
+        params: query,
+      }),
     );
     return response.data;
   }
