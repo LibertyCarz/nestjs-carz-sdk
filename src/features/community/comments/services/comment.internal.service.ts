@@ -19,7 +19,7 @@ export class CommunityCommentInternalService {
 
   public async update(
     id: string,
-    payload: Comment,
+    payload: Partial<Comment>,
   ): Promise<{ data: boolean; status: number }> {
     const response = await lastValueFrom(
       this._httpService.patch(`${this._endpoint}/${id}`, payload),

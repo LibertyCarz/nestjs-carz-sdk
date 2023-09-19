@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { Comment } from 'src/types';
+import { Comment } from '../../../types';
 
 @Injectable()
 export class PostCommunityInternalService {
