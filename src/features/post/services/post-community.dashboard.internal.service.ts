@@ -54,8 +54,6 @@ export class PostCommunityDashboardInternalService {
         params: query,
       }),
     );
-    console.log(response.data);
-
     return response.data;
   }
 }
