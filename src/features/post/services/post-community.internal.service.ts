@@ -25,6 +25,15 @@ export class PostCommunityInternalService {
     return response.data;
   }
 
+  public async dislike(payload: {
+    data: { user: number; postId: string; userType: number };
+  }): Promise<any> {
+    const response = await lastValueFrom(
+      this._httpService.patch(`${this._endpoint}/dislike`, payload.data),
+    );
+    return response.data;
+  }
+
   public async detail(payload: any) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/${payload.params.id}`, {
