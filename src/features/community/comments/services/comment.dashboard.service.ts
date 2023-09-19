@@ -11,7 +11,10 @@ export class CommunityCommentDashboardInternalService {
       process.env.COMMUNITY_SERVICE_ENDPOINT + 'dashboard/comments';
   }
 
-  public async updateStatus(id: string, payload: Comment): Promise<Comment> {
+  public async updateStatus(
+    id: string,
+    payload: Partial<Comment>,
+  ): Promise<Comment> {
     const response = await lastValueFrom(
       this._httpService.patch(`${this._endpoint}/${id}/status`, payload),
     );
