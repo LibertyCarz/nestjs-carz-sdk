@@ -16,20 +16,11 @@ export class PostCommunityInternalService {
     return response.data;
   }
 
-  public async like(payload: {
-    data: { user: number; postId: string; userType: number };
+  public async action(payload: {
+    data: { user: number; postId: string; userType: number; action: string };
   }): Promise<any> {
     const response = await lastValueFrom(
-      this._httpService.patch(`${this._endpoint}/like`, payload.data),
-    );
-    return response.data;
-  }
-
-  public async dislike(payload: {
-    data: { user: number; postId: string; userType: number };
-  }): Promise<any> {
-    const response = await lastValueFrom(
-      this._httpService.patch(`${this._endpoint}/dislike`, payload.data),
+      this._httpService.patch(`${this._endpoint}/action`, payload.data),
     );
     return response.data;
   }
