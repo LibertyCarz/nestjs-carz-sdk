@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
+import { Comment } from '../../../types';
 
 @Injectable()
 export class PostCommunityInternalService {
@@ -40,6 +41,19 @@ export class PostCommunityInternalService {
     const response = await lastValueFrom(
       this._httpService.post(`${this._endpoint}/share`, payload.data),
     );
+    return response.data;
+  }
+
+  public async getCommentsOfPost(
+    id: string,
+    query: object,
+  ): Promise<{ data: SDK.List<Comment>; total: number }> {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/${id}/comments`, {
+        params: query,
+      }),
+    );
+
     return response.data;
   }
 }
