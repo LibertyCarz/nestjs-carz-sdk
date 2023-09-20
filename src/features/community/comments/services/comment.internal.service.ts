@@ -68,6 +68,17 @@ export class CommunityCommentInternalService {
     }
   }
 
+  public async countReplies(payload: { data: { commentIds: string[] } }) {
+    try {
+      const response = await lastValueFrom(
+        this._httpService.post(`${this._endpoint}/countReplies`, payload.data),
+      );
+      return response.data;
+    } catch (error) {
+      this._throwErrorResponseService('GetReplies_InterSV', error);
+    }
+  }
+
   private _throwErrorResponseService(message, err) {
     this._logger.error(message, err);
     const { status, statusCode, ...rest } = err.response?.data;
