@@ -38,6 +38,6 @@ export type Comment = BaseMongooseType & {
   user: number;
   userType: number;
   parent?: string | Comment;
-  node?: number;
+  node?: string;
   status?: string;
 };
