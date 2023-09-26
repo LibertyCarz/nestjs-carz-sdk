@@ -41,6 +41,7 @@ export class IntegrationCar {
   rentalType?: string;
   fuelConsumption?: number;
   carStore?: number;
+  hiddenRentalPrice?: boolean;
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
@@ -83,6 +84,7 @@ export class IntegrationCar {
       this.rentalPrice = data.rentalPrice;
       this.fuelConsumption = data.fuelConsumption;
       this.carStore = data.carStore;
+      this.hiddenRentalPrice = data.hiddenRentalPrice;
     }
   }
 }
