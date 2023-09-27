@@ -55,4 +55,11 @@ export class IntegrationCarInternalService implements BaseService {
   public async insert(data: IntegrationCar[]) {
     return this._carzIntegration.emit(CMD.CAR_INTEGRATION_CREATED, data);
   }
+
+  public async totalViews(payload: any) {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/totalViews`, payload),
+    );
+    return response.data;
+  }
 }
