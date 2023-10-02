@@ -25,7 +25,7 @@ declare global {
   };
 
   export type ListResponse<T> = {
-    items: T[];
+    data: T[];
     total: number;
   };
 
