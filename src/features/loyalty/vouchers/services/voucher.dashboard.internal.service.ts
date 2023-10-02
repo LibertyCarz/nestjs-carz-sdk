@@ -10,10 +10,10 @@ export class LoyaltyVoucherDashboardInternalService {
     process.env.LOYALTY_SERVICE_ENDPOINT + 'dashboard/vouchers';
   constructor(private _httpService: HttpService) {}
 
-  public async list(filter: BasePagination): Promise<BaseResponse<Voucher[]>> {
+  public async list(params: BasePagination): Promise<BaseResponse<Voucher[]>> {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<Voucher[]>>(`${this._endpoint}`, {
-        params: filter,
+        params,
       }),
     );
     return response.data;
@@ -26,10 +26,13 @@ export class LoyaltyVoucherDashboardInternalService {
     return response.data.data;
   }
 
-  public async listCode(id: string) {
+  public async listCode(id: string, params: BasePagination) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
         `${this._endpoint}/${id}/code`,
+        {
+          params,
+        },
       ),
     );
     return response.data;

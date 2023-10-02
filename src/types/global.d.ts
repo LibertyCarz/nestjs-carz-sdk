@@ -24,11 +24,6 @@ declare global {
     createdAt?: Date;
   };
 
-  export type ListResponse<T> = {
-    data: T[];
-    total: number;
-  };
-
   export type BasePagination = {
     limit: number;
     offset: number;
