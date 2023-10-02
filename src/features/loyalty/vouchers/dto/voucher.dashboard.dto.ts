@@ -11,8 +11,6 @@ export type CreateVoucherDTO = {
   startDate?: string;
   endDate?: string;
   isAutoGenerateCode?: boolean;
-  createdBy?: number;
-  updatedBy?: number;
 };
 
 export type UpdateVoucherDTO = {

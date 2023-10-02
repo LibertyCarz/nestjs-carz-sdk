@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { CreateVoucherDTO, UpdateVoucherDTO } from '../dto';
-import { Voucher, VoucherCode } from '../types';
+import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
 
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {
@@ -10,11 +10,14 @@ export class LoyaltyVoucherDashboardInternalService {
     process.env.LOYALTY_SERVICE_ENDPOINT + 'dashboard/vouchers';
   constructor(private _httpService: HttpService) {}
 
-  public async list(params: BasePagination): Promise<BaseResponse<Voucher[]>> {
+  public async list(
+    request: BaseVoucherRequest,
+  ): Promise<BaseResponse<Voucher[]>> {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<Voucher[]>>(`${this._endpoint}`, {
-        params,
-      }),
+      this._httpService.get<BaseResponse<Voucher[]>>(
+        `${this._endpoint}`,
+        new BaseVoucherRequest(request).config,
+      ),
     );
     return response.data;
   }
@@ -26,28 +29,41 @@ export class LoyaltyVoucherDashboardInternalService {
     return response.data.data;
   }
 
-  public async listCode(id: string, params: BasePagination) {
+  public async listCode(id: string, request: BaseVoucherRequest) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
         `${this._endpoint}/${id}/code`,
-        {
-          params,
-        },
+        new BaseVoucherRequest(request).config,
       ),
     );
     return response.data;
   }
 
-  public async create(payload: CreateVoucherDTO): Promise<Voucher> {
+  public async create(
+    payload: CreateVoucherDTO,
+    request: BaseVoucherRequest,
+  ): Promise<Voucher> {
     const response = await lastValueFrom(
-      this._httpService.post<Voucher>(`${this._endpoint}`, payload),
+      this._httpService.post<Voucher>(
+        `${this._endpoint}`,
+        payload,
+        new BaseVoucherRequest(request).config,
+      ),
     );
     return response.data;
   }
 
-  public async update(id: string, payload: UpdateVoucherDTO) {
+  public async update(
+    id: string,
+    payload: UpdateVoucherDTO,
+    request: BaseVoucherRequest,
+  ) {
     const response = await lastValueFrom(
-      this._httpService.patch<Voucher>(`${this._endpoint}/${id}`, payload),
+      this._httpService.patch<Voucher>(
+        `${this._endpoint}/${id}`,
+        payload,
+        new BaseVoucherRequest(request).config,
+      ),
     );
     return response.data;
   }
