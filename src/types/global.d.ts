@@ -33,4 +33,9 @@ declare global {
     limit: number;
     offset: number;
   };
+
+  export type BaseResponse<T> = {
+    data: T;
+    total: number;
+  };
 }

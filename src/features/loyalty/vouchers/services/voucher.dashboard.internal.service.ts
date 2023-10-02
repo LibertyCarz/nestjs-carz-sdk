@@ -12,18 +12,21 @@ export class LoyaltyVoucherDashboardInternalService {
 
   public async list(filter: BasePagination): Promise<ListResponse<Voucher>> {
     const response = await lastValueFrom(
-      this._httpService.get<ListResponse<Voucher>>(`${this._endpoint}`, {
-        params: filter,
-      }),
+      this._httpService.get<BaseResponse<ListResponse<Voucher>>>(
+        `${this._endpoint}`,
+        {
+          params: filter,
+        },
+      ),
     );
-    return response.data;
+    return response.data.data;
   }
 
   public async detail(id: string) {
     const response = await lastValueFrom(
-      this._httpService.get<Voucher>(`${this._endpoint}/${id}`),
+      this._httpService.get<BaseResponse<Voucher>>(`${this._endpoint}/${id}`),
     );
-    return response.data;
+    return response.data.data;
   }
 
   public async listCode(id: string) {
