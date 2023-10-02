@@ -16,7 +16,7 @@ export class LoyaltyVoucherDashboardInternalService {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<Voucher[]>>(
         `${this._endpoint}`,
-        request,
+        request.requestConfig,
       ),
     );
     return response.data;
@@ -33,7 +33,7 @@ export class LoyaltyVoucherDashboardInternalService {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
         `${this._endpoint}/${id}/code`,
-        request,
+        request.requestConfig,
       ),
     );
     return response.data;
@@ -58,7 +58,7 @@ export class LoyaltyVoucherDashboardInternalService {
       this._httpService.patch<Voucher>(
         `${this._endpoint}/${id}`,
         payload,
-        request,
+        request.requestConfig,
       ),
     );
     return response.data;
