@@ -44,4 +44,16 @@ export class PostCommunityDashboardInternalService {
     );
     return response.data;
   }
+
+  public async getCommentsOfPost(
+    id: string,
+    query: object,
+  ): Promise<{ data: SDK.List<Comment>; total: number }> {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/${id}/comments`, {
+        params: query,
+      }),
+    );
+    return response.data;
+  }
 }
