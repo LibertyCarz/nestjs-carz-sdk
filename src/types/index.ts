@@ -1,10 +1,3 @@
-export type BaseMongooseType = {
-  _id?: string;
-  status?: string;
-  updatedAt?: Date;
-  createdAt?: Date;
-};
-
 export type SdkFile = {
   path?: string;
   type?: string;

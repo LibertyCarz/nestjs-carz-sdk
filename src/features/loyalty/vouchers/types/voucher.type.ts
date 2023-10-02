@@ -9,7 +9,7 @@ export const VOUCHER_CONSTANT = {
   },
 };
 
-export type Voucher = BaseLoyaltyModel & {
+export type Voucher = BaseMongooseType & {
   type?: string;
   value?: number;
   attribute?: Language<VoucherAttribute>;
@@ -30,7 +30,7 @@ export type VoucherAttribute = {
   termsAndConditions?: string;
 };
 
-export type VoucherCode = BaseLoyaltyModel & {
+export type VoucherCode = BaseMongooseType & {
   voucher?: Voucher;
   lbCode?: string;
   partnerCode?: string;

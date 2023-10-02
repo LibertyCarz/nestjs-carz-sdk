@@ -1,8 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { CreateVoucherDTO, UpdateVoucherDTO } from '../../dto';
-import { Voucher, VoucherCode } from '../../types';
+import { CreateVoucherDTO, UpdateVoucherDTO } from '../dto';
+import { Voucher, VoucherCode } from '../types';
 
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {

@@ -17,10 +17,11 @@ declare global {
     km: T;
     zh: T;
   };
-  export type BaseLoyaltyModel = {
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
+  export type BaseMongooseType = {
+    _id?: string;
+    status?: string;
+    updatedAt?: Date;
+    createdAt?: Date;
   };
 
   export type ListResponse<T> = {
