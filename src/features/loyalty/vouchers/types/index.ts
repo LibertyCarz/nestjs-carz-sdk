@@ -7,9 +7,4 @@ export class BaseVoucherRequest<TParams = Partial<BasePagination & SDK.User>> {
     this.request = data.request;
     this.params = data.params;
   }
-
-  get config() {
-    this.request.params = this.params as Record<string, string>;
-    return this.request;
-  }
 }
