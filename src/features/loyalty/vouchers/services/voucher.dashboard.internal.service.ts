@@ -44,9 +44,13 @@ export class LoyaltyVoucherDashboardInternalService {
     request: BaseVoucherRequest,
   ): Promise<Voucher> {
     const response = await lastValueFrom(
-      this._httpService.post<Voucher>(`${this._endpoint}`, payload, request),
+      this._httpService.post<BaseResponse<Voucher>>(
+        `${this._endpoint}`,
+        payload,
+        request,
+      ),
     );
-    return response.data;
+    return response.data.data;
   }
 
   public async update(
@@ -55,12 +59,12 @@ export class LoyaltyVoucherDashboardInternalService {
     request: BaseVoucherRequest,
   ) {
     const response = await lastValueFrom(
-      this._httpService.patch<Voucher>(
+      this._httpService.patch<BaseResponse<Voucher>>(
         `${this._endpoint}/${id}`,
         payload,
         request.requestConfig,
       ),
     );
-    return response.data;
+    return response.data.data;
   }
 }
