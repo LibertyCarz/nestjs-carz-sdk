@@ -1,13 +1,12 @@
-import { Voucher, VoucherAttribute } from '../types';
+import { VoucherAttribute } from '../types';
 
-export type CreateVoucherDTO = Partial<Voucher> & {
+export type CreateVoucherDTO = {
   type: string;
   status: string;
   value: number;
   costInPoint: number;
   redemptionLimit?: number;
   attribute: Language<VoucherAttribute>;
-  termsAndConditions: Language;
   quantity: number;
   startDate?: string;
   endDate?: string;
