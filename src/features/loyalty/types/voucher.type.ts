@@ -19,7 +19,6 @@ export type Voucher = BaseLoyaltyModel & {
   startDate?: string;
   endDate?: string;
   redemptionLimit?: number;
-  termsAndConditions?: Language;
   createdBy: number;
   updatedBy: number;
 };
@@ -28,6 +27,7 @@ export type VoucherAttribute = {
   name?: string;
   description?: string;
   image?: string;
+  termsAndConditions?: string;
 };
 
 export type VoucherCode = BaseLoyaltyModel & {
