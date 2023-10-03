@@ -1,3 +1,7 @@
+import { HttpService } from '@nestjs/axios';
+
+export type HttpServiceRequest = Parameters<HttpService['request']>[0];
+
 export type SdkFile = {
   path?: string;
   type?: string;
