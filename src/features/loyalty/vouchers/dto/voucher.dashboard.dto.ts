@@ -21,3 +21,7 @@ export type CreateVoucherDTO = {
 export type UpdateVoucherDTO = {
   status: string;
 };
+
+export type ImportVoucherCodeDTO = {
+  code: string[];
+};
