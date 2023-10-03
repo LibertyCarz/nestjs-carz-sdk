@@ -14,6 +14,7 @@ export class BaseVoucherRequest<
     this.params = data.params;
   }
   public buildRequestConfig(): HttpServiceRequest {
+    delete this.request.headers['content-length'];
     return {
       headers: this.request.headers,
       params: this.params,
