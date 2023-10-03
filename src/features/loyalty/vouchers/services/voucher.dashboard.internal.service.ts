@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { CreateVoucherDTO, UpdateVoucherDTO } from '../dto';
+import { CreateVoucherDTO, ListVoucherDTO, UpdateVoucherDTO } from '../dto';
 import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class LoyaltyVoucherDashboardInternalService {
   constructor(private _httpService: HttpService) {}
 
   public async list(
-    request: BaseVoucherRequest,
+    request: BaseVoucherRequest<ListVoucherDTO>,
   ): Promise<BaseResponse<Voucher[]>> {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<Voucher[]>>(

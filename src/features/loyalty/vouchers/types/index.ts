@@ -1,6 +1,8 @@
 export * from './voucher.type';
 import { Request } from 'express';
-export class BaseVoucherRequest<TParams = Partial<BasePagination & SDK.User>> {
+export class BaseVoucherRequest<
+  TParams extends BaseRequestParams = BaseRequestParams,
+> {
   request: Request;
   params: TParams;
   constructor(data: Partial<BaseVoucherRequest<TParams>>) {

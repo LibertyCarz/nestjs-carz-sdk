@@ -1,5 +1,10 @@
 import { VoucherAttribute } from '../types';
 
+export type ListVoucherDTO = BaseRequestParams & {
+  type?: string;
+  status?: string;
+};
+
 export type CreateVoucherDTO = {
   type: string;
   status: string;

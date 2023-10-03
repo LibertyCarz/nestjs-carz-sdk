@@ -33,4 +33,6 @@ declare global {
     data: T;
     total: number;
   };
+
+  export type BaseRequestParams = Partial<BasePagination & SDK.User>;
 }
