@@ -1,22 +1,25 @@
 export * from './voucher.type';
-import { Request } from 'express';
 import { HttpService } from '@nestjs/axios';
+import { IncomingHttpHeaders } from 'http';
 
 export type HttpServiceRequest = Parameters<HttpService['request']>[0];
 
 export class BaseVoucherRequest<
   TParams extends BaseRequestParams = BaseRequestParams,
 > {
-  request: Request;
+  headers: IncomingHttpHeaders;
   params: TParams;
   constructor(data: Partial<BaseVoucherRequest<TParams>>) {
-    this.request = data.request;
+    this.headers = data.headers;
     this.params = data.params;
   }
-  public buildRequestConfig(): HttpServiceRequest {
-    delete this.request.headers['content-length'];
+  public buildRequestConfig(
+    headers: IncomingHttpHeaders = {},
+  ): HttpServiceRequest {
+    headers['accept-language'] = this.headers['accept-language'];
+    headers['authorization'] = this.headers['authorization'];
     return {
-      headers: this.request.headers,
+      headers,
       params: this.params,
     };
   }
