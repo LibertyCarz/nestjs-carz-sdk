@@ -1,6 +1,8 @@
 export * from './voucher.type';
 import { Request } from 'express';
-import { HttpServiceRequest } from 'src/types';
+import { HttpService } from '@nestjs/axios';
+
+export type HttpServiceRequest = Parameters<HttpService['request']>[0];
 
 export class BaseVoucherRequest<
   TParams extends BaseRequestParams = BaseRequestParams,
