@@ -26,7 +26,7 @@ declare global {
 
   export type BasePagination = {
     limit: number;
-    offset: number;
+    skip: number;
   };
 
   export type BaseResponse<T> = {
