@@ -9,7 +9,7 @@ import {
 } from '../dto';
 import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from 'src/constants';
+import { CMD, SERVICES } from '../../../../constants';
 import { BaseSdkEventPayloadRequest } from '../../../../shared/base.request';
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {
