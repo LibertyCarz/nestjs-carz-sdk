@@ -5,6 +5,7 @@ import {
   CreateVoucherDTO,
   ImportVoucherCodeDTO,
   ListVoucherDTO,
+  RollbackVoucherDTO,
   UpdateVoucherDTO,
 } from '../dto';
 import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
@@ -53,6 +54,15 @@ export class LoyaltyVoucherDashboardInternalService {
   ) {
     return this._carzLoyalty.emit(
       CMD.CAR_LOYALTY_IMPORT_VOUCHER_CODE,
+      payload.buildRecord(),
+    );
+  }
+
+  public async rollback(
+    payload: BaseSdkEventPayloadRequest<RollbackVoucherDTO>,
+  ) {
+    return this._carzLoyalty.emit(
+      CMD.CAR_LOYALTY_ROLLBACK_VOUCHER,
       payload.buildRecord(),
     );
   }

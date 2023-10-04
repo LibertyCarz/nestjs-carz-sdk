@@ -26,3 +26,7 @@ export type ImportVoucherCodeDTO = {
   code: string[];
   voucherId: string;
 };
+
+export type RollbackVoucherDTO = {
+  id: string;
+};
