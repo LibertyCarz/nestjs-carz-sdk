@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import {
   CreateVoucherDTO,
@@ -8,12 +8,17 @@ import {
   UpdateVoucherDTO,
 } from '../dto';
 import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
-
+import { ClientProxy } from '@nestjs/microservices';
+import { CMD, SERVICES } from 'src/constants';
+import { BaseSdkEventPayloadRequest } from '../../../../shared/base.request';
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {
   private _endpoint =
     process.env.LOYALTY_SERVICE_ENDPOINT + 'dashboard/vouchers';
-  constructor(private _httpService: HttpService) {}
+  constructor(
+    @Inject(SERVICES.CARZ_LOYALTIES) private _carzLoyalty: ClientProxy,
+    private _httpService: HttpService,
+  ) {}
 
   public async list(
     request: BaseVoucherRequest<ListVoucherDTO>,
@@ -44,18 +49,12 @@ export class LoyaltyVoucherDashboardInternalService {
     return response.data;
   }
   public async importCode(
-    id: string,
-    payload: ImportVoucherCodeDTO,
-    request: BaseVoucherRequest,
+    payload: BaseSdkEventPayloadRequest<ImportVoucherCodeDTO>,
   ) {
-    const response = await lastValueFrom(
-      this._httpService.post<BaseResponse<VoucherCode[]>>(
-        `${this._endpoint}/${id}/code`,
-        payload,
-        request.buildRequestConfig(),
-      ),
+    return this._carzLoyalty.emit(
+      CMD.CAR_LOYALTY_IMPORT_VOUCHER_CODE,
+      payload.buildRecord(),
     );
-    return response.data;
   }
 
   public async create(

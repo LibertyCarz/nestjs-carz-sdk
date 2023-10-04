@@ -35,6 +35,19 @@ import { SERVICES } from './constants';
           },
         }),
       },
+      {
+        name: SERVICES.CARZ_LOYALTIES,
+        useFactory: async () => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [process.env.RABBITMQ_URL],
+            queue: process.env.RABBITMQ_LOYALTY_QUEUE,
+            queueOptions: {
+              durable: true,
+            },
+          },
+        }),
+      },
     ]),
     HttpModule,
   ],

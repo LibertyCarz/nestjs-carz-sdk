@@ -24,4 +24,5 @@ export type UpdateVoucherDTO = {
 
 export type ImportVoucherCodeDTO = {
   code: string[];
+  voucherId: string;
 };
