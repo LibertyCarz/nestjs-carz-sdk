@@ -23,4 +23,15 @@ export class BaseVoucherRequest<
       params: this.params,
     };
   }
+
+  public static buildSDKUser(
+    user: { id: number; userType?: number },
+    language = 'en',
+  ): SDK.User {
+    return {
+      id: user.id,
+      userType: user.userType || 1,
+      language,
+    };
+  }
 }
