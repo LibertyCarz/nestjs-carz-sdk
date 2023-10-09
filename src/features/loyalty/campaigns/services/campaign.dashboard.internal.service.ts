@@ -8,12 +8,8 @@ import {
   ListCampaignDTO,
   UpdateCampaignDTO,
 } from '../dto';
-import {
-  BaseCampaignRequest,
-  Campaign,
-  CampaignRule,
-  CampaignUser,
-} from '../types';
+import { Campaign, CampaignRule, CampaignUser } from '../types';
+import { BaseInternalRequest } from '../../../../types';
 @Injectable()
 export class LoyaltyCampaignDashboardInternalService {
   private _endpoint =
@@ -25,7 +21,7 @@ export class LoyaltyCampaignDashboardInternalService {
   constructor(private _httpService: HttpService) {}
 
   public async list(
-    request: BaseCampaignRequest<ListCampaignDTO>,
+    request: BaseInternalRequest<ListCampaignDTO>,
   ): Promise<BaseResponse<Campaign[]>> {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<Campaign[]>>(
@@ -45,7 +41,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async create(
     payload: CreateCampaignDTO,
-    request: BaseCampaignRequest,
+    request: BaseInternalRequest,
   ): Promise<Campaign> {
     const response = await lastValueFrom(
       this._httpService.post<BaseResponse<Campaign>>(
@@ -59,7 +55,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async createCampaignRules(
     payload: CreateCampaignRulesDTO,
-    request: BaseCampaignRequest,
+    request: BaseInternalRequest,
   ): Promise<CampaignRule> {
     const response = await lastValueFrom(
       this._httpService.post<BaseResponse<CampaignRule>>(
@@ -73,7 +69,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async createCampaignUsers(
     payload: CreateCampaignUsersDTO,
-    request: BaseCampaignRequest,
+    request: BaseInternalRequest,
   ): Promise<CampaignUser> {
     const response = await lastValueFrom(
       this._httpService.post<BaseResponse<CampaignUser>>(
@@ -88,7 +84,7 @@ export class LoyaltyCampaignDashboardInternalService {
   public async update(
     id: string,
     payload: UpdateCampaignDTO,
-    request: BaseCampaignRequest,
+    request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.patch<BaseResponse<Campaign>>(

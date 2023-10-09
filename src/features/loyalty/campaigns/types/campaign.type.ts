@@ -7,13 +7,13 @@ export const CAMPAIGN_CONSTANT = {
   },
   TYPE: {
     ALL: 'all',
-    ALL_CUSTOMER: 'allCustomer',
-    ALL_MERCHANT: 'allMerchant',
+    ALL_CUSTOMER: 'all_customer',
+    ALL_MERCHANT: 'all_merchant',
     MERCHANT: 'merchant',
     CUSTOMER: 'customer',
     BOTH: 'both',
   },
-  RULE_NAME: {
+  NAME: {
     OPEN_APP_ONE_TIME_A_DAY: 'open_app_one_time_a_day',
     COMPLETE_A_BOOKING: 'complete_a_booking',
     COMPLETE_A_PURCHASE: 'complete_a_purchase',

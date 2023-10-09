@@ -8,10 +8,11 @@ import {
   RollbackVoucherDTO,
   UpdateVoucherDTO,
 } from '../dto';
-import { BaseVoucherRequest, Voucher, VoucherCode } from '../types';
+import { Voucher, VoucherCode } from '../types';
 import { ClientProxy } from '@nestjs/microservices';
 import { CMD, SERVICES } from '../../../../constants';
 import { BaseSdkEventPayloadRequest } from '../../../../shared/base.request';
+import { BaseInternalRequest } from '../../../../types';
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {
   private _endpoint =
@@ -22,7 +23,7 @@ export class LoyaltyVoucherDashboardInternalService {
   ) {}
 
   public async list(
-    request: BaseVoucherRequest<ListVoucherDTO>,
+    request: BaseInternalRequest<ListVoucherDTO>,
   ): Promise<BaseResponse<Voucher[]>> {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<Voucher[]>>(
@@ -40,7 +41,7 @@ export class LoyaltyVoucherDashboardInternalService {
     return response.data.data;
   }
 
-  public async listCode(id: string, request: BaseVoucherRequest) {
+  public async listCode(id: string, request: BaseInternalRequest) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
         `${this._endpoint}/${id}/code`,
@@ -69,7 +70,7 @@ export class LoyaltyVoucherDashboardInternalService {
 
   public async create(
     payload: CreateVoucherDTO,
-    request: BaseVoucherRequest,
+    request: BaseInternalRequest,
   ): Promise<Voucher> {
     const response = await lastValueFrom(
       this._httpService.post<BaseResponse<Voucher>>(
@@ -84,7 +85,7 @@ export class LoyaltyVoucherDashboardInternalService {
   public async update(
     id: string,
     payload: UpdateVoucherDTO,
-    request: BaseVoucherRequest,
+    request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.patch<BaseResponse<Voucher>>(
