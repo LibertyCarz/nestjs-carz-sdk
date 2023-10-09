@@ -12,4 +12,27 @@ declare global {
       total: number;
     };
   }
+  export type Language<T = string> = {
+    en: T;
+    km: T;
+    zh: T;
+  };
+  export type BaseMongooseType = {
+    _id?: string;
+    status?: string;
+    updatedAt?: Date;
+    createdAt?: Date;
+  };
+
+  export type BasePagination = {
+    limit: number;
+    skip: number;
+  };
+
+  export type BaseResponse<T> = {
+    data: T;
+    total: number;
+  };
+
+  export type BaseRequestParams = Partial<BasePagination & SDK.User>;
 }
