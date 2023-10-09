@@ -24,3 +24,9 @@ export type UpdateNotificationDto = {
   read: boolean;
   updatedBy: number;
 };
+
+export type PayloadCreateGroupEvent = {
+  userNotifications: InsertNotificationDTO[];
+  userType: number;
+  notificationTypeKey: string;
+};

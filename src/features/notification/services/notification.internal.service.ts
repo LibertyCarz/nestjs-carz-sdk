@@ -8,7 +8,11 @@ import {
   BaseSdkHttpRequest,
 } from '../../../shared/base.request';
 import { CMD, SERVICES } from '../../../constants';
-import { PayloadCreateOneEvent, UpdateNotificationDto } from '../dto';
+import {
+  PayloadCreateGroupEvent,
+  PayloadCreateOneEvent,
+  UpdateNotificationDto,
+} from '../dto';
 
 @Injectable()
 export class NotificationInternalService {
@@ -69,6 +73,15 @@ export class NotificationInternalService {
   ) {
     return this._carzNotification.emit(
       CMD.CAR_NOTIFICATION,
+      payload.buildRecord(),
+    );
+  }
+
+  public async createNotificationGroupEvent(
+    payload: BaseSdkEventPayloadRequest<PayloadCreateGroupEvent>,
+  ) {
+    return this._carzNotification.emit(
+      CMD.CARZ_NOTIFICATION_GROUP_EVENT,
       payload.buildRecord(),
     );
   }
