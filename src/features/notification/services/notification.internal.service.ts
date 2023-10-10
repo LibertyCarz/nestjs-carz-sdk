@@ -77,8 +77,8 @@ export class NotificationInternalService {
     );
   }
 
-  public async createNotificationGroupEvent(
-    payload: BaseSdkEventPayloadRequest<PayloadCreateGroupEvent>,
+  public async createNotificationGroupEvent<TData>(
+    payload: BaseSdkEventPayloadRequest<PayloadCreateGroupEvent<TData>>,
   ) {
     return this._carzNotification.emit(
       CMD.CARZ_NOTIFICATION_GROUP_EVENT,
