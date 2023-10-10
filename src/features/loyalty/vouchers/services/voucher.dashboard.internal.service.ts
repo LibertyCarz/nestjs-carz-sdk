@@ -64,7 +64,7 @@ export class LoyaltyVoucherDashboardInternalService {
         request.buildRequestConfig(),
       ),
     );
-    return response.data;
+    return response.data.data;
   }
   public async importCode(
     payload: BaseSdkEventPayloadRequest<ImportVoucherCodeDTO>,
