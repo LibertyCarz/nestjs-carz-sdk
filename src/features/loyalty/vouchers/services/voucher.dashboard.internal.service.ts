@@ -58,11 +58,9 @@ export class LoyaltyVoucherDashboardInternalService {
     request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
-      this._httpService.post<BaseResponse<VoucherCode[]>>(
-        `${this._endpoint}/${id}/code`,
-        payload,
-        request.buildRequestConfig(),
-      ),
+      this._httpService.post<
+        BaseResponse<Array<VoucherCode & { voucher: string }>>
+      >(`${this._endpoint}/${id}/send`, payload, request.buildRequestConfig()),
     );
     return response.data.data;
   }
