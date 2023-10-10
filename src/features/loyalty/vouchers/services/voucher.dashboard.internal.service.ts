@@ -6,6 +6,7 @@ import {
   ImportVoucherCodeDTO,
   ListVoucherDTO,
   RollbackVoucherDTO,
+  SendUsersVoucherCodeDTO,
   UpdateVoucherDTO,
 } from '../dto';
 import { Voucher, VoucherCode } from '../types';
@@ -45,6 +46,21 @@ export class LoyaltyVoucherDashboardInternalService {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
         `${this._endpoint}/${id}/code`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
+  public async sendUsers(
+    id: string,
+    payload: SendUsersVoucherCodeDTO,
+    request: BaseInternalRequest,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.post<BaseResponse<VoucherCode[]>>(
+        `${this._endpoint}/${id}/code`,
+        payload,
         request.buildRequestConfig(),
       ),
     );
