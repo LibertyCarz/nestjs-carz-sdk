@@ -1,8 +1,8 @@
 import { RmqRecordOptions } from '@nestjs/microservices';
 
-export class InsertNotificationDTO {
+export class InsertNotificationDTO<TData = object> {
   user: SDK.User;
-  data: object;
+  data: TData;
 }
 
 export class SendMultiStaffDTO {
@@ -23,4 +23,10 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
 export type UpdateNotificationDto = {
   read: boolean;
   updatedBy: number;
+};
+
+export type PayloadCreateGroupEvent<TData> = {
+  userNotifications: InsertNotificationDTO<TData>[];
+  userType: number;
+  notificationTypeKey: string;
 };

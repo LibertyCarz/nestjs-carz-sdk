@@ -30,3 +30,7 @@ export type ImportVoucherCodeDTO = {
 export type RollbackVoucherDTO = {
   id: string;
 };
+
+export type SendUsersVoucherCodeDTO = {
+  users: SDK.User[];
+};
