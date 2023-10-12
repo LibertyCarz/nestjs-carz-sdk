@@ -68,6 +68,15 @@ export class LoyaltyCampaignDashboardInternalService {
     return response.data.data;
   }
 
+  public async deleteCampaign(id: string) {
+    const response = await lastValueFrom(
+      this._httpService.delete<BaseResponse<Campaign>>(
+        `${this._endpoint}/${id}`,
+      ),
+    );
+    return response.data.data;
+  }
+
   public async createCampaignRules(
     payload: CreateCampaignRulesDTO,
     request: BaseInternalRequest,
@@ -98,7 +107,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async deleteCampaignRule(id: string) {
     const response = await lastValueFrom(
-      this._httpService.delete<BaseResponse<Campaign>>(
+      this._httpService.delete<BaseResponse<CampaignRule>>(
         `${this._endpointCampaignRules}/${id}`,
       ),
     );
@@ -107,7 +116,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async deleteCampaignUser(id: string) {
     const response = await lastValueFrom(
-      this._httpService.delete<BaseResponse<Campaign>>(
+      this._httpService.delete<BaseResponse<CampaignUser>>(
         `${this._endpointCampaignUsers}/${id}`,
       ),
     );
