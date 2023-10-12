@@ -39,6 +39,32 @@ export class LoyaltyCampaignDashboardInternalService {
     return response.data.data;
   }
 
+  public async listRules(
+    id: string,
+    request: BaseInternalRequest<BaseRequestParams>,
+  ): Promise<BaseResponse<CampaignRule[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<CampaignRule[]>>(
+        `${this._endpoint}/${id}/rules`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
+  public async listUsers(
+    id: string,
+    request: BaseInternalRequest<BaseRequestParams>,
+  ): Promise<BaseResponse<CampaignUser[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<CampaignUser[]>>(
+        `${this._endpoint}/${id}/users`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
   public async create(
     payload: CreateCampaignDTO,
     request: BaseInternalRequest,
