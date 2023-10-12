@@ -39,6 +39,32 @@ export class LoyaltyCampaignDashboardInternalService {
     return response.data.data;
   }
 
+  public async listRules(
+    id: string,
+    request: BaseInternalRequest<BaseRequestParams>,
+  ): Promise<BaseResponse<CampaignRule[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<CampaignRule[]>>(
+        `${this._endpoint}/${id}/rules`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
+  public async listUsers(
+    id: string,
+    request: BaseInternalRequest<BaseRequestParams>,
+  ): Promise<BaseResponse<CampaignUser[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<CampaignUser[]>>(
+        `${this._endpoint}/${id}/users`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
   public async create(
     payload: CreateCampaignDTO,
     request: BaseInternalRequest,
@@ -63,6 +89,15 @@ export class LoyaltyCampaignDashboardInternalService {
         `${this._endpoint}/${id}`,
         payload,
         request.buildRequestConfig(),
+      ),
+    );
+    return response.data.data;
+  }
+
+  public async deleteCampaign(id: string) {
+    const response = await lastValueFrom(
+      this._httpService.delete<BaseResponse<Campaign>>(
+        `${this._endpoint}/${id}`,
       ),
     );
     return response.data.data;
@@ -98,7 +133,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async deleteCampaignRule(id: string) {
     const response = await lastValueFrom(
-      this._httpService.delete<BaseResponse<Campaign>>(
+      this._httpService.delete<BaseResponse<CampaignRule>>(
         `${this._endpointCampaignRules}/${id}`,
       ),
     );
@@ -107,7 +142,7 @@ export class LoyaltyCampaignDashboardInternalService {
 
   public async deleteCampaignUser(id: string) {
     const response = await lastValueFrom(
-      this._httpService.delete<BaseResponse<Campaign>>(
+      this._httpService.delete<BaseResponse<CampaignUser>>(
         `${this._endpointCampaignUsers}/${id}`,
       ),
     );
