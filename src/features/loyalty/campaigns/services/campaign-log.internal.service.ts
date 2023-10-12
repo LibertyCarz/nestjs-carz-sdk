@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from 'src/constants';
-import { BaseSdkEventPayloadRequest } from 'src/shared/base.request';
+import { CMD, SERVICES } from '../../../../../src/constants';
+import { BaseSdkEventPayloadRequest } from '../../../../../src/shared/base.request';
 import { CampaignLogPayload } from '../dto/campaign-log.dto';
 @Injectable()
 export class LoyaltyCampaignLogInternalService {
