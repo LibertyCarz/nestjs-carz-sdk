@@ -10,3 +10,10 @@ export type ReferTransactionPayload = {
   user: number;
   userType: number;
 };
+
+export type ReferRegistrationPayload = {
+  inviter: number;
+  inviterType: number;
+  invitee: number;
+  inviteeType: number;
+};
