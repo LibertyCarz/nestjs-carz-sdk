@@ -53,6 +53,6 @@ import { SERVICES } from './constants';
   ],
   controllers: [AppController],
   providers: [AppService],
-  exports: [ClientsModule],
+  exports: [ClientsModule, HttpModule],
 })
 export class SdkModule {}
