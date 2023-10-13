@@ -9,7 +9,7 @@ export class LoyaltyCampaignLogInternalService {
     @Inject(SERVICES.CARZ_LOYALTIES) private _carzLoyalty: ClientProxy,
   ) {}
 
-  public async campaignLog<D = object>(
+  public async emitCampaignLog<D = object>(
     payload: BaseSdkEventPayloadRequest<CampaignLogPayload<D>>,
   ) {
     return this._carzLoyalty.emit(
