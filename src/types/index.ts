@@ -52,8 +52,8 @@ export class BaseInternalRequest<
   public buildRequestConfig(
     headers: IncomingHttpHeaders = {},
   ): HttpServiceRequest {
-    headers['accept-language'] = this.headers['accept-language'];
-    headers['authorization'] = this.headers['authorization'];
+    headers['accept-language'] = this.headers?.['accept-language'];
+    headers['authorization'] = this.headers?.['authorization'];
     return {
       headers,
       params: this.params,

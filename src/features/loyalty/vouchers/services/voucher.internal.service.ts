@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { BaseInternalRequest } from 'src/types';
+import { BaseInternalRequest } from '../../../../types';
 import { UpdateVoucherStatusDTO } from '../dto';
 @Injectable()
 export class LoyaltyVoucherInternalService {
