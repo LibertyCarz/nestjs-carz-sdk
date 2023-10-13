@@ -1,4 +1,4 @@
-export type CampaignLogPayload<D = object> = {
+export type CampaignAccumulationPayload<D = object> = {
   rule: string;
   data: D;
 };

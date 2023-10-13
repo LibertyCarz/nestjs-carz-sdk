@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CMD, SERVICES } from '../../../../../src/constants';
 import { BaseSdkEventPayloadRequest } from '../../../../../src/shared/base.request';
-import { CampaignLogPayload } from '../dto/campaign-log.dto';
+import { CampaignAccumulationPayload } from '../dto/campaign-log.dto';
 @Injectable()
 export class LoyaltyCampaignLogInternalService {
   constructor(
@@ -10,7 +10,7 @@ export class LoyaltyCampaignLogInternalService {
   ) {}
 
   public async emitCampaignLog<D = object>(
-    payload: BaseSdkEventPayloadRequest<CampaignLogPayload<D>>,
+    payload: BaseSdkEventPayloadRequest<CampaignAccumulationPayload<D>>,
   ) {
     return this._carzLoyalty.emit(
       CMD.CAR_LOYALTY_CAMPAIGN_LOG,
