@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 
-import { Campaign } from '../types';
+import { Campaign, CampaignRule } from '../types';
 import { BaseInternalRequest } from '../../../../types';
 import { ListCampaignCustomerDTO } from '../dto';
 @Injectable()
@@ -28,5 +28,18 @@ export class LoyaltyCampaignCustomerInternalService {
       this._httpService.get<BaseResponse<Campaign>>(`${this._endpoint}/${id}`),
     );
     return response.data.data;
+  }
+
+  public async listCampaignRules(
+    id: string,
+    request: BaseInternalRequest<BaseRequestParams>,
+  ): Promise<BaseResponse<CampaignRule[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<CampaignRule[]>>(
+        `${this._endpoint}/${id}/rules`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
   }
 }

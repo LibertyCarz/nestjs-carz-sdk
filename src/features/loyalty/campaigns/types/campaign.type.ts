@@ -37,13 +37,13 @@ export type Campaign = BaseMongooseType & {
 };
 
 export type CampaignRule = BaseMongooseType & {
-  type?: string;
-  status?: string;
-  attribute?: Language<CampaignAttribute>;
-  startDate?: string;
-  endDate?: string;
-  createdBy: number;
-  updatedBy: number;
+  rule?: string;
+  campaign?: string;
+  exchangeType?: string;
+  transaction?: number;
+  voucher?: string;
+  quantity?: number;
+  points?: number;
 };
 
 export type CampaignUser = BaseMongooseType & {
