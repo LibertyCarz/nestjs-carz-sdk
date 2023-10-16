@@ -42,6 +42,8 @@ export class IntegrationCar {
   fuelConsumption?: number;
   carStore?: number;
   isHiddenPrice?: boolean;
+  discountValue: number;
+  discountType: string;
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
@@ -85,6 +87,8 @@ export class IntegrationCar {
       this.fuelConsumption = data.fuelConsumption;
       this.carStore = data.carStore;
       this.isHiddenPrice = data.isHiddenPrice;
+      this.discountValue = data.discountValue;
+      this.discountType = data.discountType;
     }
   }
 }
