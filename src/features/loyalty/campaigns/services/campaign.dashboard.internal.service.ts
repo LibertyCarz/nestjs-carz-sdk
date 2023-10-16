@@ -160,7 +160,7 @@ export class LoyaltyCampaignDashboardInternalService {
   ) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<UserTotalPoints>>(
-        `${this._endpoint}/points`,
+        `${this._endpoint}/user/points`,
         request.buildRequestConfig(),
       ),
     );
