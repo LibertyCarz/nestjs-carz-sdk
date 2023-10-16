@@ -18,6 +18,6 @@ export class LoyaltyTransactionHistoryCustomerInternalService {
         request.buildRequestConfig(),
       ),
     );
-    return response.data.data;
+    return response.data;
   }
 }
