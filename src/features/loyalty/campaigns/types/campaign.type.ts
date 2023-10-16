@@ -58,3 +58,9 @@ export type CampaignAttribute = {
   image?: string;
   termsAndConditions?: string;
 };
+
+export type UserTotalPoints = {
+  total: number;
+  totalEarned: number;
+  totalSpending: number;
+};

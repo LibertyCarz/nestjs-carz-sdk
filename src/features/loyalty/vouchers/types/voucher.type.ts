@@ -7,6 +7,18 @@ export const VOUCHER_CONSTANT = {
     ACTIVE: 'active',
     INACTIVE: 'inactive',
   },
+  CODE: {
+    STATUS: {
+      AVAILABLE: 'available',
+      USED: 'used',
+      EXPIRED: 'expired',
+    },
+    TRANSACTION_TYPE: {
+      SENT: 'sent',
+      REDEEMED: 'redeemed',
+      CAMPAIGN: 'campaign',
+    },
+  },
 };
 
 export type Voucher = BaseMongooseType & {

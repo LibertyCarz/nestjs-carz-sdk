@@ -7,8 +7,14 @@ import {
   CreateCampaignUsersDTO,
   ListCampaignDTO,
   UpdateCampaignDTO,
+  UserTotalPointsDTO,
 } from '../dto';
-import { Campaign, CampaignRule, CampaignUser } from '../types';
+import {
+  Campaign,
+  CampaignRule,
+  CampaignUser,
+  UserTotalPoints,
+} from '../types';
 import { BaseInternalRequest } from '../../../../types';
 @Injectable()
 export class LoyaltyCampaignDashboardInternalService {
@@ -144,6 +150,18 @@ export class LoyaltyCampaignDashboardInternalService {
     const response = await lastValueFrom(
       this._httpService.delete<BaseResponse<CampaignUser>>(
         `${this._endpointCampaignUsers}/${id}`,
+      ),
+    );
+    return response.data.data;
+  }
+
+  public async userTotalPoints(
+    request: BaseInternalRequest<UserTotalPointsDTO>,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<UserTotalPoints>>(
+        `${this._endpoint}/points`,
+        request.buildRequestConfig(),
       ),
     );
     return response.data.data;

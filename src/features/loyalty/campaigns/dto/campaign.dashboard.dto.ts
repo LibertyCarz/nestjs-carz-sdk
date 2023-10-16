@@ -40,3 +40,5 @@ export type CreateCampaignUsersDTO = {
   campaign: string;
   users: CampaignUserDto[];
 };
+
+export type UserTotalPointsDTO = CampaignUserDto & BaseRequestParams;
