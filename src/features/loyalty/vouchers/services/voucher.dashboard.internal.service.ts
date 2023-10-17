@@ -42,10 +42,10 @@ export class LoyaltyVoucherDashboardInternalService {
     return response.data.data;
   }
 
-  public async listCode(id: string, request: BaseInternalRequest) {
+  public async listCode(request: BaseInternalRequest) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<VoucherCode[]>>(
-        `${this._endpoint}/${id}/code`,
+        `${this._endpoint}/code`,
         request.buildRequestConfig(),
       ),
     );
