@@ -2,7 +2,8 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { BaseInternalRequest } from '../../../../types';
-import { UpdateVoucherStatusDTO } from '../dto';
+import { ListVouchersDTO, UpdateVoucherStatusDTO } from '../dto';
+import { Voucher } from '../types';
 @Injectable()
 export class LoyaltyVoucherInternalService {
   private _endpoint = process.env.LOYALTY_SERVICE_ENDPOINT + 'vouchers';
@@ -18,6 +19,24 @@ export class LoyaltyVoucherInternalService {
         payload,
         request.buildRequestConfig(),
       ),
+    );
+    return response.data.data;
+  }
+  public async list(
+    request: BaseInternalRequest<ListVouchersDTO>,
+  ): Promise<BaseResponse<Voucher[]>> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<Voucher[]>>(
+        `${this._endpoint}`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
+  }
+
+  public async detail(id: string) {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<Voucher>>(`${this._endpoint}/${id}`),
     );
     return response.data.data;
   }
