@@ -51,3 +51,5 @@ export type VoucherCode = BaseMongooseType & {
   redemptionDate?: string;
   status?: string;
 };
+
+export type VoucherTranslated = Voucher & VoucherAttribute;

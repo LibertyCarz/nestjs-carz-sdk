@@ -2,7 +2,6 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 
-import { TransactionHistory } from '../types';
 import { BaseInternalRequest } from '../../../../types';
 
 @Injectable()
@@ -13,11 +12,11 @@ export class LoyaltyTransactionHistoryCustomerInternalService {
 
   public async totalPoint(request: BaseInternalRequest) {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<TransactionHistory>>(
+      this._httpService.get<BaseResponse<number>>(
         `${this._endpoint}/total-points`,
         request.buildRequestConfig(),
       ),
     );
-    return response.data;
+    return response.data.data;
   }
 }
