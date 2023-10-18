@@ -13,7 +13,7 @@ export class LoyaltyTransactionHistoryDashboardInternalService {
 
   public async list(request: BaseInternalRequest) {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<TransactionHistory>>(
+      this._httpService.get<BaseResponse<TransactionHistory[]>>(
         `${this._endpoint}`,
         request.buildRequestConfig(),
       ),
