@@ -2,6 +2,7 @@ export const VOUCHER_CONSTANT = {
   TYPE: {
     CASH: 'cash',
     REWARD: 'reward',
+    DISCOUNT: 'discount',
   },
   STATUS: {
     ACTIVE: 'active',
@@ -21,6 +22,19 @@ export const VOUCHER_CONSTANT = {
   },
 };
 
+export enum VOUCHER_DISCOUNT_TYPE {
+  CASH = 'cash',
+  PERCENTAGE = 'percentage',
+}
+
+export type VoucherDiscount = {
+  type?: VOUCHER_DISCOUNT_TYPE;
+  value?: number;
+  percentage?: number;
+  minOrderValue?: number;
+  maxDiscountValue?: number;
+};
+
 export type Voucher = BaseMongooseType & {
   type?: string;
   value?: number;
@@ -33,6 +47,7 @@ export type Voucher = BaseMongooseType & {
   redemptionLimit?: number;
   createdBy: number;
   updatedBy: number;
+  discount?: VoucherDiscount;
 };
 
 export type VoucherAttribute = {

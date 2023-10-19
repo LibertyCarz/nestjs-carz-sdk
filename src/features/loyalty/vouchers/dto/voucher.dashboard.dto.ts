@@ -1,4 +1,4 @@
-import { VoucherAttribute } from '../types';
+import { VoucherAttribute, VoucherDiscount } from '../types';
 
 export type ListVoucherDTO = BaseRequestParams & {
   type?: string;
@@ -12,6 +12,7 @@ export type CreateVoucherDTO = {
   costInPoint: number;
   redemptionLimit?: number;
   attribute: Language<VoucherAttribute>;
+  discount?: VoucherDiscount;
   quantity: number;
   startDate?: string;
   endDate?: string;
