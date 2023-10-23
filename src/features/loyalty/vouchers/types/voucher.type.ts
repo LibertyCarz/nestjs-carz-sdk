@@ -57,6 +57,11 @@ export type VoucherAttribute = {
   termsAndConditions?: string;
 };
 
+export type VoucherCodeOrder = {
+  orderId: string;
+  orderType: string;
+};
+
 export type VoucherCode = BaseMongooseType & {
   voucher?: Voucher;
   lbCode?: string;
@@ -65,6 +70,7 @@ export type VoucherCode = BaseMongooseType & {
   userType?: number;
   redemptionDate?: string;
   status?: string;
+  order?: VoucherCodeOrder;
 };
 
 export type VoucherTranslated = Voucher & VoucherAttribute;

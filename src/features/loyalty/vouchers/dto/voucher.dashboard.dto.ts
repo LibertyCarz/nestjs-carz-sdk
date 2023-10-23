@@ -1,4 +1,4 @@
-import { VoucherAttribute, VoucherDiscount } from '../types';
+import { VoucherAttribute, VoucherCodeOrder, VoucherDiscount } from '../types';
 
 export type ListVoucherDTO = BaseRequestParams & {
   type?: string;
@@ -34,4 +34,8 @@ export type RollbackVoucherDTO = {
 
 export type SendUsersVoucherCodeDTO = {
   users: SDK.User[];
+};
+
+export type AddOrderVoucherCodeDTO = {
+  order?: VoucherCodeOrder;
 };
