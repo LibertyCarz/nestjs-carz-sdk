@@ -36,6 +36,7 @@ export class IntegrationCar {
   createdAt?: Date;
   updatedAt?: Date;
   additionalAttributes?: Record<string, any>;
+  rentalCarAttributes?: Record<string, any>;
   type?: string;
   rentalPrice?: number;
   rentalType?: string;
@@ -81,6 +82,7 @@ export class IntegrationCar {
       this.createdAt = data.createdAt;
       this.extraData = data.extraData;
       this.additionalAttributes = data.additionalAttributes;
+      this.rentalCarAttributes = data.rentalCarAttributes;
       this.type = data.type;
       this.rentalType = data.rentalType;
       this.rentalPrice = data.rentalPrice;
