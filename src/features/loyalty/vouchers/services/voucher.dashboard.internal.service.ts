@@ -9,6 +9,7 @@ import {
   SendUsersVoucherCodeDTO,
   AddOrderVoucherCodeDTO,
   UpdateVoucherDTO,
+  UpdateVoucherCodeDTO,
 } from '../dto';
 import { Voucher, VoucherCode } from '../types';
 import { ClientProxy } from '@nestjs/microservices';
@@ -118,9 +119,33 @@ export class LoyaltyVoucherDashboardInternalService {
     request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
-      this._httpService.patch<BaseResponse<VoucherCode>>(
+      this._httpService.post<BaseResponse<VoucherCode>>(
         `${this._endpoint}/code/${id}/order`,
         payload,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data.data;
+  }
+
+  public async removeOrder(id: string, request: BaseInternalRequest) {
+    const response = await lastValueFrom(
+      this._httpService.delete<BaseResponse<VoucherCode>>(
+        `${this._endpoint}/code/${id}/order`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data.data;
+  }
+  public async updateVoucherCode(
+    id: string,
+    body: UpdateVoucherCodeDTO,
+    request: BaseInternalRequest,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.patch<BaseResponse<VoucherCode>>(
+        `${this._endpoint}/code/${id}`,
+        body,
         request.buildRequestConfig(),
       ),
     );

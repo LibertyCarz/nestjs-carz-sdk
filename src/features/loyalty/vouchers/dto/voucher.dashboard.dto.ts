@@ -39,3 +39,8 @@ export type SendUsersVoucherCodeDTO = {
 export type AddOrderVoucherCodeDTO = {
   order?: VoucherCodeOrder;
 };
+
+export type UpdateVoucherCodeDTO = {
+  status?: string;
+  order?: VoucherCodeOrder;
+};

@@ -45,9 +45,9 @@ export class BaseInternalRequest<
 > {
   headers: IncomingHttpHeaders;
   params: TParams;
-  constructor(data: Partial<BaseInternalRequest<TParams>>) {
-    this.headers = data.headers;
-    this.params = data.params;
+  constructor(data?: Partial<BaseInternalRequest<TParams>>) {
+    this.headers = data?.headers;
+    this.params = data?.params;
   }
   public buildRequestConfig(
     headers: IncomingHttpHeaders = {},
