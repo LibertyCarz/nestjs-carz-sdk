@@ -36,11 +36,8 @@ export type SendUsersVoucherCodeDTO = {
   users: SDK.User[];
 };
 
-export type AddOrderVoucherCodeDTO = {
-  order?: VoucherCodeOrder;
-};
-
 export type UpdateVoucherCodeDTO = {
+  ids?: string[];
   status?: string;
   order?: VoucherCodeOrder;
 };

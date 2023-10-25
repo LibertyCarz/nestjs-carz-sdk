@@ -1,6 +1,3 @@
-import { HttpService } from '@nestjs/axios';
-import { IncomingHttpHeaders } from 'http';
-
 export type SdkFile = {
   path?: string;
   type?: string;
@@ -38,24 +35,25 @@ export type Comment = BaseMongooseType & {
   status?: string;
 };
 
-export type HttpServiceRequest = Parameters<HttpService['request']>[0];
+export type SdkHeader = { [key: string]: string };
 
 export class BaseInternalRequest<
   TParams extends BaseRequestParams = BaseRequestParams,
 > {
-  headers: IncomingHttpHeaders;
+  headers: SdkHeader;
   params: TParams;
   constructor(data?: Partial<BaseInternalRequest<TParams>>) {
     this.headers = data?.headers;
     this.params = data?.params;
   }
-  public buildRequestConfig(
-    headers: IncomingHttpHeaders = {},
-  ): HttpServiceRequest {
-    headers['accept-language'] = this.headers?.['accept-language'];
-    headers['authorization'] = this.headers?.['authorization'];
+  public buildRequestConfig(headers: SdkHeader = {}) {
+    for (const key in headers) {
+      if (Object.prototype.hasOwnProperty.call(headers, key)) {
+        this.headers[key] = headers[key];
+      }
+    }
     return {
-      headers,
+      headers: this.headers,
       params: this.params,
     };
   }
