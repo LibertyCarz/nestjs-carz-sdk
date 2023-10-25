@@ -1,21 +1,19 @@
 import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
+import { CMD, SERVICES } from '../../../../constants';
+import { BaseSdkEventPayloadRequest } from '../../../../shared/base.request';
+import { BaseInternalRequest } from '../../../../types';
 import {
   CreateVoucherDTO,
   ImportVoucherCodeDTO,
   ListVoucherDTO,
   RollbackVoucherDTO,
   SendUsersVoucherCodeDTO,
-  AddOrderVoucherCodeDTO,
   UpdateVoucherDTO,
-  UpdateVoucherCodeDTO,
 } from '../dto';
 import { Voucher, VoucherCode } from '../types';
-import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from '../../../../constants';
-import { BaseSdkEventPayloadRequest } from '../../../../shared/base.request';
-import { BaseInternalRequest } from '../../../../types';
 @Injectable()
 export class LoyaltyVoucherDashboardInternalService {
   private _endpoint =
@@ -42,16 +40,6 @@ export class LoyaltyVoucherDashboardInternalService {
       this._httpService.get<BaseResponse<Voucher>>(`${this._endpoint}/${id}`),
     );
     return response.data.data;
-  }
-
-  public async listCode(request: BaseInternalRequest) {
-    const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<VoucherCode[]>>(
-        `${this._endpoint}/code`,
-        request.buildRequestConfig(),
-      ),
-    );
-    return response.data;
   }
 
   public async sendUsers(
@@ -107,45 +95,6 @@ export class LoyaltyVoucherDashboardInternalService {
       this._httpService.patch<BaseResponse<Voucher>>(
         `${this._endpoint}/${id}`,
         payload,
-        request.buildRequestConfig(),
-      ),
-    );
-    return response.data.data;
-  }
-
-  public async addOrder(
-    id: string,
-    payload: AddOrderVoucherCodeDTO,
-    request: BaseInternalRequest,
-  ) {
-    const response = await lastValueFrom(
-      this._httpService.post<BaseResponse<VoucherCode>>(
-        `${this._endpoint}/code/${id}/order`,
-        payload,
-        request.buildRequestConfig(),
-      ),
-    );
-    return response.data.data;
-  }
-
-  public async removeOrder(id: string, request: BaseInternalRequest) {
-    const response = await lastValueFrom(
-      this._httpService.delete<BaseResponse<VoucherCode>>(
-        `${this._endpoint}/code/${id}/order`,
-        request.buildRequestConfig(),
-      ),
-    );
-    return response.data.data;
-  }
-  public async updateVoucherCode(
-    id: string,
-    body: UpdateVoucherCodeDTO,
-    request: BaseInternalRequest,
-  ) {
-    const response = await lastValueFrom(
-      this._httpService.patch<BaseResponse<VoucherCode>>(
-        `${this._endpoint}/code/${id}`,
-        body,
         request.buildRequestConfig(),
       ),
     );
