@@ -69,3 +69,13 @@ export class BaseInternalRequest<
     };
   }
 }
+
+export type FileModel = {
+  path?: string;
+
+  type?: string;
+
+  thumbnails?: string;
+
+  url?: string;
+};
