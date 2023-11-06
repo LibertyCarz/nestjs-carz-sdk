@@ -1,46 +1,41 @@
-import { FileModel } from 'src/types';
-
-export type CarPartFile = FileModel;
-
-export enum CarPartStatus {
+export enum CAR_PART_STATUS {
   PUBLISH = 'publish',
   UNPUBLISH = 'unpublish',
 }
 
-export enum CarPartState {
+export enum CAR_PART_STATE {
   USED = 'used',
   NEW = 'new',
 }
 
 export type CarPart = BaseMongooseType & {
-  productName: string;
+  name: string;
 
-  cover: CarPartFile;
+  partType: string;
 
-  video: CarPartFile;
+  partBrand: string;
 
-  photos: CarPartFile[];
+  cover: string;
+
+  video: string;
+
+  photos: string[];
+
+  store: number;
+
+  merchant: number;
 
   price: number;
 
-  state: CarPartState;
+  state: CAR_PART_STATE;
 
-  status: CarPartStatus;
+  status: CAR_PART_STATUS;
 
   isInstallationSupport: boolean;
 
   description: string;
 
   note: string;
-
-  partTypeId: number;
-
-  productBrand: string;
-
-  //
-  //   carStore: CarStore;
-
-  merchantId: number;
 
   updatedBy: SDK.User;
 };

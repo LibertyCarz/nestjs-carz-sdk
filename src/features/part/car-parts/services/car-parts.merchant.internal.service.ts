@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { BaseInternalRequest } from 'src/types';
+import { BaseInternalRequest } from '../../../../types';
 import { CarPart } from '../types';
 import { lastValueFrom } from 'rxjs';
 import { CreateCarPartMerchantDTO } from '../dto/car-part.merchant.dto';
