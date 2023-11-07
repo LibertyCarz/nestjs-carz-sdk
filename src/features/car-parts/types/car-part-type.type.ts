@@ -1,5 +1,7 @@
 export type ListCarPartTypesDTO = BaseRequestParams & {
   status?: string;
+
+  ids?: string;
 };
 
 export type CarPartType = BaseMongooseType & {
