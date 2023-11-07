@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { BaseInternalRequest } from '../../../types';
 import { CarPart } from '../types';
 import { lastValueFrom } from 'rxjs';
@@ -8,6 +8,8 @@ import { CreateCarPartMerchantDTO } from '../dto/car-part.merchant.dto';
 @Injectable()
 export class CarPartInternalService {
   private _endpoint = process.env.CAR_PARTS_SERVICE_ENDPOINT + '/car-parts';
+  private _logger = new Logger(CarPartInternalService.name);
+
   constructor(private _httpService: HttpService) {}
 
   public async list(
@@ -22,7 +24,7 @@ export class CarPartInternalService {
       );
       return response.data;
     } catch (error) {
-      console.log('error ==>', error);
+      this._loggerErrorMessage('listCarPart', error.message);
     }
   }
 
@@ -63,5 +65,9 @@ export class CarPartInternalService {
       ),
     );
     return response.data.data;
+  }
+
+  private _loggerErrorMessage(title: string, error: any) {
+    this._logger.error(`${title} ${error?.message}`);
   }
 }
