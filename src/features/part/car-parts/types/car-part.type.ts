@@ -12,7 +12,7 @@ export enum CAR_PART_STATE {
 export type CarPart = BaseMongooseType & {
   name: string;
 
-  partType: string;
+  partType: BaseMongooseType;
 
   partBrand: string;
 
