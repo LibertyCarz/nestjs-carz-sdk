@@ -2,12 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { BaseInternalRequest } from '../../../types';
-import {
-  CarPartType,
-  CreateCarPartTypeDTO,
-  ListCarPartTypesDTO,
-  UpdateCarPartTypeDTO,
-} from '../types';
+import { CarPartType, ListCarPartTypesDTO } from '../types';
 @Injectable()
 export class CarPartTypeDashboardInternalService {
   private _endpoint =
@@ -36,7 +31,7 @@ export class CarPartTypeDashboardInternalService {
   }
 
   public async create(
-    payload: CreateCarPartTypeDTO,
+    payload: Partial<CarPartType>,
     request: BaseInternalRequest,
   ): Promise<CarPartType> {
     const response = await lastValueFrom(
@@ -51,12 +46,27 @@ export class CarPartTypeDashboardInternalService {
 
   public async update(
     id: string,
-    payload: UpdateCarPartTypeDTO,
+    payload: Partial<CarPartType>,
     request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
       this._httpService.patch<BaseResponse<CarPartType>>(
         `${this._endpoint}/${id}`,
+        payload,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data.data;
+  }
+
+  public async updateStatus(
+    id: string,
+    payload: Partial<CarPartType>,
+    request: BaseInternalRequest,
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.patch<BaseResponse<CarPartType>>(
+        `${this._endpoint}/status/${id}`,
         payload,
         request.buildRequestConfig(),
       ),
