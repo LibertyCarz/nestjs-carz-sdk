@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from 'src/constants';
+import { CMD, SERVICES } from '../../../constants';
 import { IntegrateCarPart } from '../dto';
 
 @Injectable()
