@@ -1,3 +1,5 @@
+import { CarPartType } from './car-part-type.type';
+
 export enum CAR_PART_STATUS {
   PUBLISH = 'publish',
   UNPUBLISH = 'unpublish',
@@ -12,7 +14,7 @@ export enum CAR_PART_STATE {
 export type CarPart = BaseMongooseType & {
   name: string;
 
-  partType: BaseMongooseType;
+  partType: CarPartType;
 
   partBrand: string;
 
