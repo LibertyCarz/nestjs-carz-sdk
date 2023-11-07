@@ -8,7 +8,7 @@ import { CreateCarPartMerchantDTO } from '../dto/car-part.merchant.dto';
 @Injectable()
 export class CarPartMerchantInternalService {
   private _endpoint =
-    process.env.CAR_PART_SERVICE_ENDPOINT + 'merchants/car-parts';
+    process.env.CAR_PARTS_SERVICE_ENDPOINT + 'merchants/car-parts';
   constructor(private _httpService: HttpService) {}
 
   public async list(
