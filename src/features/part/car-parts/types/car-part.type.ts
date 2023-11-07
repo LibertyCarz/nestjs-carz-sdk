@@ -1,6 +1,7 @@
 export enum CAR_PART_STATUS {
   PUBLISH = 'publish',
   UNPUBLISH = 'unpublish',
+  BLOCKED = 'blocked',
 }
 
 export enum CAR_PART_STATE {
@@ -37,5 +38,5 @@ export type CarPart = BaseMongooseType & {
 
   note: string;
 
-  updatedBy: SDK.User;
+  updatedBy: { user: number; userType: number };
 };
