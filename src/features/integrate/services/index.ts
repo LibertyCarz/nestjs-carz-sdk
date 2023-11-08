@@ -1,1 +1,1 @@
-export * from './car-part.integrate.internal.service';
+export * from './product.integrate.internal.service';

@@ -1,3 +1,29 @@
-import { CarPart } from '../types';
+import { PRODUCT_STATE } from '../types';
 
-export type CreateCarPartMerchantDTO = Partial<CarPart> & { partType: string };
+export type CreateCarPartMerchant = {
+  partType: string;
+
+  store: number;
+
+  productBrand: string;
+
+  name: string;
+
+  photos: string[];
+
+  video: string;
+
+  cover: string;
+
+  merchantId: number;
+
+  state: PRODUCT_STATE;
+
+  price: number;
+
+  isInstallationSupport: boolean;
+
+  description: string;
+
+  note: string;
+};
