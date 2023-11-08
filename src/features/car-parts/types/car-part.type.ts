@@ -24,7 +24,7 @@ export type CarPart = BaseMongooseType & {
   video: string;
   photos: string[];
   store: number;
-  merchant: number;
+  merchantId: number;
   price: number;
   status: PRODUCT_STATUS;
   attribute: ProductAttribute;
