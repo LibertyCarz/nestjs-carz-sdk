@@ -14,7 +14,7 @@ export class IntegrateProduct {
   video: string;
   photos: string[];
   store: number;
-  merchant: number;
+  merchantId: number;
   price: number;
   status: string;
   attribute: ProductAttribute;
@@ -31,7 +31,7 @@ export class IntegrateProduct {
     this.video = data?.video;
     this.photos = data?.photos;
     this.store = data?.store;
-    this.merchant = data?.merchant;
+    this.merchantId = data?.merchantId;
     this.price = data?.price;
     this.status = data?.status;
     this.attribute = data?.attribute;
