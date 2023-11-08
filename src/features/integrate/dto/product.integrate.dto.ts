@@ -4,6 +4,12 @@ export type ProductAttribute = {
   state: string;
 };
 
+export type Address = {
+  provinceId: number;
+  districtId: number;
+  wardId: number;
+};
+
 export class IntegrateProduct {
   id?: number | string;
   createdAt: Date;
@@ -13,8 +19,9 @@ export class IntegrateProduct {
   cover: string;
   video: string;
   photos: string[];
-  store: number;
+  storeId: number;
   merchantId: number;
+  address: Address;
   price: number;
   status: string;
   attribute: ProductAttribute;
@@ -30,8 +37,9 @@ export class IntegrateProduct {
     this.cover = data?.cover;
     this.video = data?.video;
     this.photos = data?.photos;
-    this.store = data?.store;
+    this.storeId = data?.storeId;
     this.merchantId = data?.merchantId;
+    this.address = data?.address;
     this.price = data?.price;
     this.status = data?.status;
     this.attribute = data?.attribute;
