@@ -5,9 +5,9 @@ export type ProductAttribute = {
 };
 
 export type Address = {
-  provinceId: number;
-  districtId: number;
-  wardId: number;
+  provinceId?: number;
+  districtId?: number;
+  wardId?: number;
 };
 
 export class IntegrateProduct {

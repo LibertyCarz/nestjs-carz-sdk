@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { BaseInternalRequest } from '../../../types';
 import { CarPart } from '../types';
 import { lastValueFrom } from 'rxjs';
-import { CreateCarPartMerchantDTO } from '../dto/car-part.merchant.dto';
+import { CreateCarPartMerchant } from '../dto/car-part.merchant.dto';
 
 @Injectable()
 export class CarPartMerchantInternalService {
@@ -34,7 +34,7 @@ export class CarPartMerchantInternalService {
   }
 
   public async create(
-    payload: CreateCarPartMerchantDTO,
+    payload: CreateCarPartMerchant,
     request: BaseInternalRequest,
   ): Promise<CarPart> {
     const response = await lastValueFrom(
@@ -49,7 +49,7 @@ export class CarPartMerchantInternalService {
 
   public async update(
     id: string,
-    payload: CreateCarPartMerchantDTO,
+    payload: CreateCarPartMerchant,
     request: BaseInternalRequest,
   ) {
     const response = await lastValueFrom(
