@@ -1,5 +1,5 @@
 export type ProductAttribute = {
-  productType: string;
+  partType: string;
   isInstallationSupport: boolean;
 };
 

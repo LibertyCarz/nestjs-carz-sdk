@@ -1,44 +1,34 @@
 import { CarPartType } from './car-part-type.type';
 
-export enum CAR_PART_STATUS {
+export enum PRODUCT_STATUS {
   PUBLISH = 'publish',
   UNPUBLISH = 'unpublish',
   BLOCKED = 'blocked',
 }
 
-export enum CAR_PART_STATE {
+export enum PRODUCT_STATE {
   USED = 'used',
   NEW = 'new',
 }
 
+export type ProductAttribute = {
+  productType: CarPartType;
+  isInstallationSupport: boolean;
+};
+
 export type CarPart = BaseMongooseType & {
   name: string;
-
-  partType: CarPartType;
-
-  partBrand: string;
-
+  productBrand: string;
   cover: string;
-
   video: string;
-
   photos: string[];
-
   store: number;
-
   merchant: number;
-
   price: number;
-
-  state: CAR_PART_STATE;
-
-  status: CAR_PART_STATUS;
-
-  isInstallationSupport: boolean;
-
+  state: PRODUCT_STATE;
+  status: PRODUCT_STATUS;
+  attribute: ProductAttribute;
   description: string;
-
   note: string;
-
   updatedBy: { user: number; userType: number };
 };
