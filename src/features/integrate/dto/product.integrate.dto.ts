@@ -1,6 +1,7 @@
 export type ProductAttribute = {
   partType: string;
   isInstallationSupport: boolean;
+  state: string;
 };
 
 export class IntegrateProduct {
@@ -15,7 +16,6 @@ export class IntegrateProduct {
   store: number;
   merchant: number;
   price: number;
-  state: string;
   status: string;
   attribute: ProductAttribute;
   description: string;
@@ -33,7 +33,6 @@ export class IntegrateProduct {
     this.store = data?.store;
     this.merchant = data?.merchant;
     this.price = data?.price;
-    this.state = data?.state;
     this.status = data?.status;
     this.attribute = data?.attribute;
     this.description = data?.description;

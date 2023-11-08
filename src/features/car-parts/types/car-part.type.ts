@@ -14,6 +14,7 @@ export enum PRODUCT_STATE {
 export type ProductAttribute = {
   productType: CarPartType;
   isInstallationSupport: boolean;
+  state: PRODUCT_STATE;
 };
 
 export type CarPart = BaseMongooseType & {
@@ -25,7 +26,6 @@ export type CarPart = BaseMongooseType & {
   store: number;
   merchant: number;
   price: number;
-  state: PRODUCT_STATE;
   status: PRODUCT_STATUS;
   attribute: ProductAttribute;
   description: string;
