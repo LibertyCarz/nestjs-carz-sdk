@@ -1,10 +1,14 @@
-export class IntegrateCarPart {
+export type ProductAttribute = {
+  productType: string;
+  isInstallationSupport: boolean;
+};
+
+export class IntegrateProduct {
   id?: number | string;
   createdAt: Date;
   updatedAt: Date;
   name: string;
-  partType: string;
-  partBrand: string;
+  productBrand: string;
   cover: string;
   video: string;
   photos: string[];
@@ -13,16 +17,16 @@ export class IntegrateCarPart {
   price: number;
   state: string;
   status: string;
-  isInstallationSupport: boolean;
+  attribute: ProductAttribute;
   description: string;
   note: string;
   updatedBy: { user: number; userType: number };
 
-  constructor(data?: Partial<IntegrateCarPart>) {
+  constructor(data?: Partial<IntegrateProduct>) {
     this.id = data.id;
     this.name = data?.name;
-    this.partType = data?.partType;
-    this.partBrand = data?.partBrand;
+    this.name = data?.name;
+    this.productBrand = data?.productBrand;
     this.cover = data?.cover;
     this.video = data?.video;
     this.photos = data?.photos;
@@ -31,7 +35,7 @@ export class IntegrateCarPart {
     this.price = data?.price;
     this.state = data?.state;
     this.status = data?.status;
-    this.isInstallationSupport = data?.isInstallationSupport;
+    this.attribute = data?.attribute;
     this.description = data?.description;
     this.note = data?.note;
     this.updatedBy = data?.updatedBy;

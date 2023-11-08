@@ -1,1 +1,1 @@
-export * from './car-part.integrate.dto';
+export * from './product.integrate.dto';

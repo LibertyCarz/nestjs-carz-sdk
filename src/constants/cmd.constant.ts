@@ -11,6 +11,6 @@ export const CMD = {
   CAR_LOYALTY_IMPORT_VOUCHER_CODE: 'car_loyalty_import_voucher_code',
   CAR_LOYALTY_ROLLBACK_VOUCHER: 'car_loyalty_rollback_voucher',
   CAR_LOYALTY_ACCUMULATION: 'car_loyalty_accumulation',
-  CAR_PART_INTEGRATION_CREATED: 'car_part_integration_created_event',
-  CAR_PART_INTEGRATION_UPDATED: 'car_part_integration_updated_event',
+  PRODUCT_INTEGRATION_CREATED: 'product_integration_created_event',
+  PRODUCT_INTEGRATION_UPDATED: 'product_integration_updated_event',
 };
