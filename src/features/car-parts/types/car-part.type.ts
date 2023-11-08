@@ -12,7 +12,7 @@ export enum PRODUCT_STATE {
 }
 
 export type ProductAttribute = {
-  productType: CarPartType;
+  partType: CarPartType;
   isInstallationSupport: boolean;
   state: PRODUCT_STATE;
 };
