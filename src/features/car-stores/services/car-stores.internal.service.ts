@@ -5,7 +5,7 @@ import { BaseInternalRequest } from '../../../types';
 import { CarStore } from '../types';
 
 @Injectable()
-export class CarPartMerchantInternalService {
+export class CarStoreInternalService {
   private _endpoint = process.env.CAR_PARTS_SERVICE_ENDPOINT + 'car-stores';
   constructor(private _httpService: HttpService) {}
 
