@@ -23,6 +23,20 @@ export class CarPartMerchantInternalService {
     return response.data;
   }
 
+  public async findByIds(
+    ids: string[],
+    request: BaseInternalRequest,
+  ): Promise<CarPart[]> {
+    const response = await lastValueFrom(
+      this._httpService.post<BaseResponse<CarPart[]>>(
+        `${this._endpoint}/ids`,
+        { ids },
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data.data;
+  }
+
   public async detail(id: string, request: BaseInternalRequest) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<CarPart>>(
