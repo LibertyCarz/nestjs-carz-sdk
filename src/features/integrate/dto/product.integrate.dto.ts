@@ -10,6 +10,10 @@ export type Address = {
   wardId?: number;
 };
 
+export type IntegrationUpdateAddress = Partial<Address> & {
+  carStoreId: number;
+};
+
 export class IntegrateProduct {
   id?: number | string;
   createdAt: Date;

@@ -48,6 +48,19 @@ import { SERVICES } from './constants';
           },
         }),
       },
+      {
+        name: SERVICES.CARZ_CAR_PARTS,
+        useFactory: async () => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [process.env.RABBITMQ_URL],
+            queue: process.env.RABBITMQ_CAR_PARTS_QUEUE,
+            queueOptions: {
+              durable: true,
+            },
+          },
+        }),
+      },
     ]),
     HttpModule,
   ],
