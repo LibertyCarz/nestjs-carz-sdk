@@ -5,6 +5,7 @@ export type ProductAttribute = {
 };
 
 export type Address = {
+  id?: number;
   provinceId?: number;
   districtId?: number;
   wardId?: number;
