@@ -1,4 +1,4 @@
-import { PRODUCT_STATE } from '../types';
+import { PRODUCT_STATE, PRODUCT_STATUS } from '../types';
 
 export type CreateCarPartMerchant = {
   partType: string;
@@ -26,4 +26,8 @@ export type CreateCarPartMerchant = {
   description: string;
 
   note: string;
+};
+
+export type UpdateCarPartMerchant = Partial<CreateCarPartMerchant> & {
+  status?: PRODUCT_STATUS;
 };
