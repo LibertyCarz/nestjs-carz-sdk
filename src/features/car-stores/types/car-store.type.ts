@@ -37,4 +37,6 @@ export type CarStore = BaseMongooseType & {
   address: string;
 
   addressAttribute: Address;
+
+  province?: string;
 };
