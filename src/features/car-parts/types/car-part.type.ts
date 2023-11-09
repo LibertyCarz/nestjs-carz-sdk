@@ -11,6 +11,9 @@ export enum PRODUCT_STATE {
   NEW = 'new',
 }
 
+export enum PRODUCT_TYPE {
+  CAR_PART = 'car_part',
+}
 export type ProductAttribute = {
   partType: CarPartType;
   isInstallationSupport: boolean;
@@ -37,8 +40,11 @@ export type CarPart = BaseMongooseType & {
   merchantId: number;
   price: number;
   status: PRODUCT_STATUS;
+  state: PRODUCT_STATE;
+  type: PRODUCT_TYPE;
   attribute: ProductAttribute;
   description: string;
   note: string;
   updatedBy: { user: number; userType: number };
+  province?: string;
 };
