@@ -11,3 +11,9 @@ export type CarPartType = BaseMongooseType & {
 export type CarPartTypeAttribute = {
   name?: string;
 };
+
+export type ListCarPartDashboardDto = BaseRequestParams & {
+  merchantId?: number;
+  status?: string;
+  partTypeId?: string;
+};
