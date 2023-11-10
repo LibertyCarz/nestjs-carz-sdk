@@ -8,6 +8,7 @@ export class CarPartCarStoreInternalService {
   constructor(
     @Inject(SERVICES.CARZ_CAR_PARTS) private _carzCarPart: ClientProxy,
   ) {}
+
   public create(data: CarStoreInternal[]) {
     return this._carzCarPart.emit(CMD.CAR_PART_CAR_STORE_CREATED, data);
   }
