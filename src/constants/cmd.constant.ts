@@ -13,4 +13,7 @@ export const CMD = {
   CAR_LOYALTY_ACCUMULATION: 'car_loyalty_accumulation',
   PRODUCT_INTEGRATION_CREATED: 'product_integration_created_event',
   PRODUCT_INTEGRATION_UPDATED: 'product_integration_updated_event',
+  PRODUCT_INTEGRATION_ADDRESS_UPDATED: 'product_integration_address_updated',
+  CAR_PART_CAR_STORE_CREATED: 'car_part_car_store_created',
+  CAR_PART_CAR_STORE_UPDATED: 'car_part_car_store_updated',
 };
