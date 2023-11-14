@@ -28,6 +28,7 @@ export type ProductStore = BaseMongooseType & {
     districtId?: number;
     wardId?: number;
   };
+  cover: string;
 };
 
 export type CarPart = BaseMongooseType & {
@@ -36,7 +37,7 @@ export type CarPart = BaseMongooseType & {
   cover: string;
   video: string;
   photos: string[];
-  store: ProductStore;
+  store: Partial<ProductStore>;
   merchantId: number;
   price: number;
   status: PRODUCT_STATUS;
