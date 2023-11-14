@@ -38,4 +38,8 @@ export class CarPartIntegrateInternalService {
     );
     return response.data;
   }
+
+  public block(data: Partial<IntegrateProduct>) {
+    return this._carzIntegration.emit(CMD.MERCHANT_ACCOUNT_REMOVED, data);
+  }
 }
