@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { BaseInternalRequest } from '../../../types';
-import { CarPart, CarPartType } from '../types';
+import { CarPart, CategoryCount } from '../types';
 
 @Injectable()
 export class CarPartInternalService {
@@ -11,9 +11,9 @@ export class CarPartInternalService {
 
   public async categoryCounts(carStoreId: number) {
     const response = await lastValueFrom(
-      this._httpService.get<
-        BaseResponse<Array<{ partType: CarPartType; count: number }>>
-      >(`${this._endpoint}/category-counts/${carStoreId}`),
+      this._httpService.get<BaseResponse<Array<CategoryCount>>>(
+        `${this._endpoint}/category-counts/${carStoreId}`,
+      ),
     );
     return response.data?.data;
   }

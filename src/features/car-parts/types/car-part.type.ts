@@ -49,3 +49,8 @@ export type CarPart = BaseMongooseType & {
   updatedBy: { user: number; userType: number };
   province?: string;
 };
+
+export type CategoryCount = {
+  partType: CarPartType;
+  count: number;
+};
