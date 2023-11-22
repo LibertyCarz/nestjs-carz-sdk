@@ -13,7 +13,7 @@ export class CarPartInternalService {
     const response = await lastValueFrom(
       this._httpService.get<
         BaseResponse<Array<{ partType: CarPartType; count: number }>>
-      >(`${this._endpoint}/category-count/${carStoreId}`),
+      >(`${this._endpoint}/category-counts/${carStoreId}`),
     );
     return response.data?.data;
   }
