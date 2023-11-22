@@ -9,7 +9,7 @@ export class CarPartInternalService {
   private _endpoint = process.env.CAR_PARTS_SERVICE_ENDPOINT + 'car-parts';
   constructor(private _httpService: HttpService) {}
 
-  public async categoryCount(carStoreId: number) {
+  public async categoryCounts(carStoreId: number) {
     const response = await lastValueFrom(
       this._httpService.get<
         BaseResponse<Array<{ partType: CarPartType; count: number }>>
