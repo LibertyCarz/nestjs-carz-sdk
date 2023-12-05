@@ -1,4 +1,4 @@
-export {};
+export { };
 
 declare global {
   namespace SDK {
@@ -12,6 +12,15 @@ declare global {
       total: number;
     };
   }
+  export type CarzHeader = {
+    os?: string;
+    appVersion?: string;
+    deviceId?: string;
+    osVersion?: string;
+    agent?: string;
+    apiVersion?: string;
+    language?: string;
+  };
   export type Language<T = string> = {
     en: T;
     km: T;
