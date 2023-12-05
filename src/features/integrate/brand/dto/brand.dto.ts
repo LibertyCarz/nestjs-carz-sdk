@@ -1,12 +1,12 @@
 export class IntegrationBrand {
   brandId: number;
-  name: string;
-  order: string;
+  name: Record<string, string>;
+  order: number;
   status: string;
   image: string;
   constructor(data: any = {}) {
     this.brandId = data?.id;
-    this.name = data?.name;
+    this.name = data?.translation;
     this.status = data?.status;
     this.image = data?.image;
   }
