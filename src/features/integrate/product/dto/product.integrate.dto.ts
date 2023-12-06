@@ -2,7 +2,7 @@ import {
   PRODUCT_STATE,
   PRODUCT_STATUS,
   PRODUCT_TYPE,
-} from '../../../features/car-parts';
+} from '../../../../features/car-parts';
 
 export type ProductAttribute = {
   partType: string;

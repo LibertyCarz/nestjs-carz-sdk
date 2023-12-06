@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from '../../../constants';
+import { CMD, SERVICES } from '../../../../constants';
 import { IntegrateProduct, IntegrationUpdateAddress } from '../dto';
-import { BaseInternalRequest } from '../../../types';
+import { BaseInternalRequest } from '../../../../types';
 import { lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 
@@ -13,7 +13,7 @@ export class CarPartIntegrateInternalService {
   constructor(
     private _httpService: HttpService,
     @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzIntegration: ClientProxy,
-  ) {}
+  ) { }
   public async updateAddress(data: IntegrationUpdateAddress) {
     return this._carzIntegration.emit(
       CMD.PRODUCT_INTEGRATION_ADDRESS_UPDATED,

@@ -1,4 +1,4 @@
-export class IntegrationMultipleCar {}
+export class IntegrationMultipleCar { }
 
 export class IntegrationCar {
   carId: number;
@@ -7,7 +7,7 @@ export class IntegrationCar {
   name: string;
   description?: string;
   brand: any;
-  model?: string;
+  model?: number;
   cover: string;
   photos: string[];
   color?: string;
@@ -53,7 +53,7 @@ export class IntegrationCar {
       this.name = data.name;
       this.description = data.description;
       this.brand = data?.brand?.id || data?.brand;
-      this.model = data.model;
+      this.model = data.carModel?.id || data?.carModel;
       this.cover = data.cover;
       this.photos = data.photos;
       this.color = data.color;
