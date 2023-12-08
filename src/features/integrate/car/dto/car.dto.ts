@@ -1,4 +1,4 @@
-export class IntegrationMultipleCar { }
+export class IntegrationMultipleCar {}
 
 export class IntegrationCar {
   carId: number;
@@ -48,7 +48,7 @@ export class IntegrationCar {
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
-      this.merchantId = data.merchant?.id;
+      this.merchantId = data.merchant?.id || data.merchant;
       this.category = data?.category?.id;
       this.name = data.name;
       this.description = data.description;
@@ -87,7 +87,7 @@ export class IntegrationCar {
       this.rentalType = data.rentalType;
       this.rentalPrice = data.rentalPrice;
       this.fuelConsumption = data.fuelConsumption;
-      this.carStore = data.carStore;
+      this.carStore = data.carStore?.id || data.carStore;
       this.isHiddenPrice = data.isHiddenPrice;
       this.discountValue = data.discountValue;
       this.discountType = data.discountType;
