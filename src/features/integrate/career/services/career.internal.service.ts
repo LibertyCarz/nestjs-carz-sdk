@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { TCareer } from '..';
+import { Career } from '..';
 
 @Injectable()
 export class CareerIntegrateInternalService {
@@ -11,7 +11,7 @@ export class CareerIntegrateInternalService {
 
   public async list(filter: BaseRequestParams) {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<TCareer[]>>(this._endpoint, {
+      this._httpService.get<BaseResponse<Career[]>>(this._endpoint, {
         params: filter,
       }),
     );
@@ -20,7 +20,7 @@ export class CareerIntegrateInternalService {
 
   public async detail(id: string) {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<TCareer[]>>(`${this._endpoint}/${id}`),
+      this._httpService.get<BaseResponse<Career[]>>(`${this._endpoint}/${id}`),
     );
     return response.data?.data;
   }

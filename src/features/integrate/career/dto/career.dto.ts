@@ -1,3 +1,3 @@
-import { TCareer } from '..';
+import { Career } from '..';
 
-export type CreateCareerDTO = Partial<TCareer>;
+export type CreateCareerDTO = Partial<Career>;
