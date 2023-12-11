@@ -20,7 +20,7 @@ export class CareerIntegrateInternalService {
 
   public async detail(id: string) {
     const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<Career[]>>(`${this._endpoint}/${id}`),
+      this._httpService.get<BaseResponse<Career>>(`${this._endpoint}/${id}`),
     );
     return response.data?.data;
   }
