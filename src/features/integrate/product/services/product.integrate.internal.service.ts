@@ -13,7 +13,7 @@ export class CarPartIntegrateInternalService {
   constructor(
     private _httpService: HttpService,
     @Inject(SERVICES.CARZ_INTEGRATIONS) private _carzIntegration: ClientProxy,
-  ) { }
+  ) {}
   public async updateAddress(data: IntegrationUpdateAddress) {
     return this._carzIntegration.emit(
       CMD.PRODUCT_INTEGRATION_ADDRESS_UPDATED,

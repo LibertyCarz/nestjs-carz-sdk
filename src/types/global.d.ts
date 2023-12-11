@@ -1,4 +1,4 @@
-export { };
+export {};
 
 declare global {
   namespace SDK {
@@ -44,4 +44,9 @@ declare global {
   };
 
   export type BaseRequestParams = Partial<BasePagination & SDK.User>;
+
+  export type BaseRange = {
+    from?: string;
+    to?: string;
+  };
 }
