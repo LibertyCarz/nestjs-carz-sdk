@@ -32,6 +32,12 @@ declare global {
     updatedAt?: Date;
     createdAt?: Date;
   };
+  export class BaseMongoose {
+    _id?: string;
+    status?: string;
+    updatedAt?: Date;
+    createdAt?: Date;
+  }
 
   export type BasePagination = {
     limit: number;
@@ -45,6 +51,13 @@ declare global {
 
   export type BaseRequestParams = Partial<BasePagination & SDK.User>;
 
+  export type BaseListFilterDTO = Partial<
+    BasePagination &
+      SDK.User & {
+        filter?: string;
+        sort?: string;
+      }
+  >;
   export type BaseRange = {
     from?: string;
     to?: string;
