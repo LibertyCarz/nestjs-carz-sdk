@@ -32,12 +32,6 @@ declare global {
     updatedAt?: Date;
     createdAt?: Date;
   };
-  export class BaseMongoose {
-    _id?: string;
-    status?: string;
-    updatedAt?: Date;
-    createdAt?: Date;
-  }
 
   export type BasePagination = {
     limit: number;

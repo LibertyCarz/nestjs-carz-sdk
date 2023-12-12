@@ -1,3 +1,5 @@
+import { BaseMongoose } from '../../../../types';
+
 export type FormRequestAttribute = {
   attachment?: string;
   note?: string;
