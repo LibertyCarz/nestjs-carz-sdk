@@ -16,9 +16,12 @@ export class Career implements BaseMongooseType {
   workingDays: BaseRange;
   workingHours: BaseRange;
   experience: string;
+  location: string;
   constructor(data?: Partial<Career>) {
     if (data) {
       this._id = data?._id;
+      this.createdAt = data?.createdAt;
+      this.updatedAt = data?.updatedAt;
       this.categories = data?.categories;
       this.name = data?.name;
       this.description = data?.description;
@@ -29,6 +32,8 @@ export class Career implements BaseMongooseType {
       this.workingDays = data?.workingDays;
       this.workingHours = data?.workingHours;
       this.experience = data?.experience;
+      this.location = data?.location;
+      this.jobType = data?.jobType;
     }
   }
 }
