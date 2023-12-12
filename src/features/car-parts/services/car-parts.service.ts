@@ -18,11 +18,11 @@ export class CarPartInternalService {
     return response.data?.data;
   }
 
-  public async detail(id: string, request: BaseInternalRequest) {
+  public async detail(id: string, request?: BaseInternalRequest) {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<CarPart>>(
         `${this._endpoint}/${id}`,
-        request.buildRequestConfig(),
+        request?.buildRequestConfig(),
       ),
     );
     return response.data.data;
