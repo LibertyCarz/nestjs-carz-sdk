@@ -5,4 +5,5 @@ export * from './car/dto';
 export * from './brand/services';
 export * from './brand/dto';
 export * from './model/services';
-export * from './model/dto';
+export * from './form-requests/services';
+export * from './form-requests/dto';
