@@ -17,7 +17,7 @@ export class FormRequestIntegrateInternalService {
         data,
       ),
     );
-    return response.data;
+    return response.data?.data;
   }
 
   public async list(
