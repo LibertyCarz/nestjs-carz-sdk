@@ -27,4 +27,15 @@ export class CarPartInternalService {
     );
     return response.data.data;
   }
+
+  public async total(filter: object) {
+    const response = await lastValueFrom(
+      this._httpService.get<
+        BaseResponse<{ publish: number; unpublish: number; blocked: number }>
+      >(`${this._endpoint}/total-statuses`, {
+        params: filter,
+      }),
+    );
+    return response.data.data;
+  }
 }
