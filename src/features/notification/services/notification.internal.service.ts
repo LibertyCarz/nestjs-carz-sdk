@@ -98,4 +98,13 @@ export class NotificationInternalService {
     );
     return response.data;
   }
+
+  public async pushNotificationNonCreate<TData>(
+    payload: BaseSdkEventPayloadRequest<PayloadCreateGroupEvent<TData>>,
+  ) {
+    return this._carzNotification.emit(
+      CMD.PUSH_NOTIFICATION_NON_CREATE,
+      payload.buildRecord(),
+    );
+  }
 }
