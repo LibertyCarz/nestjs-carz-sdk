@@ -11,6 +11,7 @@ import { CMD, SERVICES } from '../../../constants';
 import {
   PayloadCreateGroupEvent,
   PayloadCreateOneEvent,
+  PayloadPushNotiByDevice,
   UpdateNotificationDto,
 } from '../dto';
 
@@ -99,8 +100,8 @@ export class NotificationInternalService {
     return response.data;
   }
 
-  public async pushNotificationNonCreate(
-    payload: BaseSdkEventPayloadRequest<PayloadCreateOneEvent>,
+  public async pushNotificationByDevice(
+    payload: BaseSdkEventPayloadRequest<PayloadPushNotiByDevice>,
   ) {
     return this._carzNotification.emit(
       CMD.PUSH_NOTIFICATION_NON_CREATE,
