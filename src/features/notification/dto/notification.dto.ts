@@ -22,7 +22,7 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
 
 export type PayloadPushNotiByDevice = InsertNotificationDTO & {
   notificationTypeKey: string;
-  deviceId?:string
+  id?: number;
 };
 
 export type UpdateNotificationDto = {
