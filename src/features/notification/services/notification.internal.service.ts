@@ -104,7 +104,7 @@ export class NotificationInternalService {
     payload: BaseSdkEventPayloadRequest<PayloadPushNotiByDevice>,
   ) {
     return this._carzNotification.emit(
-      CMD.PUSH_NOTIFICATION_NON_CREATE,
+      CMD.PUSH_NOTIFICATION_BY_DEVICE,
       payload.buildRecord(),
     );
   }
