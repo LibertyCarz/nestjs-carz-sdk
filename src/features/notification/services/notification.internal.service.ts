@@ -108,4 +108,13 @@ export class NotificationInternalService {
       payload.buildRecord(),
     );
   }
+
+  public async pushNotificationNormal(
+    payload: BaseSdkEventPayloadRequest<PayloadCreateOneEvent>,
+  ) {
+    return this._carzNotification.emit(
+      CMD.PUSH_NOTIFICATION_NORMAL,
+      payload.buildRecord(),
+    );
+  }
 }
