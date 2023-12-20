@@ -35,4 +35,6 @@ export class FormRequest extends BaseMongoose {
 
 export type ListFormRequestDTO = BaseListFilterDTO & {
   name?: string;
+  startDate?: Date;
+  end?: Date;
 };
