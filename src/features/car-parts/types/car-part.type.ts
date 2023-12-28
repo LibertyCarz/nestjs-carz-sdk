@@ -47,6 +47,7 @@ export type CarPart = BaseMongooseType & {
   description: string;
   note: string;
   updatedBy: { user: number; userType: number };
+  ids?: string;
   province?: string;
 };
 
