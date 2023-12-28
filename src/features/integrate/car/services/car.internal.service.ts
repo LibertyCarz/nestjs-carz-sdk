@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from '../../../constants';
-import { BaseService } from '../../../shared/base.service';
+import { CMD, SERVICES } from '../../../../constants';
+import { BaseService } from '../../../../shared/base.service';
 import { IntegrationCar } from '../dto';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
@@ -59,6 +59,13 @@ export class IntegrationCarInternalService implements BaseService {
   public async totalViews(payload: any) {
     const response = await lastValueFrom(
       this._httpService.get(`${this._endpoint}/totalViews`, payload),
+    );
+    return response.data;
+  }
+
+  public async getAttributesWithIds(payload: any) {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/attributes`, payload),
     );
     return response.data;
   }

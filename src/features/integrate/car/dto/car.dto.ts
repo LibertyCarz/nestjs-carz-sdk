@@ -7,7 +7,7 @@ export class IntegrationCar {
   name: string;
   description?: string;
   brand: any;
-  model?: string;
+  model?: number;
   cover: string;
   photos: string[];
   color?: string;
@@ -48,12 +48,12 @@ export class IntegrationCar {
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
-      this.merchantId = data.merchant?.id;
+      this.merchantId = data.merchant?.id || data.merchant;
       this.category = data?.category?.id;
       this.name = data.name;
       this.description = data.description;
       this.brand = data?.brand?.id || data?.brand;
-      this.model = data.model;
+      this.model = data.carModel?.id || data?.carModel;
       this.cover = data.cover;
       this.photos = data.photos;
       this.color = data.color;
@@ -87,7 +87,7 @@ export class IntegrationCar {
       this.rentalType = data.rentalType;
       this.rentalPrice = data.rentalPrice;
       this.fuelConsumption = data.fuelConsumption;
-      this.carStore = data.carStore;
+      this.carStore = data.carStore?.id || data.carStore;
       this.isHiddenPrice = data.isHiddenPrice;
       this.discountValue = data.discountValue;
       this.discountType = data.discountType;

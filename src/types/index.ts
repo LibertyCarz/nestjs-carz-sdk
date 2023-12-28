@@ -79,3 +79,9 @@ export type FileModel = {
 
   url?: string;
 };
+export class BaseMongoose {
+  _id?: string;
+  status?: string;
+  updatedAt?: Date;
+  createdAt?: Date;
+}
