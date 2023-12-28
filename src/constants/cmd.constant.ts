@@ -17,4 +17,7 @@ export const CMD = {
   CAR_PART_CAR_STORE_CREATED: 'car_part_car_store_created',
   CAR_PART_CAR_STORE_UPDATED: 'car_part_car_store_updated',
   MERCHANT_ACCOUNT_REMOVED: 'merchant_account_removed',
+  CAR_INTEGRATION_MODEL_INSERTED: 'car_integration_model_inserted_event',
+  PUSH_NOTIFICATION_BY_DEVICE: 'push_noti_by_device',
+  PUSH_NOTIFICATION_NORMAL: 'push_noti_normal',
 };

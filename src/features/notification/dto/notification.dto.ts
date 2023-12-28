@@ -20,6 +20,11 @@ export type PayloadCreateOneEvent = InsertNotificationDTO & {
   excludeDeviceIds?: string[];
 };
 
+export type PayloadPushNotiByDevice = InsertNotificationDTO & {
+  notificationTypeKey: string;
+  sessionId: string;
+};
+
 export type UpdateNotificationDto = {
   read: boolean;
   updatedBy: number;

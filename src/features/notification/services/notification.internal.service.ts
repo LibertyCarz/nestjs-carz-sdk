@@ -11,6 +11,7 @@ import { CMD, SERVICES } from '../../../constants';
 import {
   PayloadCreateGroupEvent,
   PayloadCreateOneEvent,
+  PayloadPushNotiByDevice,
   UpdateNotificationDto,
 } from '../dto';
 
@@ -97,5 +98,23 @@ export class NotificationInternalService {
       ),
     );
     return response.data;
+  }
+
+  public async pushNotificationByDevice(
+    payload: BaseSdkEventPayloadRequest<PayloadPushNotiByDevice>,
+  ) {
+    return this._carzNotification.emit(
+      CMD.PUSH_NOTIFICATION_BY_DEVICE,
+      payload.buildRecord(),
+    );
+  }
+
+  public async pushNotificationNormal(
+    payload: BaseSdkEventPayloadRequest<PayloadCreateOneEvent>,
+  ) {
+    return this._carzNotification.emit(
+      CMD.PUSH_NOTIFICATION_NORMAL,
+      payload.buildRecord(),
+    );
   }
 }

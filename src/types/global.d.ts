@@ -12,6 +12,15 @@ declare global {
       total: number;
     };
   }
+  export type CarzHeader = {
+    os?: string;
+    appVersion?: string;
+    deviceId?: string;
+    osVersion?: string;
+    agent?: string;
+    apiVersion?: string;
+    language?: string;
+  };
   export type Language<T = string> = {
     en: T;
     km: T;
@@ -35,4 +44,16 @@ declare global {
   };
 
   export type BaseRequestParams = Partial<BasePagination & SDK.User>;
+
+  export type BaseListFilterDTO = Partial<
+    BasePagination &
+      SDK.User & {
+        filter?: string;
+        sort?: string;
+      }
+  >;
+  export type BaseRange = {
+    from?: string;
+    to?: string;
+  };
 }

@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from '../../../constants';
+import { CMD, SERVICES } from '../../../../constants';
 import { IntegrateProduct, IntegrationUpdateAddress } from '../dto';
-import { BaseInternalRequest } from '../../../types';
+import { BaseInternalRequest } from '../../../../types';
 import { lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 
