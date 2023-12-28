@@ -62,4 +62,11 @@ export class IntegrationCarInternalService implements BaseService {
     );
     return response.data;
   }
+
+  public async getAttributesWithIds(payload: any) {
+    const response = await lastValueFrom(
+      this._httpService.get(`${this._endpoint}/attributes`, payload),
+    );
+    return response.data;
+  }
 }
