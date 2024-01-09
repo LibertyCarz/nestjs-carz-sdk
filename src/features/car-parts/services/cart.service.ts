@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable, Logger } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { BaseInternalRequest } from '../../../types';
-import { CartDto } from '../dto';
+import { CartDto, CheckCartProductsDto } from '../dto';
 import { AddCartDto, ProductCart } from '../types';
 
 @Injectable()
@@ -65,6 +65,20 @@ export class CartCarPartInternalService {
         'Error get my cart Internal Services',
       );
     }
+  }
+
+  public async checkProducts(
+    body: CheckCartProductsDto,
+    request: BaseInternalRequest,
+  ): Promise<{ data: boolean }> {
+    const response = await lastValueFrom(
+      this._httpService.post<{ data: boolean }>(
+        `${this._endpoint}/products/check`,
+        body,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data;
   }
 
   public async addCart(

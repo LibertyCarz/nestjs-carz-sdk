@@ -16,3 +16,7 @@ type CartItem = {
 export type AddCart = {
   items?: CartItem;
 } & BaseCart;
+
+export type CheckCartProductsDto = {
+  ids?: string[];
+} & BaseCart;
