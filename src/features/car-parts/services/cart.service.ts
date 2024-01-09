@@ -74,7 +74,7 @@ export class CartCarPartInternalService {
     try {
       const response = await lastValueFrom(
         this._httpService.post<{ data: ProductCart }>(
-          `${this._endpoint}/products`,
+          `${this._endpoint}`,
           body,
           request.buildRequestConfig(),
         ),
