@@ -5,10 +5,10 @@ import { CarPart } from '../types';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable()
-export class ProductPopularService {
+export class ProductPopularInternalService {
   private _endpoint =
     process.env.CAR_PARTS_SERVICE_ENDPOINT + 'product-popular';
-  private _logger = new Logger(ProductPopularService.name);
+  private _logger = new Logger(ProductPopularInternalService.name);
   constructor(private _httpService: HttpService) {}
 
   public async list(
