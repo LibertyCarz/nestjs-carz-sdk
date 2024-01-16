@@ -24,10 +24,8 @@ export class CheckPaymentDto {
 }
 
 export class PaymentSuccessWebhookDto {
-  response: {
-    stran_id: string;
-    status: number;
-    apv: string;
-    return_params: string;
-  };
+  tran_id: string;
+  status: number;
+  apv: string;
+  return_params: string;
 }
