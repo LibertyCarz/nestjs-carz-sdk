@@ -96,6 +96,10 @@ export type CheckPaymentResponse = {
   payment: Payment;
 };
 
+export type PayWayWebHookResponse = {
+  affected: number;
+};
+
 export interface IPaymentInternalService {
   create(dto: CreatePaymentDto): Promise<CreatePaymentResponse>;
   check(transactionId: string): Promise<CheckPaymentResponse>;
