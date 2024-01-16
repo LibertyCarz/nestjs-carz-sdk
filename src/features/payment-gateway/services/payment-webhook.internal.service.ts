@@ -11,10 +11,10 @@ export class PaymentWebhookInternalService {
   }
 
   public async payWaySuccess(dto: PaymentSuccessWebhookDto): Promise<number> {
-    throw new Error('Not implement yet!');
+    throw new Error('Not implemented yet!');
   }
 
   public async payWayFailed(dto: PaymentSuccessWebhookDto): Promise<number> {
-    throw new Error('Not implement yet!');
+    throw new Error('Not implemented yet!');
   }
 }
