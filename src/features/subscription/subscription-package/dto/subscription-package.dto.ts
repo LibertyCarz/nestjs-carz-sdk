@@ -1,5 +1,9 @@
 import { BaseModelSQLType, MultipleLanguages } from '../../../../types';
-import { SubscriptionBenefit, SubscriptionPrice } from '../../type';
+import {
+  CommissionConfig,
+  SubscriptionBenefit,
+  SubscriptionPrice,
+} from '../../type';
 
 export class SubscriptionPackage extends BaseModelSQLType {
   name?: MultipleLanguages;
@@ -11,6 +15,10 @@ export class SubscriptionPackage extends BaseModelSQLType {
   isBestSeller?: boolean;
   icon?: string;
   type?: string;
+  ordinal?: number;
+  annualMembership?: number;
+  commissions?: CommissionConfig[];
+
   constructor(data?: Partial<SubscriptionPackage>) {
     super(data);
     if (data) {
@@ -24,6 +32,9 @@ export class SubscriptionPackage extends BaseModelSQLType {
       this.isBestSeller = data.isBestSeller;
       this.icon = data.icon;
       this.type = data.type;
+      this.ordinal = data.ordinal;
+      this.annualMembership = data.annualMembership;
+      this.commissions = data.commissions;
     }
   }
 }

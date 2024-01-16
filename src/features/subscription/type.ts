@@ -14,6 +14,12 @@ export enum BENEFIT_TYPE {
   MAIN = 'main',
   OTHER = 'other',
 }
+export type CommissionConfig = {
+  fee?: number;
+  percent?: number;
+  start?: number;
+  end?: number;
+};
 export class SubscriptionBenefit {
   code: BENEFIT_CODE;
   type: BENEFIT_TYPE;
