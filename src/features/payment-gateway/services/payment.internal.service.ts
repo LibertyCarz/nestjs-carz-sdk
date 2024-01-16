@@ -1,12 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import { lastValueFrom } from 'rxjs';
 import { CreatePaymentDto } from '../dto';
 import {
   CheckPaymentResponse,
   CreatePaymentResponse,
   IPaymentInternalService,
 } from '../types';
-import { executePaymentRequest } from '../utils';
 
 @Injectable()
 export class PaymentInternalService implements IPaymentInternalService {
@@ -16,16 +16,18 @@ export class PaymentInternalService implements IPaymentInternalService {
   }
 
   public async create(dto: CreatePaymentDto): Promise<CreatePaymentResponse> {
-    return executePaymentRequest(
+    const response = await lastValueFrom(
       this._httpService.post<CreatePaymentResponse>(this._endpoint, dto),
     );
+    return response.data;
   }
 
   public async check(transactionId: string): Promise<CheckPaymentResponse> {
-    return executePaymentRequest(
+    const response = await lastValueFrom(
       this._httpService.get<CheckPaymentResponse>(
         this._endpoint + '/check/' + transactionId,
       ),
     );
+    return response.data;
   }
 }
