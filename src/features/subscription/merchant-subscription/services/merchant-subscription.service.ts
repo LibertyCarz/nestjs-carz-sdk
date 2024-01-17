@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
-import { ListMerchantSubscriptionDTO, MerchantSubscription } from '../dto';
+import {
+  ChangeQuotaSubscriptionDTO,
+  ListMerchantSubscriptionDTO,
+  MerchantSubscription,
+} from '../dto';
 
 @Injectable()
 export class MerchantSubscriptionInternalService {
@@ -45,6 +49,15 @@ export class MerchantSubscriptionInternalService {
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<MerchantSubscription>>(
         `${this._endpoint}/${id}`,
+      ),
+    );
+    return response.data?.data;
+  }
+  public async changeQuota(id: number, dto: ChangeQuotaSubscriptionDTO) {
+    const response = await lastValueFrom(
+      this._httpService.patch<BaseResponse<MerchantSubscription>>(
+        `${this._endpoint}/${id}/quota`,
+        dto,
       ),
     );
     return response.data?.data;

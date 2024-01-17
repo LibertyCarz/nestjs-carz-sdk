@@ -30,3 +30,8 @@ export class ListMerchantSubscriptionDTO {
   skip?: number;
   take?: number;
 }
+
+export class ChangeQuotaSubscriptionDTO {
+  postCarQuota?: number;
+  postedHotSale?: number; //
+}
