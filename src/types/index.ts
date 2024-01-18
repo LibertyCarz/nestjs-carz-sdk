@@ -37,6 +37,20 @@ export type Comment = BaseMongooseType & {
 
 export type SdkHeader = { [key: string]: string };
 
+export class BaseModelSQLType {
+  id?: number | string;
+  status?: string;
+  updatedAt?: Date;
+  createdAt?: Date;
+  constructor(data?: any) {
+    if (data) {
+      this.id = data.id;
+      this.status = data.status;
+      this.updatedAt = data.updatedAt;
+      this.createdAt = data.createdAt;
+    }
+  }
+}
 export class BaseInternalRequest<
   TParams extends BaseRequestParams = BaseRequestParams,
 > {
@@ -79,6 +93,11 @@ export type FileModel = {
 
   url?: string;
 };
+export class MultipleLanguages {
+  en?: string;
+  zh?: string;
+  km?: string;
+}
 export class BaseMongoose {
   _id?: string;
   status?: string;
