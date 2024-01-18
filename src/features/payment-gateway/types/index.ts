@@ -98,6 +98,7 @@ export type CheckPaymentResponse = {
 
 export type PayWayWebHookResponse = {
   affected: number;
+  payment: Payment;
 };
 
 export interface IPaymentInternalService {
