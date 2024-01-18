@@ -8,14 +8,14 @@ import {
 export class CreatePaymentDto {
   transactionId: string;
   amount: number;
-  currency: PAYMENT_CURRENCY;
-  note: string;
-  extraData: object;
-  user: number;
-  userType: number;
-  paymentOptions: PAYWAY_PAYMENT_OPTIONS;
-  type: PAYMENT_TYPE;
-  gateway: PAYMENT_GATEWAY;
+  currency?: PAYMENT_CURRENCY;
+  note?: string;
+  extraData?: object;
+  user?: number;
+  userType?: number;
+  paymentOptions?: PAYWAY_PAYMENT_OPTIONS;
+  type?: PAYMENT_TYPE;
+  gateway?: PAYMENT_GATEWAY;
   partnerId?: number;
 }
 

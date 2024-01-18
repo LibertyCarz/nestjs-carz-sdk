@@ -1,13 +1,14 @@
+import { BaseModelSQLType } from '../../../../types';
 import { BaseSdkFilter } from '../../../../shared/base.request';
 
 export enum PURCHASE_COMMISSION_STATUS {
   NEW = 'new',
   PAID = 'paid',
 }
-export class PurchaseCommission {
-  merchantId: number;
+export class PurchaseCommission extends BaseModelSQLType {
+  merchantId?: number;
 
-  purchaseOrderId: number;
+  purchaseOrderId: string;
 
   status?: PURCHASE_COMMISSION_STATUS;
 
@@ -24,15 +25,18 @@ export class PurchaseCommission {
   note?: string;
 
   constructor(data: any) {
-    this.merchantId = data.id;
-    this.purchaseOrderId = data.purchaseOrderId;
-    this.status = data.status;
-    this.type = data.type;
-    this.purchaseCarCommissions = data.purchaseCarCommissions;
-    this.updatedBy = data.updatedBy;
-    this.total = data.total;
-    this.commission = data.commission;
-    this.note = data.note;
+    super(data);
+    if (data) {
+      this.merchantId = data.merchantId;
+      this.purchaseOrderId = data.purchaseOrderId;
+      this.status = data.status;
+      this.type = data.type;
+      this.purchaseCarCommissions = data.purchaseCarCommissions;
+      this.updatedBy = data.updatedBy;
+      this.total = data.total;
+      this.commission = data.commission;
+      this.note = data.note;
+    }
   }
 }
 

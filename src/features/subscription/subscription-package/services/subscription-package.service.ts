@@ -9,7 +9,7 @@ export class SubscriptionPackageInternalService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.CAR_SUBSCRIPTION_SERVICE_ENDPOINT + 'subscription-packages';
+      process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'subscription-packages';
   }
   public async create(data: SubscriptionPackage) {
     const response = await lastValueFrom(

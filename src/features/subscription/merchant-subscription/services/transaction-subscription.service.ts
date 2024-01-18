@@ -12,8 +12,7 @@ export class TransactionSubscriptionInternalService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.CAR_SUBSCRIPTION_SERVICE_ENDPOINT +
-      'transaction-subscriptions';
+      process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'subscription-transactions';
   }
   public async create(data: TransactionSubscription) {
     const response = await lastValueFrom(

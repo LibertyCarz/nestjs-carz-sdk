@@ -5,6 +5,7 @@ import {
   ChangeQuotaSubscriptionDTO,
   ListMerchantSubscriptionDTO,
   MerchantSubscription,
+  UpdateMerchantSubscriptionDTO,
 } from '../dto';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class MerchantSubscriptionInternalService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.CAR_SUBSCRIPTION_SERVICE_ENDPOINT + 'merchant-subscriptions';
+      process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'merchant-subscriptions';
   }
   public async create(data: MerchantSubscription) {
     const response = await lastValueFrom(
@@ -23,7 +24,7 @@ export class MerchantSubscriptionInternalService {
     );
     return response.data?.data;
   }
-  public async update(id: number, data: MerchantSubscription) {
+  public async update(id: number, data: UpdateMerchantSubscriptionDTO) {
     const response = await lastValueFrom(
       this._httpService.put<BaseResponse<MerchantSubscription>>(
         `${this._endpoint}/${id}`,

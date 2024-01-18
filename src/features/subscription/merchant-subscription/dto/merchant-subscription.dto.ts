@@ -1,3 +1,4 @@
+import { BaseSdkFilter } from '../../../../shared/base.request';
 import { BaseModelSQLType } from '../../../../types';
 
 export class MerchantSubscription extends BaseModelSQLType {
@@ -25,10 +26,15 @@ export class MerchantSubscription extends BaseModelSQLType {
     }
   }
 }
-export class ListMerchantSubscriptionDTO {
+export class ListMerchantSubscriptionDTO extends BaseSdkFilter {
   status?: string;
-  skip?: number;
-  take?: number;
+  merchantId?: number;
+}
+
+export class UpdateMerchantSubscriptionDTO {
+  status: string;
+
+  updatedBy?: number;
 }
 
 export class ChangeQuotaSubscriptionDTO {

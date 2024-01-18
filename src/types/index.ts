@@ -38,7 +38,7 @@ export type Comment = BaseMongooseType & {
 export type SdkHeader = { [key: string]: string };
 
 export class BaseModelSQLType {
-  id?: number;
+  id?: number | string;
   status?: string;
   updatedAt?: Date;
   createdAt?: Date;

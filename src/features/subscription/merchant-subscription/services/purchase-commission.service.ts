@@ -12,7 +12,7 @@ export class PurchaseCommissionInternalService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
     this._endpoint =
-      process.env.CAR_SUBSCRIPTION_SERVICE_ENDPOINT + 'purchase-commissions';
+      process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'purchase-commissions';
   }
   public async create(data: PurchaseCommission) {
     const response = await lastValueFrom(
