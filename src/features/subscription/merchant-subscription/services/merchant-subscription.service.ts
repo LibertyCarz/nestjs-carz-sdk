@@ -73,7 +73,6 @@ export class MerchantSubscriptionInternalService extends BaseService {
     return response.data?.data;
   }
   public async getMyQuota(merchantId: number): Promise<MerchantSubscription> {
-    console.log({ merchantId });
     const response = await lastValueFrom(
       this._httpService.get<BaseResponse<MerchantSubscription>>(
         `${this._endpoint}/my-quota`,
