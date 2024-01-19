@@ -14,9 +14,9 @@ export class PaymentWebhookInternalService {
 
   public async payWaySuccess(
     dto: PaymentSuccessWebhookDto,
-  ): Promise<PayWayWebHookResponse> {
+  ): Promise<BaseResponse<PayWayWebHookResponse>> {
     const response = await lastValueFrom(
-      this._httpService.post<PayWayWebHookResponse>(
+      this._httpService.post<BaseResponse<PayWayWebHookResponse>>(
         this._endpoint + '/payway/success',
         dto,
       ),
@@ -26,9 +26,9 @@ export class PaymentWebhookInternalService {
 
   public async payWayFailed(
     dto: PaymentSuccessWebhookDto,
-  ): Promise<PayWayWebHookResponse> {
+  ): Promise<BaseResponse<PayWayWebHookResponse>> {
     const response = await lastValueFrom(
-      this._httpService.post<PayWayWebHookResponse>(
+      this._httpService.post<BaseResponse<PayWayWebHookResponse>>(
         this._endpoint + '/payway/failed',
         dto,
       ),
