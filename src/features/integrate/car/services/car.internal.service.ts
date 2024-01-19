@@ -7,7 +7,7 @@ import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable()
-export class IntegrationCarInternalService implements BaseService {
+export class IntegrationCarInternalService {
   private _endpoint;
   constructor(
     private _httpService: HttpService,

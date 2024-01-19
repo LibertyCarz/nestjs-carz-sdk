@@ -6,22 +6,28 @@ import {
   PurchaseCommission,
   UpdatePurchaseCommissionDTO,
 } from '../dto';
+import { BaseService } from '../../../../shared/base.service';
 
 @Injectable()
-export class PurchaseCommissionInternalService {
+export class PurchaseCommissionInternalService extends BaseService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
+    super();
     this._endpoint =
       process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'purchase-commissions';
   }
   public async create(data: PurchaseCommission) {
-    const response = await lastValueFrom(
-      this._httpService.post<BaseResponse<PurchaseCommission>>(
-        `${this._endpoint}`,
-        data,
-      ),
-    );
-    return response.data?.data;
+    try {
+      const response = await lastValueFrom(
+        this._httpService.post<BaseResponse<PurchaseCommission>>(
+          `${this._endpoint}`,
+          data,
+        ),
+      );
+      return response.data?.data;
+    } catch (error) {
+      this.throwError(error);
+    }
   }
 
   public async list(

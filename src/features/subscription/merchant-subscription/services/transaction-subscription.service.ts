@@ -6,22 +6,28 @@ import {
   TransactionSubscription,
   UpdateTransactionSubscriptionDTO,
 } from '../dto';
+import { BaseService } from '../../../../shared/base.service';
 
 @Injectable()
-export class TransactionSubscriptionInternalService {
+export class TransactionSubscriptionInternalService extends BaseService {
   private _endpoint;
   constructor(private _httpService: HttpService) {
+    super();
     this._endpoint =
       process.env.SUBSCRIPTION_SERVICE_ENDPOINT + 'subscription-transactions';
   }
   public async create(data: TransactionSubscription) {
-    const response = await lastValueFrom(
-      this._httpService.post<BaseResponse<TransactionSubscription>>(
-        `${this._endpoint}`,
-        data,
-      ),
-    );
-    return response.data?.data;
+    try {
+      const response = await lastValueFrom(
+        this._httpService.post<BaseResponse<TransactionSubscription>>(
+          `${this._endpoint}`,
+          data,
+        ),
+      );
+      return response.data?.data;
+    } catch (error) {
+      this.throwError(error);
+    }
   }
 
   public async list(

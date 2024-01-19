@@ -1,7 +1,11 @@
-export interface BaseService {
-  create(payload: any);
-  update(payload: any);
-  delete(payload: any);
-  getList(payload: any);
-  findOne(payload: any);
+import { HttpException } from '@nestjs/common';
+import { isAxiosError } from 'axios';
+export class BaseService {
+  protected throwError(error: any) {
+    if (isAxiosError(error.response)) {
+      throw new HttpException(error.response.data, error.response.status);
+    } else {
+      throw new HttpException(error.message, 500);
+    }
+  }
 }

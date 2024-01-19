@@ -39,5 +39,6 @@ export class UpdateMerchantSubscriptionDTO {
 
 export class ChangeQuotaSubscriptionDTO {
   postCarQuota?: number;
-  postedHotSale?: number; //
+  postedHotSale?: number;
+  carPosted?: number;
 }
