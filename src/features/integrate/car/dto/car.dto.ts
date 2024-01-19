@@ -45,6 +45,7 @@ export class IntegrationCar {
   isHiddenPrice?: boolean;
   discountValue: number;
   discountType: string;
+  taxType: string;
   constructor(data: any = {}) {
     if (data) {
       this.carId = data.id;
@@ -91,6 +92,7 @@ export class IntegrationCar {
       this.isHiddenPrice = data.isHiddenPrice;
       this.discountValue = data.discountValue;
       this.discountType = data.discountType;
+      this.taxType = data?.taxType;
     }
   }
 }
