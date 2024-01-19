@@ -7,19 +7,28 @@ import {
   CreatePaymentResponse,
   IPaymentInternalService,
 } from '../types';
+import { BaseService } from '../../../shared/base.service';
 
 @Injectable()
-export class PaymentInternalService implements IPaymentInternalService {
+export class PaymentInternalService
+  extends BaseService
+  implements IPaymentInternalService
+{
   private _endpoint: string;
   constructor(private _httpService: HttpService) {
+    super();
     this._endpoint = process.env.PAYMENT_GATEWAY_SERVICE_ENDPOINT + 'payments';
   }
 
   public async create(dto: CreatePaymentDto): Promise<CreatePaymentResponse> {
-    const response = await lastValueFrom(
-      this._httpService.post<CreatePaymentResponse>(this._endpoint, dto),
-    );
-    return response.data;
+    try {
+      const response = await lastValueFrom(
+        this._httpService.post<CreatePaymentResponse>(this._endpoint, dto),
+      );
+      return response.data;
+    } catch (error) {
+      this.throwError(error);
+    }
   }
 
   public async check(transactionId: string): Promise<CheckPaymentResponse> {

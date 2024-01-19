@@ -33,12 +33,12 @@ export class ListMerchantSubscriptionDTO extends BaseSdkFilter {
 
 export class UpdateMerchantSubscriptionDTO {
   status: string;
-
   updatedBy?: number;
 }
 
 export class ChangeQuotaSubscriptionDTO {
   postCarQuota?: number;
   postedHotSale?: number;
-  carPosted?: number;
+  postedCar?: number;
+  merchantId: number;
 }

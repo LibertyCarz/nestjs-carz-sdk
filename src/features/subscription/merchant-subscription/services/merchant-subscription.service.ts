@@ -63,11 +63,21 @@ export class MerchantSubscriptionInternalService extends BaseService {
     );
     return response.data?.data;
   }
-  public async changeQuota(id: number, dto: ChangeQuotaSubscriptionDTO) {
+  public async changeQuota(dto: ChangeQuotaSubscriptionDTO) {
     const response = await lastValueFrom(
-      this._httpService.patch<BaseResponse<MerchantSubscription>>(
-        `${this._endpoint}/${id}/quota`,
+      this._httpService.post<BaseResponse<MerchantSubscription>>(
+        `${this._endpoint}/quota`,
         dto,
+      ),
+    );
+    return response.data?.data;
+  }
+  public async getMyQuota(merchantId: number): Promise<MerchantSubscription> {
+    console.log({ merchantId });
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<MerchantSubscription>>(
+        `${this._endpoint}/my-quota`,
+        { params: { merchantId } },
       ),
     );
     return response.data?.data;
