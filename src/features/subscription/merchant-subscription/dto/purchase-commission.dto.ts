@@ -46,6 +46,7 @@ export type PurchaseCarCommission = {
   carId: number;
   subscriptionPackage?: number;
   extraData?: any;
+  car?: any;
 };
 export class UpdatePurchaseCommissionDTO {
   status?: PURCHASE_COMMISSION_STATUS;
