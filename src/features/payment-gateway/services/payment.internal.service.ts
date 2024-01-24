@@ -23,9 +23,12 @@ export class PaymentInternalService
   public async create(dto: CreatePaymentDto): Promise<CreatePaymentResponse> {
     try {
       const response = await lastValueFrom(
-        this._httpService.post<CreatePaymentResponse>(this._endpoint, dto),
+        this._httpService.post<BaseResponse<CreatePaymentResponse>>(
+          this._endpoint,
+          dto,
+        ),
       );
-      return response.data;
+      return response.data?.data;
     } catch (error) {
       this.throwError(error);
     }
