@@ -1,5 +1,6 @@
 import { BaseSdkFilter } from '../../../../shared/base.request';
 import { BaseModelSQLType } from '../../../../types';
+import { TransactionSubscription } from './transaction-subscription.dto';
 
 export class MerchantSubscription extends BaseModelSQLType {
   merchantId?: number;
@@ -10,9 +11,14 @@ export class MerchantSubscription extends BaseModelSQLType {
 
   updatedBy?: number;
 
-  postCarQuota: number;
-
   postedHotSale: number; // total posted in host sale
+
+  transaction?: TransactionSubscription;
+  postedCar?: number;
+  quotation?: number;
+  startDate?: Date;
+  endDate?: Date;
+  resetDate?: Date;
 
   constructor(data: Partial<MerchantSubscription> = null) {
     super(data);
@@ -22,7 +28,12 @@ export class MerchantSubscription extends BaseModelSQLType {
       this.subscriptionPackage = data.subscriptionPackage;
       this.status = data.status;
       this.updatedBy = data.updatedBy;
-      this.postCarQuota = data.postCarQuota;
+      this.transaction = data.transaction;
+      this.postedCar = data.postedCar;
+      this.quotation = data.quotation;
+      this.startDate = data.startDate;
+      this.endDate = data.endDate;
+      this.resetDate = data.resetDate;
     }
   }
 }
@@ -37,7 +48,6 @@ export class UpdateMerchantSubscriptionDTO {
 }
 
 export class ChangeQuotaSubscriptionDTO {
-  postCarQuota?: number;
   postedHotSale?: number;
   postedCar?: number;
   merchantId: number;

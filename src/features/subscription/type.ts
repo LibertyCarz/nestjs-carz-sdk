@@ -1,6 +1,7 @@
 export type SubscriptionPrice = {
   duration: number; // months
-  price: number;
+  price: number; //final price
+  discount?: number; // amount of %
 };
 export enum BENEFIT_CODE {
   CAR_PORT = 'carPost', // number new car posts per month
@@ -36,10 +37,10 @@ export class SubscriptionBenefit {
       this.unlimited = data.unlimited;
       this.quota = data.quota;
       this.duration = data.duration;
-      if (data.quota > 0) {
-        this.quota = data.quota;
+      if (data.unlimited) {
+        this.unlimited = true;
       } else {
-        this.unlimited = data.unlimited || true;
+        this.quota = data.quota;
       }
     }
   }
