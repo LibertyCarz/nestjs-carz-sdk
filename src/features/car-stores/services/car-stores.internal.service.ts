@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
 import { BaseInternalRequest } from '../../../types';
 import { CarStore } from '../types';
+import { CarStoreInternal } from '../../car-parts';
 
 @Injectable()
 export class CarStoreInternalService {
@@ -17,6 +18,13 @@ export class CarStoreInternalService {
         this._endpoint,
         request.buildRequestConfig(),
       ),
+    );
+    return response.data;
+  }
+
+  public async createStores(data: CarStoreInternal[]) {
+    const response = await lastValueFrom(
+      this._httpService.post<BaseResponse<CarStore[]>>(this._endpoint, data),
     );
     return response.data;
   }
