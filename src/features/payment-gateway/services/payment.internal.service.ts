@@ -20,12 +20,18 @@ export class PaymentInternalService
     this._endpoint = process.env.PAYMENT_GATEWAY_SERVICE_ENDPOINT + 'payments';
   }
 
-  public async create(dto: CreatePaymentDto): Promise<CreatePaymentResponse> {
+  public async create(
+    dto: CreatePaymentDto,
+    headers = {},
+  ): Promise<CreatePaymentResponse> {
     try {
       const response = await lastValueFrom(
         this._httpService.post<BaseResponse<CreatePaymentResponse>>(
           this._endpoint,
           dto,
+          {
+            headers,
+          },
         ),
       );
       return response.data?.data;
