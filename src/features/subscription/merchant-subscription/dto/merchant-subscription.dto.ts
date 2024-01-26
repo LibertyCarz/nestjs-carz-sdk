@@ -25,6 +25,11 @@ export class MerchantSubscription extends BaseModelSQLType {
 
   resetDate?: Date;
 
+  postQuota?: {
+    unlimited: boolean;
+    quota: number;
+  };
+
   constructor(data: Partial<MerchantSubscription> = null) {
     super(data);
     if (data) {
