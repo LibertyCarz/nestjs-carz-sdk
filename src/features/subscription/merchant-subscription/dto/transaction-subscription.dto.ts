@@ -17,7 +17,7 @@ export enum SUBSCRIPTION_TRANSACTION_METHOD {
 export class TransactionSubscription extends BaseModelSQLType {
   merchantId?: number;
 
-  // merchantSubscription?: number | MerchantSubscription;
+  merchantSubscription?: MerchantSubscription;
 
   subscriptionPackage?: number | MerchantSubscription;
 
@@ -40,6 +40,7 @@ export class TransactionSubscription extends BaseModelSQLType {
     if (data) {
       this.merchantId = data.id;
       this.subscriptionPackage = data.subscriptionPackage;
+      this.merchantSubscription = data.merchantSubscription;
       this.status = data.status;
       this.updatedBy = data.updatedBy;
       this.total = data.total;
