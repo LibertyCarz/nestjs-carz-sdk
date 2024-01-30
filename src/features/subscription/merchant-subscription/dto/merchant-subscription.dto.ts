@@ -1,11 +1,12 @@
 import { BaseSdkFilter } from '../../../../shared/base.request';
 import { BaseModelSQLType } from '../../../../types';
+import { SubscriptionPackage } from '../../subscription-package/dto';
 import { TransactionSubscription } from './transaction-subscription.dto';
 
 export class MerchantSubscription extends BaseModelSQLType {
   merchantId?: number;
 
-  subscriptionPackage?: number;
+  subscriptionPackage?: number | SubscriptionPackage;
 
   status?: string;
 
