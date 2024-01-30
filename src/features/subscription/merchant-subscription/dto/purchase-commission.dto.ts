@@ -51,6 +51,7 @@ export type PurchaseCarCommission = {
 export class UpdatePurchaseCommissionDTO {
   status?: PURCHASE_COMMISSION_STATUS;
   updatedBy?: number;
+  note?: string;
 }
 
 export class ListPurchaseCommissionDTO extends BaseSdkFilter {

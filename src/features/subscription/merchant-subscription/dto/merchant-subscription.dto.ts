@@ -14,11 +14,21 @@ export class MerchantSubscription extends BaseModelSQLType {
   postedHotSale: number; // total posted in host sale
 
   transaction?: TransactionSubscription;
+
   postedCar?: number;
+
   quotation?: number;
+
   startDate?: Date;
+
   endDate?: Date;
+
   resetDate?: Date;
+
+  postQuota?: {
+    unlimited: boolean;
+    quota: number;
+  };
 
   constructor(data: Partial<MerchantSubscription> = null) {
     super(data);
