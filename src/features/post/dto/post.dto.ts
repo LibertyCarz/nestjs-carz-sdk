@@ -14,10 +14,12 @@ export class PostCreateDto {
 }
 
 export enum POST_STATUS {
+  PENDING = 'pending',
   ENABLED = 'enabled',
   DISABLED = 'disabled',
+  REJECTED = 'rejected',
+  DELETED = 'deleted',
 }
-
 export class PostUpdateDto {
   status: POST_STATUS;
   updateBy: number;
