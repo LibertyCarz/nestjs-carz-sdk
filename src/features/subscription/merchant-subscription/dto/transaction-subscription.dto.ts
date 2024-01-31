@@ -2,6 +2,7 @@ import { BaseModelSQLType } from '../../../../types';
 import { BaseSdkFilter } from '../../../../shared/base.request';
 
 import { MerchantSubscription } from './merchant-subscription.dto';
+import { BaseFile } from '../../type';
 
 export enum SUBSCRIPTION_TRANSACTION_STATUS {
   NEW = 'new',
@@ -60,4 +61,6 @@ export class ListTransactionSubscriptionDTO extends BaseSdkFilter {
 export class UpdateTransactionSubscriptionDTO {
   status?: SUBSCRIPTION_TRANSACTION_STATUS;
   updatedBy?: number;
+  note?: string;
+  files?: BaseFile[];
 }

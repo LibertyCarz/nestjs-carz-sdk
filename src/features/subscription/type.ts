@@ -45,3 +45,18 @@ export class SubscriptionBenefit {
     }
   }
 }
+
+export class BaseFile {
+  path?: string;
+  name?: string;
+  updatedBy?: string;
+  createdAt?: Date;
+  constructor(data: any) {
+    if (data) {
+      this.path = data.path;
+      this.name = data.name;
+      this.updatedBy = data.updatedBy;
+      this.createdAt = data.createdAt || new Date();
+    }
+  }
+}

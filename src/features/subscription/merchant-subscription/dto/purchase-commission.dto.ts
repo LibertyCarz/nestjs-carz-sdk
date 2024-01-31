@@ -1,5 +1,6 @@
 import { BaseModelSQLType } from '../../../../types';
 import { BaseSdkFilter } from '../../../../shared/base.request';
+import { BaseFile } from '../../type';
 
 export enum PURCHASE_COMMISSION_STATUS {
   NEW = 'new',
@@ -52,6 +53,7 @@ export class UpdatePurchaseCommissionDTO {
   status?: PURCHASE_COMMISSION_STATUS;
   updatedBy?: number;
   note?: string;
+  files?: BaseFile[];
 }
 
 export class ListPurchaseCommissionDTO extends BaseSdkFilter {
