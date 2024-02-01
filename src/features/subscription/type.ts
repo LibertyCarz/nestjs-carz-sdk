@@ -51,6 +51,7 @@ export class BaseFile {
   name?: string;
   updatedBy?: string;
   createdAt?: Date;
+  url?: string;
   constructor(data: any) {
     if (data) {
       this.path = data.path;

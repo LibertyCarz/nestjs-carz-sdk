@@ -36,6 +36,12 @@ export class TransactionSubscription extends BaseModelSQLType {
 
   method?: SUBSCRIPTION_TRANSACTION_METHOD;
 
+  createdBy?: number;
+
+  createdByType?: number;
+
+  files?: BaseFile[];
+
   constructor(data: any) {
     super(data);
     if (data) {
@@ -48,7 +54,10 @@ export class TransactionSubscription extends BaseModelSQLType {
       this.quotation = data.quotation;
       this.note = data.note;
       this.method = data.method;
+      this.createdBy = data.createdBy;
+      this.createdByType = data.createdByType;
       this.extraData = data.extraData;
+      this.files = data.files;
     }
   }
 }

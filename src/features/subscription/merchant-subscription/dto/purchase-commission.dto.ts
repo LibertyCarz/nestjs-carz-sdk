@@ -25,6 +25,8 @@ export class PurchaseCommission extends BaseModelSQLType {
 
   note?: string;
 
+  files?: BaseFile[];
+
   constructor(data: any) {
     super(data);
     if (data) {
@@ -37,6 +39,7 @@ export class PurchaseCommission extends BaseModelSQLType {
       this.total = data.total;
       this.commission = data.commission;
       this.note = data.note;
+      this.files = data.files;
     }
   }
 }
