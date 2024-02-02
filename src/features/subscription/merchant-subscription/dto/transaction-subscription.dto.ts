@@ -15,6 +15,10 @@ export enum SUBSCRIPTION_TRANSACTION_METHOD {
   CASH = 'cash',
   BANK_TRANSFER = 'bank_transfer',
 }
+export enum SUBSCRIPTION_TRANSACTION_TYPE {
+  RENEW = 'renew', // renew
+  CHANGE = 'change', // Change plan
+}
 export class TransactionSubscription extends BaseModelSQLType {
   merchantId?: number;
 
@@ -42,6 +46,8 @@ export class TransactionSubscription extends BaseModelSQLType {
 
   files?: BaseFile[];
 
+  type?: SUBSCRIPTION_TRANSACTION_TYPE;
+
   constructor(data: any) {
     super(data);
     if (data) {
@@ -58,6 +64,7 @@ export class TransactionSubscription extends BaseModelSQLType {
       this.createdByType = data.createdByType;
       this.extraData = data.extraData;
       this.files = data.files;
+      this.type = data.type;
     }
   }
 }
