@@ -5,6 +5,7 @@ import {
   ChangeQuotaSubscriptionDTO,
   ListMerchantSubscriptionDTO,
   MerchantSubscription,
+  TransactionSubscription,
   UpdateMerchantSubscriptionDTO,
 } from '../dto';
 import { BaseService } from '../../../../shared/base.service';
@@ -19,7 +20,7 @@ export class MerchantSubscriptionInternalService extends BaseService {
   public async create(data: MerchantSubscription) {
     try {
       const response = await lastValueFrom(
-        this._httpService.post<BaseResponse<MerchantSubscription>>(
+        this._httpService.post<BaseResponse<TransactionSubscription>>(
           `${this._endpoint}`,
           data,
         ),
