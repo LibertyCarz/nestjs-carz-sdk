@@ -63,3 +63,12 @@ export class ChangeQuotaSubscriptionDTO {
   postedCar?: number;
   merchantId: number;
 }
+
+export type RenewTime = {
+  start?: string;
+  end?: string;
+};
+
+export type RenewTimeDTO = {
+  quotation: number;
+};

@@ -5,6 +5,8 @@ import {
   ChangeQuotaSubscriptionDTO,
   ListMerchantSubscriptionDTO,
   MerchantSubscription,
+  RenewTime,
+  RenewTimeDTO,
   UpdateMerchantSubscriptionDTO,
 } from '../dto';
 import { BaseService } from '../../../../shared/base.service';
@@ -77,6 +79,18 @@ export class MerchantSubscriptionInternalService extends BaseService {
       this._httpService.get<BaseResponse<MerchantSubscription>>(
         `${this._endpoint}/my-quota`,
         { params: { merchantId } },
+      ),
+    );
+    return response.data?.data;
+  }
+  public async getRenewTime(
+    merchantId: number,
+    dto: RenewTimeDTO,
+  ): Promise<RenewTime> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<RenewTime>>(
+        `${this._endpoint}/${merchantId}/renew-time`,
+        { params: dto },
       ),
     );
     return response.data?.data;
