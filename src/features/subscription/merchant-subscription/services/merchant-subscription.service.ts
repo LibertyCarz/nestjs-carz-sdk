@@ -95,4 +95,13 @@ export class MerchantSubscriptionInternalService extends BaseService {
     );
     return response.data?.data;
   }
+
+  public async handleExpiredDaily(): Promise<MerchantSubscription[]> {
+    const response = await lastValueFrom(
+      this._httpService.post<BaseResponse<MerchantSubscription[]>>(
+        `${this._endpoint}/reset-expired`,
+      ),
+    );
+    return response?.data?.data;
+  }
 }
