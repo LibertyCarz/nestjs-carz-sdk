@@ -20,4 +20,7 @@ export const CMD = {
   CAR_INTEGRATION_MODEL_INSERTED: 'car_integration_model_inserted_event',
   PUSH_NOTIFICATION_BY_DEVICE: 'push_noti_by_device',
   PUSH_NOTIFICATION_NORMAL: 'push_noti_normal',
+  // RECOMMENDATION
+  RECOMMENDATION_INSERT_SEARCH: 'recommendation_insert_search',
+  RECOMMENDATION_BULK_BY_USER: 'recommendation_bulk_by_user',
 };

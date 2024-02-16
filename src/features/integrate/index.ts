@@ -7,3 +7,4 @@ export * from './brand/dto';
 export * from './model/services';
 export * from './form-requests/services';
 export * from './form-requests/dto';
+export * from './recommendation';
