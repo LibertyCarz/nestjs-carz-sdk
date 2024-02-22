@@ -5,6 +5,8 @@ export enum PAYWAY_PAYMENT_OPTIONS {
   WECHAT = 'wechat',
   ALIPAY = 'alipay',
   BAKONG = 'bakong',
+  ABAPAY_KHQR_DEEPLINK = 'abapay_khqr_deeplink',
+  ABAPAY_KHQR = 'abapay_khqr',
 }
 
 export enum PAYWAY_STATUS {
