@@ -36,6 +36,7 @@ declare global {
   export type BasePagination = {
     limit: number;
     skip: number;
+    filter?: any;
   };
 
   export type BaseResponse<T> = {
