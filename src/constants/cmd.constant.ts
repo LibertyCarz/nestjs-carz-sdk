@@ -23,4 +23,6 @@ export const CMD = {
   // RECOMMENDATION
   RECOMMENDATION_INSERT_SEARCH: 'recommendation_insert_search',
   RECOMMENDATION_BULK_BY_USER: 'recommendation_bulk_by_user',
+  // CRAWLER
+  CAR_CRAWLER_CARZ_CREATED: 'car_crawler_carz_created',
 };

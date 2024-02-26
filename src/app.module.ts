@@ -61,6 +61,19 @@ import { SERVICES } from './constants';
           },
         }),
       },
+      {
+        name: SERVICES.CARZ_CRAWLER,
+        useFactory: async () => ({
+          transport: Transport.RMQ,
+          options: {
+            urls: [process.env.RABBITMQ_URL],
+            queue: process.env.RABBITMQ_CRAWLER_QUEUE,
+            queueOptions: {
+              durable: true,
+            },
+          },
+        }),
+      },
     ]),
     HttpModule,
   ],
