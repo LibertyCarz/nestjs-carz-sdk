@@ -7,18 +7,19 @@ import {
   PercentageDiscountVoucherCalculator,
 } from '../discounts';
 import { BaseInternalRequest } from '../../../../types';
-import { LoyaltyVoucherCodeDashboardInternalService } from './voucher-code.dashboard.internal.service';
 import { VOUCHER_DISCOUNT_TYPE, Voucher, VoucherCode } from '../types';
 import { BaseService } from '../../../../shared/base.service';
+import { HttpService } from '@nestjs/axios';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class DiscountVoucherCalculatorInternalService extends BaseService {
   private _logger: LoggerService;
   private _fixedDiscountVoucherCalculator: IVoucherCalculator;
   private _percentageDiscountVoucherCalculator: IVoucherCalculator;
-  constructor(
-    private _voucherCodeDashboardInternalSvc: LoyaltyVoucherCodeDashboardInternalService,
-  ) {
+  private _endpoint =
+    process.env.LOYALTY_SERVICE_ENDPOINT + 'dashboard/voucher-codes';
+  constructor(private _httpService: HttpService) {
     super();
     this._fixedDiscountVoucherCalculator = new FixedDiscountVoucherCalculator();
     this._percentageDiscountVoucherCalculator =
@@ -27,10 +28,14 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
   public async getCodeByIds(ids: string[]): Promise<VoucherCode[]> {
     try {
       const params = { limit: ids.length, ids: ids.join(',') };
-      const { data } = await this._voucherCodeDashboardInternalSvc.list(
-        new BaseInternalRequest({ params }),
+      const request = new BaseInternalRequest({ params });
+      const response = await lastValueFrom(
+        this._httpService.get<BaseResponse<VoucherCode[]>>(
+          `${this._endpoint}`,
+          request.buildRequestConfig(),
+        ),
       );
-      return data;
+      return response?.data?.data;
     } catch (error) {
       this._logger.error('ERROR WHEN GET VOUCHER CODE BY IDS', error.message);
     }
