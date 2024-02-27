@@ -3,6 +3,7 @@ import { VoucherAttribute, VoucherCodeOrder, VoucherDiscount } from '../types';
 export type ListVoucherDTO = BaseRequestParams & {
   type?: string;
   status?: string;
+  userType?: number;
 };
 
 export type CreateVoucherDTO = {
@@ -17,6 +18,7 @@ export type CreateVoucherDTO = {
   startDate?: string;
   endDate?: string;
   isAutoGenerateCode?: boolean;
+  userType?: number;
 };
 
 export type UpdateVoucherDTO = {
