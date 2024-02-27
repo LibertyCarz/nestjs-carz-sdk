@@ -20,6 +20,21 @@ export class LoyaltyVoucherCodeDashboardInternalService {
     return response.data;
   }
 
+  public async updateBy(
+    id: string,
+    body: Partial<VoucherCode>,
+    query: Partial<VoucherCode & { voucherUserType?: number }> = {},
+  ) {
+    const response = await lastValueFrom(
+      this._httpService.patch<BaseResponse<VoucherCode[]>>(
+        `${this._endpoint}/${id}`,
+        body,
+        { params: query },
+      ),
+    );
+    return response.data.data;
+  }
+
   public async handleOrder(
     payload: UpdateVoucherCodeDTO,
     request: BaseInternalRequest,
