@@ -48,6 +48,10 @@ export class TransactionSubscription extends BaseModelSQLType {
 
   type?: SUBSCRIPTION_TRANSACTION_TYPE;
 
+  voucherId?: string;
+
+  originalPrice?: number;
+
   constructor(data: any) {
     super(data);
     if (data) {
@@ -65,6 +69,8 @@ export class TransactionSubscription extends BaseModelSQLType {
       this.extraData = data.extraData;
       this.files = data.files;
       this.type = data.type;
+      this.voucherId = data.voucherId;
+      this.originalPrice = data.originalPrice;
     }
   }
 }

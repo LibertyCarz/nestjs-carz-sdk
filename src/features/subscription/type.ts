@@ -10,6 +10,10 @@ export enum BENEFIT_CODE {
   COMMUNITY = 'community', // Can post on community
   REQUEST_AUCTION = 'requestAuction', // Request to create auction
   CHECK_CAR = 'checkCar', //Request for car checks
+  UNLIMITED_POST_TOP_DEAL = 'unlimitedPostTopDeal', // Unlimited post top deal
+  SALE_SUPPORT = 'saleSupport', // Sale support
+  CUSTOMER_SERVICE_SUPPORT = 'customerServiceSupport', // Customer service support
+  DIGITAL_MEDIA_SUPPORT = 'digitalMediaSupport', // Digital media support
 }
 export enum BENEFIT_TYPE {
   MAIN = 'main',
