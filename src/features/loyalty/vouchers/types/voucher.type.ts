@@ -48,6 +48,7 @@ export type Voucher = BaseMongooseType & {
   createdBy: number;
   updatedBy: number;
   discount?: VoucherDiscount;
+  userType?: number;
 };
 
 export type VoucherAttribute = {
