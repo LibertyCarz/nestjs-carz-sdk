@@ -39,6 +39,16 @@ export class CarPartIntegrateInternalService {
     return response.data;
   }
 
+  public async count(request: BaseInternalRequest): Promise<number> {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<number>>(
+        `${this._endpoint}/count`,
+        request.buildRequestConfig(),
+      ),
+    );
+    return response.data?.data;
+  }
+
   public block(data: Partial<IntegrateProduct>) {
     return this._carzIntegration.emit(CMD.MERCHANT_ACCOUNT_REMOVED, data);
   }
