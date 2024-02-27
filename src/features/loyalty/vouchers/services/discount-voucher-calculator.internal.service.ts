@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger, LoggerService } from '@nestjs/common';
 
 import { get } from 'lodash';
 import {
@@ -8,11 +8,12 @@ import {
 } from '../discounts';
 import { BaseInternalRequest } from '../../../../types';
 import { LoyaltyVoucherCodeDashboardInternalService } from './voucher-code.dashboard.internal.service';
-import { VOUCHER_DISCOUNT_TYPE, Voucher } from '../types';
+import { VOUCHER_DISCOUNT_TYPE, Voucher, VoucherCode } from '../types';
 import { BaseService } from '../../../../shared/base.service';
 
 @Injectable()
 export class DiscountVoucherCalculatorInternalService extends BaseService {
+  private _logger: LoggerService;
   private _fixedDiscountVoucherCalculator: IVoucherCalculator;
   private _percentageDiscountVoucherCalculator: IVoucherCalculator;
   constructor(
@@ -23,7 +24,7 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
     this._percentageDiscountVoucherCalculator =
       new PercentageDiscountVoucherCalculator();
   }
-  public async getCodeByIds(ids: string[]) {
+  public async getCodeByIds(ids: string[]): Promise<VoucherCode[]> {
     try {
       const params = { limit: ids.length, ids: ids.join(',') };
       const { data } = await this._voucherCodeDashboardInternalSvc.list(
@@ -31,11 +32,16 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
       );
       return data;
     } catch (error) {
-      console.error('ERROR WHEN GET VOUCHER CODE BY IDS', error.message);
+      this._logger.error('ERROR WHEN GET VOUCHER CODE BY IDS', error.message);
     }
   }
   public async calculateDiscount(voucherCodeIds: string[], total: number) {
     const voucherCodes = await this.getCodeByIds(voucherCodeIds);
+    if (!voucherCodes?.length) {
+      this.throwError({
+        message: 'Voucher is not valid!',
+      });
+    }
     const totalDiscount = voucherCodes.reduce(
       (discount, voucherCode) =>
         discount + this._calculateVoucherDiscount(voucherCode.voucher, total),
