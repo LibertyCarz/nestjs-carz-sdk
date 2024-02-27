@@ -22,6 +22,11 @@ export const VOUCHER_CONSTANT = {
   },
 };
 
+export enum VOUCHER_CODE_ORDER_TYPE {
+  PURCHASE_ORDER = 'PurchaseOrder',
+  TRANSACTION_SUBSCRIPTION = 'TransactionSubscription',
+}
+
 export enum VOUCHER_DISCOUNT_TYPE {
   CASH = 'cash',
   PERCENTAGE = 'percentage',
@@ -60,7 +65,7 @@ export type VoucherAttribute = {
 
 export type VoucherCodeOrder = {
   orderId: string;
-  orderType: string;
+  orderType: VOUCHER_CODE_ORDER_TYPE;
 };
 
 export type VoucherCode = BaseMongooseType & {
