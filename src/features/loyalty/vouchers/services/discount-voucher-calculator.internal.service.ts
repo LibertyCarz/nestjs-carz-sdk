@@ -17,7 +17,7 @@ import {
 import { BaseService } from '../../../../shared/base.service';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
-import { UseVoucherCodeDTO } from '../dto';
+import { CalculateVoucherCodeDTO } from '../dto';
 
 @Injectable()
 export class DiscountVoucherCalculatorInternalService extends BaseService {
@@ -49,7 +49,7 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
   }
   public async calculateSubscriptionVoucher(
     voucherCodeId: string,
-    payload: UseVoucherCodeDTO,
+    payload: CalculateVoucherCodeDTO,
     total: number,
   ) {
     const body: Partial<VoucherCode> = {
