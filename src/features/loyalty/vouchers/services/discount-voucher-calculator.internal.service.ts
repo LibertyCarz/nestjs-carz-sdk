@@ -74,7 +74,7 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
 
     return this.calculateByVoucherCodes(data.data && [data.data], total);
   }
-  private calculateByVoucherCodes(voucherCodes: VoucherCode[], total: number) {
+  public calculateByVoucherCodes(voucherCodes: VoucherCode[], total: number) {
     if (!voucherCodes?.length) {
       this.throwError({
         message: 'Voucher is not valid!',
