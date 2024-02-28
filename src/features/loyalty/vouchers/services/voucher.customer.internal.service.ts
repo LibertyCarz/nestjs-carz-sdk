@@ -12,7 +12,7 @@ import { VoucherCode } from '../types';
 export class LoyaltyVoucherCustomerInternalService {
   private _endpoint =
     process.env.LOYALTY_SERVICE_ENDPOINT + 'customer/vouchers';
-  constructor(private _httpService: HttpService) {}
+  constructor(private _httpService: HttpService) { }
 
   public async getList(
     request: BaseInternalRequest<ListVoucherDTO>,

@@ -43,3 +43,9 @@ export type UpdateVoucherCodeDTO = {
   status?: string;
   order?: VoucherCodeOrder;
 };
+
+export type CalculateVoucherCodeDTO = {
+  transactionId: string;
+  userId: number;
+  userType: number;
+};

@@ -1,3 +1,20 @@
+export enum VOUCHER_CODE_STATUS {
+  /**
+   * available: The voucher code is available and can be used.
+   */
+  AVAILABLE = 'available',
+
+  /**
+   * used: The voucher code has been used.
+   */
+  USED = 'used',
+
+  /**
+   * expired: The voucher code is expired, belonging to an expired voucher.
+   */
+  EXPIRED = 'expired',
+}
+
 export const VOUCHER_CONSTANT = {
   TYPE: {
     CASH: 'cash',
