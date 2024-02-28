@@ -26,7 +26,7 @@ export class LoyaltyVoucherCodeDashboardInternalService {
     query: Partial<VoucherCode & { voucherUserType?: number }> = {},
   ) {
     const response = await lastValueFrom(
-      this._httpService.patch<BaseResponse<VoucherCode[]>>(
+      this._httpService.patch<BaseResponse<VoucherCode>>(
         `${this._endpoint}/${id}`,
         body,
         { params: query },

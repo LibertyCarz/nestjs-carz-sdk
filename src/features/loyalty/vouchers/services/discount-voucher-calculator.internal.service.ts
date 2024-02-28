@@ -65,13 +65,14 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
       status: VOUCHER_CODE_STATUS.AVAILABLE,
     };
     const { data } = await lastValueFrom(
-      this._httpService.patch<BaseResponse<VoucherCode[]>>(
+      this._httpService.patch<BaseResponse<VoucherCode>>(
         `${this._endpoint}/${voucherCodeId}`,
         body,
         { params },
       ),
     );
-    return this.calculateByVoucherCodes(data?.data, total);
+
+    return this.calculateByVoucherCodes(data.data && [data.data], total);
   }
   private calculateByVoucherCodes(voucherCodes: VoucherCode[], total: number) {
     if (!voucherCodes?.length) {
