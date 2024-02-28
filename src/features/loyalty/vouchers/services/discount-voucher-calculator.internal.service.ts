@@ -1,4 +1,4 @@
-import { Injectable, Logger, LoggerService } from '@nestjs/common';
+import { HttpStatus, Injectable, Logger, LoggerService } from '@nestjs/common';
 
 import { get } from 'lodash';
 import {
@@ -7,10 +7,17 @@ import {
   PercentageDiscountVoucherCalculator,
 } from '../discounts';
 import { BaseInternalRequest } from '../../../../types';
-import { VOUCHER_DISCOUNT_TYPE, Voucher, VoucherCode } from '../types';
+import {
+  VOUCHER_CODE_ORDER_TYPE,
+  VOUCHER_CODE_STATUS,
+  VOUCHER_DISCOUNT_TYPE,
+  Voucher,
+  VoucherCode,
+} from '../types';
 import { BaseService } from '../../../../shared/base.service';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
+import { UseVoucherCodeDTO } from '../dto';
 
 @Injectable()
 export class DiscountVoucherCalculatorInternalService extends BaseService {
@@ -40,11 +47,37 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
       this._logger.error('ERROR WHEN GET VOUCHER CODE BY IDS', error.message);
     }
   }
-  public async calculateDiscount(voucherCodeIds: string[], total: number) {
-    const voucherCodes = await this.getCodeByIds(voucherCodeIds);
+  public async calculateSubscriptionVoucher(
+    voucherCodeId: string,
+    payload: UseVoucherCodeDTO,
+    total: number,
+  ) {
+    const body: Partial<VoucherCode> = {
+      userId: payload?.userId,
+      userType: payload.userType,
+      status: VOUCHER_CODE_STATUS.USED,
+      order: {
+        orderId: payload.transactionId,
+        orderType: VOUCHER_CODE_ORDER_TYPE.TRANSACTION_SUBSCRIPTION,
+      },
+    };
+    const params: Partial<VoucherCode> = {
+      status: VOUCHER_CODE_STATUS.AVAILABLE,
+    };
+    const { data } = await lastValueFrom(
+      this._httpService.patch<BaseResponse<VoucherCode[]>>(
+        `${this._endpoint}/${voucherCodeId}`,
+        body,
+        { params },
+      ),
+    );
+    return this.calculateByVoucherCodes(data?.data, total);
+  }
+  private calculateByVoucherCodes(voucherCodes: VoucherCode[], total: number) {
     if (!voucherCodes?.length) {
       this.throwError({
         message: 'Voucher is not valid!',
+        status: HttpStatus.BAD_REQUEST,
       });
     }
     const totalDiscount = voucherCodes.reduce(
@@ -54,6 +87,11 @@ export class DiscountVoucherCalculatorInternalService extends BaseService {
     );
     // rounded to 2 decimal places
     return Number(totalDiscount.toFixed(2));
+  }
+
+  public async calculateDiscount(voucherCodeIds: string[], total: number) {
+    const voucherCodes = await this.getCodeByIds(voucherCodeIds);
+    return this.calculateByVoucherCodes(voucherCodes, total);
   }
 
   private _calculateVoucherDiscount(voucher: Voucher, total: number) {
