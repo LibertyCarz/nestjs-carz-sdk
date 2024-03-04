@@ -1,3 +1,4 @@
+import { BaseSdkFilter } from '../../../shared/base.request';
 import { BaseUser } from '../../../types';
 import { CAR_WASH_SIZE, CAR_WASH_STATUS } from '../types/car-wash.type';
 export class CreateCarWashDTO {
@@ -27,3 +28,11 @@ export class CreateCarWashDTO {
     this.createdBy = data?.createdBy;
   }
 }
+
+export type FilterCarWashDTO = {
+  storeId?: number;
+  categoryId?: string;
+  status?: CAR_WASH_STATUS;
+  ids?: string;
+  name?: string;
+} & BaseSdkFilter;
