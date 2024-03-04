@@ -103,4 +103,15 @@ export class BaseMongoose {
   status?: string;
   updatedAt?: Date;
   createdAt?: Date;
+  constructor(data?: Partial<BaseMongoose>) {
+    this._id = data?._id;
+    this.status = data?.status;
+    this.updatedAt = data?.updatedAt;
+    this.createdAt = data?.createdAt;
+  }
 }
+
+export type BaseUser = {
+  user: number;
+  userType: number;
+};
