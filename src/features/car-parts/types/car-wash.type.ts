@@ -45,6 +45,8 @@ export class CarWash extends BaseMongoose {
 
   size?: CAR_WASH_SIZE; // when creating booking => to assign size
 
+  merchantId: string;
+
   constructor(data?: Partial<CarWash>) {
     super(data);
     this.category = data?.category;
@@ -56,5 +58,6 @@ export class CarWash extends BaseMongoose {
     this.sellingPrice = data?.sellingPrice;
     this.store = data?.store;
     this.size = data?.size;
+    this.merchantId = data?.merchantId;
   }
 }
