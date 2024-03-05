@@ -13,6 +13,7 @@ export class CreateCarWashDTO {
   sellingPrice: Record<CAR_WASH_SIZE, number>;
   updatedBy: BaseUser;
   createdBy: BaseUser;
+  merchantId: number;
 
   constructor(data?: Partial<CreateCarWashDTO>) {
     this.categoryId = data?.categoryId;
@@ -26,6 +27,7 @@ export class CreateCarWashDTO {
     this.sellingPrice = data?.sellingPrice;
     this.updatedBy = data?.updatedBy;
     this.createdBy = data?.createdBy;
+    this.merchantId = data?.merchantId;
   }
 }
 
