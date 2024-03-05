@@ -39,9 +39,10 @@ declare global {
     filter?: any;
   };
 
-  export type BaseResponse<T> = {
+  export type BaseResponse<T, K = object> = {
     data: T;
     total: number;
+    extraData: K;
   };
 
   export type BaseRequestParams = Partial<BasePagination & SDK.User>;

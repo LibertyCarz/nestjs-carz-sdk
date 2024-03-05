@@ -1,7 +1,11 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { lastValueFrom } from 'rxjs';
-import { CreateCarWashDTO, FilterCarWashDTO } from '../dto';
+import {
+  CreateCarWashDTO,
+  FilterCarWashDTO,
+  UpdateCarWashMerchantDto,
+} from '../dto';
 import { CarWash } from '../types';
 
 @Injectable()
@@ -21,6 +25,16 @@ export class CarWashInternalService {
   public async create(data: CreateCarWashDTO) {
     const response = await lastValueFrom(
       this._httpService.post<BaseResponse<CarWash>>(`${this._endpoint}`, data),
+    );
+    return response.data;
+  }
+
+  public async update(id: string, data: UpdateCarWashMerchantDto) {
+    const response = await lastValueFrom(
+      this._httpService.patch<BaseResponse<CarWash, { diffPaths: string[] }>>(
+        `${this._endpoint}/${id}`,
+        data,
+      ),
     );
     return response.data;
   }

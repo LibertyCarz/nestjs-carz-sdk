@@ -5,7 +5,10 @@ export enum CAR_STORE_STATUS {
 export type AddressAttribute = {
   id?: number;
   provinceId?: number;
+  province?: string;
   districtId?: number;
+  district?: string;
+  ward?: string;
   wardId?: number;
 };
 export type CarStoreInternal = {

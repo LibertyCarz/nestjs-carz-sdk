@@ -29,6 +29,8 @@ export class CreateCarWashDTO {
   }
 }
 
+export class UpdateCarWashMerchantDto extends CreateCarWashDTO {}
+
 export type FilterCarWashDTO = {
   storeId?: number;
   categoryId?: string;
