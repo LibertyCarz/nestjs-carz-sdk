@@ -7,19 +7,26 @@ import {
   UpdateCarWashMerchantDto,
 } from '../dto';
 import { CarWash } from '../types';
+import { BaseService } from '../../../shared/base.service';
 
 @Injectable()
-export class CarWashInternalService {
+export class CarWashInternalService extends BaseService {
   private _endpoint = process.env.CAR_PARTS_SERVICE_ENDPOINT + 'car-washes';
-  constructor(private _httpService: HttpService) {}
+  constructor(private _httpService: HttpService) {
+    super();
+  }
 
   public async list(filter: FilterCarWashDTO) {
-    const response = await lastValueFrom(
-      this._httpService.get<BaseResponse<CarWash[]>>(`${this._endpoint}`, {
-        params: filter,
-      }),
-    );
-    return response.data;
+    try {
+      const response = await lastValueFrom(
+        this._httpService.get<BaseResponse<CarWash[]>>(`${this._endpoint}`, {
+          params: filter,
+        }),
+      );
+      return response.data;
+    } catch (error) {
+      this.throwError(error);
+    }
   }
 
   public async create(data: CreateCarWashDTO) {
