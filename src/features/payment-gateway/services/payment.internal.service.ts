@@ -42,10 +42,10 @@ export class PaymentInternalService
 
   public async check(transactionId: string): Promise<CheckPaymentResponse> {
     const response = await lastValueFrom(
-      this._httpService.get<CheckPaymentResponse>(
+      this._httpService.get<BaseResponse<CheckPaymentResponse>>(
         this._endpoint + '/check/' + transactionId,
       ),
     );
-    return response.data;
+    return response.data.data;
   }
 }
