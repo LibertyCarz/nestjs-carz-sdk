@@ -16,11 +16,14 @@ export class CarWashCategory extends BaseMongoose {
 
   updatedBy: BaseUser;
 
+  isOther?: boolean;
+
   constructor(data?: Partial<CarWashCategory>) {
     super(data);
     this.image = data?.image;
     this.name = data?.name;
     this.status = data?.status;
     this.order = data?.order;
+    this.isOther = data?.isOther;
   }
 }
