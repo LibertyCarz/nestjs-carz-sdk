@@ -3,6 +3,7 @@ import { BaseSdkFilter } from '../../../../shared/base.request';
 
 import { MerchantSubscription } from './merchant-subscription.dto';
 import { BaseFile } from '../../type';
+import { PAYWAY_PAYMENT_OPTIONS } from '../../../payment-gateway';
 
 export enum SUBSCRIPTION_TRANSACTION_STATUS {
   NEW = 'new',
@@ -11,9 +12,13 @@ export enum SUBSCRIPTION_TRANSACTION_STATUS {
   CANCELED = 'canceled',
 }
 export enum SUBSCRIPTION_TRANSACTION_METHOD {
-  PAYWAY = 'payway',
   CASH = 'cash',
   BANK_TRANSFER = 'bank_transfer',
+  WECHAT = 'wechat',
+  ALIPAY = 'alipay',
+  BAKONG = 'bakong',
+  ABAPAY_KHQR_DEEPLINK = 'abapay_khqr_deeplink',
+  ABAPAY_KHQR = 'abapay_khqr',
 }
 export enum SUBSCRIPTION_TRANSACTION_TYPE {
   RENEW = 'renew', // renew
@@ -38,7 +43,7 @@ export class TransactionSubscription extends BaseModelSQLType {
 
   note?: string;
 
-  method?: SUBSCRIPTION_TRANSACTION_METHOD;
+  method?: PAYWAY_PAYMENT_OPTIONS;
 
   createdBy?: number;
 
@@ -57,7 +62,7 @@ export class TransactionSubscription extends BaseModelSQLType {
   constructor(data: any) {
     super(data);
     if (data) {
-      this.merchantId = data.id;
+      this.merchantId = data.merchantId;
       this.subscriptionPackage = data.subscriptionPackage;
       this.merchantSubscription = data.merchantSubscription;
       this.status = data.status;
@@ -73,6 +78,7 @@ export class TransactionSubscription extends BaseModelSQLType {
       this.type = data.type;
       this.voucherId = data.voucherId;
       this.originalPrice = data.originalPrice;
+      this.voucherCode = data.voucherCode;
     }
   }
 }

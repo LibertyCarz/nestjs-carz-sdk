@@ -25,6 +25,8 @@ export enum PAYMENT_TYPE {
 }
 
 export enum PAYWAY_PAYMENT_OPTIONS {
+  CASH = 'cash',
+  BANK_TRANSFER = 'bank_transfer',
   CARDS = 'cards',
   ABAPAY = 'abapay',
   ABAPAY_DEEPLINK = 'abapay_deeplink',
