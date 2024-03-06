@@ -14,8 +14,11 @@ export const CMD = {
   PRODUCT_INTEGRATION_CREATED: 'product_integration_created_event',
   PRODUCT_INTEGRATION_UPDATED: 'product_integration_updated_event',
   PRODUCT_INTEGRATION_ADDRESS_UPDATED: 'product_integration_address_updated',
+  // CAR PART
   CAR_PART_CAR_STORE_CREATED: 'car_part_car_store_created',
   CAR_PART_CAR_STORE_UPDATED: 'car_part_car_store_updated',
+  CAR_WASH_INCREMENT_TOTAL_BOOKING: 'car_wash_increment_total_booking',
+
   MERCHANT_ACCOUNT_REMOVED: 'merchant_account_removed',
   CAR_INTEGRATION_MODEL_INSERTED: 'car_integration_model_inserted_event',
   PUSH_NOTIFICATION_BY_DEVICE: 'push_noti_by_device',

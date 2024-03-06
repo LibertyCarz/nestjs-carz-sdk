@@ -40,3 +40,8 @@ export type FilterCarWashDTO = {
   ids?: string;
   name?: string;
 } & BaseSdkFilter;
+
+export class IncrementTotalBookingDTO {
+  id: string;
+  increment?: number;
+}
