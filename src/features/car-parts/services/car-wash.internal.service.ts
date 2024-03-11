@@ -71,4 +71,8 @@ export class CarWashInternalService extends BaseService {
   public incrementTotalBooking(data: IncrementTotalBookingDTO[]) {
     return this._carzCarPart.emit(CMD.CAR_WASH_INCREMENT_TOTAL_BOOKING, data);
   }
+
+  public async bulkUpdateStatus(data: Partial<CarWash>) {
+    return this._carzCarPart.emit(CMD.CAR_WASH_BULK_UPDATE_STATUS, data);
+  }
 }

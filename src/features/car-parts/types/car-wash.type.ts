@@ -14,6 +14,7 @@ export enum CAR_WASH_SIZE {
 export enum CAR_WASH_STATUS {
   ENABLED = 'enabled',
   DISABLED = 'disabled',
+  BLOCKED = 'blocked',
 }
 
 export class CarWash extends BaseMongoose {
