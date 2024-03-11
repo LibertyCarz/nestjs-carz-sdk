@@ -12,6 +12,7 @@ import {
   PayloadCreateGroupEvent,
   PayloadCreateOneEvent,
   PayloadPushNotiByDevice,
+  SendCreateGroupEvent,
   UpdateNotificationDto,
 } from '../dto';
 
@@ -78,6 +79,27 @@ export class NotificationInternalService {
     );
   }
 
+  public async sendNotificationGroupEvent<TData = any>(
+    data: SendCreateGroupEvent<TData>,
+  ) {
+    const payload = new BaseSdkEventPayloadRequest<
+      PayloadCreateGroupEvent<TData>
+    >({
+      userNotifications: data.userIds.map((userId) => ({
+        user: {
+          id: userId,
+          userType: data.userType,
+        },
+        data: data.data,
+      })),
+      notificationTypeKey: data.notificationTypeKey,
+      userType: data.userType,
+    });
+    return this._carzNotification.emit(
+      CMD.CARZ_NOTIFICATION_GROUP_EVENT,
+      payload.buildRecord(),
+    );
+  }
   public async createNotificationGroupEvent<TData>(
     payload: BaseSdkEventPayloadRequest<PayloadCreateGroupEvent<TData>>,
   ) {

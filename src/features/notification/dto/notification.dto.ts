@@ -35,3 +35,10 @@ export type PayloadCreateGroupEvent<TData> = {
   userType: number;
   notificationTypeKey: string;
 };
+
+export type SendCreateGroupEvent<TData> = {
+  userIds: number[];
+  data: TData;
+  userType: number;
+  notificationTypeKey: string;
+};
