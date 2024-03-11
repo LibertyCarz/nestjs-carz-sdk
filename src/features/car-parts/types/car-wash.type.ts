@@ -63,3 +63,8 @@ export class CarWash extends BaseMongoose {
     this.merchantId = data?.merchantId;
   }
 }
+
+export type CountBy<T> = {
+  item: T;
+  count: number;
+};

@@ -1,16 +1,16 @@
 import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
+import { CMD, SERVICES } from '../../../constants';
+import { BaseService } from '../../../shared/base.service';
 import {
   CreateCarWashDTO,
   FilterCarWashDTO,
   IncrementTotalBookingDTO,
   UpdateCarWashMerchantDto,
 } from '../dto';
-import { CarWash } from '../types';
-import { BaseService } from '../../../shared/base.service';
-import { ClientProxy } from '@nestjs/microservices';
-import { CMD, SERVICES } from '../../../constants';
+import { CarWash, CarWashCategory, CountBy } from '../types';
 
 @Injectable()
 export class CarWashInternalService extends BaseService {
@@ -57,6 +57,15 @@ export class CarWashInternalService extends BaseService {
       this._httpService.get<BaseResponse<CarWash>>(`${this._endpoint}/${id}`),
     );
     return response.data;
+  }
+
+  public async categoryCounts(carStoreId: number) {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<Array<CountBy<CarWashCategory>>>>(
+        `${this._endpoint}/category-counts/${carStoreId}`,
+      ),
+    );
+    return response.data?.data;
   }
 
   public incrementTotalBooking(data: IncrementTotalBookingDTO[]) {
