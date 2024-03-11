@@ -4,6 +4,7 @@ import { CAR_WASH_SIZE, CAR_WASH_STATUS } from '../types/car-wash.type';
 export class CreateCarWashDTO {
   categoryId: string;
   storeId: number;
+  store: number;
   photos: string[];
   cover: string;
   publicCoverImage: string;
@@ -20,6 +21,7 @@ export class CreateCarWashDTO {
   constructor(data?: Partial<CreateCarWashDTO>) {
     this.categoryId = data?.categoryId;
     this.storeId = data?.storeId;
+    this.store = data?.store;
     this.photos = data?.photos;
     this.cover = data?.cover;
     this.publicCoverImage = data?.publicCoverImage;
