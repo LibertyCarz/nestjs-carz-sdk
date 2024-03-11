@@ -14,6 +14,8 @@ export class CreateCarWashDTO {
   updatedBy: BaseUser;
   createdBy: BaseUser;
   merchantId: number;
+  description: string;
+  note: string;
 
   constructor(data?: Partial<CreateCarWashDTO>) {
     this.categoryId = data?.categoryId;
@@ -28,6 +30,8 @@ export class CreateCarWashDTO {
     this.updatedBy = data?.updatedBy;
     this.createdBy = data?.createdBy;
     this.merchantId = data?.merchantId;
+    this.description = data?.description;
+    this.note = data?.note;
   }
 }
 
