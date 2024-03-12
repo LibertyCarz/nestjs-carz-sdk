@@ -12,8 +12,8 @@ export enum CAR_WASH_SIZE {
   SUPER_CAR = 'super_car',
 }
 export enum CAR_WASH_STATUS {
-  ENABLED = 'enabled',
-  DISABLED = 'disabled',
+  PUBLISH = 'publish',
+  UNPUBLISH = 'unpublish',
   BLOCKED = 'blocked',
 }
 
