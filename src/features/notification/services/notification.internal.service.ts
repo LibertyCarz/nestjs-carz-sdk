@@ -82,10 +82,16 @@ export class NotificationInternalService {
   public async sendNotificationGroupEvent<TData = any>(
     data: SendCreateGroupEvent<TData>,
   ) {
+    const userIds: number[] = [];
+    data.userIds.forEach((userId) => {
+      if (!userIds.includes(userId)) {
+        userIds.push(userId);
+      }
+    });
     const payload = new BaseSdkEventPayloadRequest<
       PayloadCreateGroupEvent<TData>
     >({
-      userNotifications: data.userIds.map((userId) => ({
+      userNotifications: userIds.map((userId) => ({
         user: {
           id: userId,
           userType: data.userType,
