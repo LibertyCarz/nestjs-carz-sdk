@@ -18,6 +18,7 @@ export const CMD = {
   CAR_PART_CAR_STORE_CREATED: 'car_part_car_store_created',
   CAR_PART_CAR_STORE_UPDATED: 'car_part_car_store_updated',
   CAR_WASH_INCREMENT_TOTAL_BOOKING: 'car_wash_increment_total_booking',
+  CAR_WASH_BULK_UPDATE_STATUS: 'car_wash_bulk_update_status',
 
   MERCHANT_ACCOUNT_REMOVED: 'merchant_account_removed',
   CAR_INTEGRATION_MODEL_INSERTED: 'car_integration_model_inserted_event',
