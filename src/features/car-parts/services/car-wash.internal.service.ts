@@ -10,7 +10,7 @@ import {
   IncrementTotalBookingDTO,
   UpdateCarWashMerchantDto,
 } from '../dto';
-import { CarWash, CarWashCategory, CountBy } from '../types';
+import { CAR_WASH_STATUS, CarWash, CarWashCategory, CountBy } from '../types';
 
 @Injectable()
 export class CarWashInternalService extends BaseService {
@@ -74,5 +74,17 @@ export class CarWashInternalService extends BaseService {
 
   public async bulkUpdateStatus(data: Partial<CarWash>) {
     return this._carzCarPart.emit(CMD.CAR_WASH_BULK_UPDATE_STATUS, data);
+  }
+
+  public async totalStatuses(filter: object) {
+    const response = await lastValueFrom(
+      this._httpService.get<BaseResponse<Record<CAR_WASH_STATUS, number>>>(
+        `${this._endpoint}/total-statuses`,
+        {
+          params: filter,
+        },
+      ),
+    );
+    return response.data.data;
   }
 }
