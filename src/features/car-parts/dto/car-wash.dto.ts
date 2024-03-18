@@ -45,6 +45,7 @@ export type FilterCarWashDTO = {
   status?: CAR_WASH_STATUS;
   ids?: string;
   name?: string;
+  merchantId?: number;
 } & BaseSdkFilter;
 
 export class IncrementTotalBookingDTO {
