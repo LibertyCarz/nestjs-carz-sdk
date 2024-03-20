@@ -59,6 +59,8 @@ export class TransactionSubscription extends BaseModelSQLType {
 
   voucherCode?: any;
 
+  merchant?: any;
+
   constructor(data: any) {
     super(data);
     if (data) {
